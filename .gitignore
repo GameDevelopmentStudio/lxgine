@@ -16,3 +16,7 @@
 *.un~
 *.swp
 
+#Executables
+*.exe
+*.osx
+

@@ -2,6 +2,7 @@
 #include "LXGameState.h"
 #include "LXInput.h"
 
+#include <stdlib.h>
 #include <time.h>
 
 // ESC key

@@ -5,6 +5,8 @@
 #include "LXGame.h"
 #include "LXInput.h"
 
+#include <stdlib.h>
+
 #pragma mark - Static Initializations
 
 LXGlut *LXGlut::instance = 0;
