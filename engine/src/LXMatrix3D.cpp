@@ -24,26 +24,34 @@ void LXMatrix3D::init() {
   matrix[12] = 0; matrix[13] = 0; matrix[14] = 0; matrix[15] = 1;
 }
 
-double LXMatrix3D::get(int i, int j) const {
-  return matrix[i << 2 | j];
+double &LXMatrix3D::operator()(int i, int j) {
+  return element(i, j);
 }
 
-double LXMatrix3D::set(int i, int j, double value) {
-  matrix[i << 2 | j] = value;
+const double &LXMatrix3D::operator()(int i, int j) const {
+  return element(i, j);
+}
+
+double &LXMatrix3D::element(int i, int j) {
+  return matrix[j | i << 2];
+}
+
+const double &LXMatrix3D::element(int i, int j) const {
+  return matrix[j | i << 2];
 }
 
 void LXMatrix3D::setRow(int i, LXPoint3D *p) {
-  set(i, 0, p->x);
-  set(i, 1, p->y);
-  set(i, 2, p->z);
-  set(i, 3, p->v);
+  element(i, 0) = p->x;
+  element(i, 1) = p->y;
+  element(i, 2) = p->z;
+  element(i, 3) = p->v;
 }
 
 void LXMatrix3D::setColumn(int j, LXPoint3D *p) {
-  set(0, j, p->x);
-  set(1, j, p->y);
-  set(2, j, p->z);
-  set(3, j, p->v);
+  element(0, j) = p->x;
+  element(1, j) = p->y;
+  element(2, j) = p->z;
+  element(3, j) = p->v;
 }
 
 #pragma mark - Transformations
@@ -114,6 +122,7 @@ LXMatrix3D matrixWithZRotation(double alpha) {
   return out;
 }
 
+
 #pragma mark -(R3->R3)x(R3->R3)->(R3->R3) Functions
 
 LXMatrix3D multiply(const LXMatrix3D &A, const LXMatrix3D &B) {
@@ -122,11 +131,10 @@ LXMatrix3D multiply(const LXMatrix3D &A, const LXMatrix3D &B) {
 
   for (int i = 0; i < 4; i++) {
       for (int j = 0; j < 4; j++) {
-          double cell = 0;
+          out(i, j) = 0;
           for (int k = 0; k < 4; k++) {
-            cell += A.get(i, k) * B.get(k, j);
+            out(i,j) += A(i, k) * B(k, j);
           }
-          out.set(i, j, cell);
       }
   }
   return out;
@@ -134,20 +142,14 @@ LXMatrix3D multiply(const LXMatrix3D &A, const LXMatrix3D &B) {
 
 #pragma mark - (R3->R3)xR3->R3 Functions
 
-// TODO:refactor
 LXPoint3D transformPoint(const LXMatrix3D &A, const LXPoint3D &p) {
-  int i, j;
-  double coord = 0;
   LXPoint3D out;
-  for (int n = 0; n < 16; n++) {
-    i = n >> 2; 
-    j = n & 3;
-
-    coord += A.matrix[n] * p.getCoord(j);
-    if (j == 3) {
-      out.setCoord(i, coord);
-      coord = 0;
+  for (int i = 0; i < 4; i++) {
+    double coord = 0;
+    for (int j = 0; j < 4; j++) {
+      coord += A(i,j) * p[j];
     }
+    out[i] = coord;
   }
   return out;
 }

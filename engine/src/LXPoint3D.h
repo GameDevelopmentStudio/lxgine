@@ -5,16 +5,22 @@ class LXMatrix3D;
 
 class LXPoint3D {
   public:
-    double x, y, z;
-    int v;
+    union {
+      struct {
+        double x, y, z, v;
+      };
+      // allow array access too
+      double coords[4];
+    };
+    /* int v; */
 
     LXPoint3D(double x = 0, double y = 0, double z = 0, int v = 1);
     LXPoint3D(const LXPoint3D &other);
     ~LXPoint3D();
 
-    // R -> R
-    double getCoord(int index) const;
-    void setCoord(int index, double value);
+    // N -> R
+    double &operator[](int i);
+    const double &operator[](int i) const;
     // R3 -> R
     double module() const;
 };

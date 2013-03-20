@@ -13,10 +13,13 @@ class LXMatrix3D {
 
     void init();
 
+    double &element(int i, int j);
+    double &operator()(int i, int j);
+    const double &element(int i, int j) const;
+    const double &operator()(int i, int j) const;
+
     void setRow(int i, LXPoint3D *p);
     void setColumn(int j, LXPoint3D *p);
-    double get(int i, int j) const;
-    double set(int i, int j, double value);
 
     // Transformations
     void translate(double tx, double ty, double tz);

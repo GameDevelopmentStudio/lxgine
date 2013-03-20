@@ -5,7 +5,6 @@
 #include <iostream>
 
 LXPoint3D::LXPoint3D(double x, double y, double z, int v) {
-  std::cout << "normal constructor" << std::endl;
   this->x = x;
   this->y = y;
   this->z = z;
@@ -13,7 +12,6 @@ LXPoint3D::LXPoint3D(double x, double y, double z, int v) {
 }
 
 LXPoint3D::LXPoint3D(const LXPoint3D &other) {
-  std::cout << "Copy constructor" << std::endl;
   x = other.x;
   y = other.y;
   z = other.z;
@@ -21,29 +19,16 @@ LXPoint3D::LXPoint3D(const LXPoint3D &other) {
 }
 
 LXPoint3D::~LXPoint3D() {
-  std::cout << "Destructor" << std::endl;
 }
 
-#pragma mark - R->R Functions
+#pragma mark - N->R Functions
 
-double LXPoint3D::getCoord(int index) const {
-  switch (index) {
-    case 0: return x;
-    case 1: return y;
-    case 2: return z;
-    case 3: return v;
-    default: return 0; // BAD PRACTICE MAN
-  }
+double &LXPoint3D::operator[](int i) {
+  return coords[i];
 }
 
-void LXPoint3D::setCoord(int index, double value) {
-  switch (index) {
-    case 0: x = value; break;
-    case 1: y = value; break;
-    case 2: z = value; break;
-    case 3: v = value; break;
-    default: break;
-  }
+const double &LXPoint3D::operator[](int i) const {
+  return coords[i];
 }
 
 #pragma mark - R3->R Functions
