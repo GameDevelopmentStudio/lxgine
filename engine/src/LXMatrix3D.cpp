@@ -33,25 +33,21 @@ const double &LXMatrix3D::operator()(int i, int j) const {
 }
 
 double &LXMatrix3D::element(int i, int j) {
-  return matrix[j | i << 2];
+  return matrix[i << 2 | j];
 }
 
 const double &LXMatrix3D::element(int i, int j) const {
-  return matrix[j | i << 2];
+  return matrix[i << 2 | j];
 }
 
-void LXMatrix3D::setRow(int i, LXPoint3D *p) {
-  element(i, 0) = p->x;
-  element(i, 1) = p->y;
-  element(i, 2) = p->z;
-  element(i, 3) = p->v;
+void LXMatrix3D::setRow(int i, const LXPoint3D &p) {
+  for (int j = 0; j < 4; j++)
+    element(i, j) = p[j];
 }
 
-void LXMatrix3D::setColumn(int j, LXPoint3D *p) {
-  element(0, j) = p->x;
-  element(1, j) = p->y;
-  element(2, j) = p->z;
-  element(3, j) = p->v;
+void LXMatrix3D::setColumn(int j, const LXPoint3D &p) {
+  for (int i = 0; i < 4; i++)
+    element(i, j) = p[i];
 }
 
 #pragma mark - Transformations
@@ -145,11 +141,10 @@ LXMatrix3D multiply(const LXMatrix3D &A, const LXMatrix3D &B) {
 LXPoint3D transformPoint(const LXMatrix3D &A, const LXPoint3D &p) {
   LXPoint3D out;
   for (int i = 0; i < 4; i++) {
-    double coord = 0;
+    out[i] = 0;
     for (int j = 0; j < 4; j++) {
-      coord += A(i,j) * p[j];
+      out[i] += A(i,j) * p[j];
     }
-    out[i] = coord;
   }
   return out;
 }

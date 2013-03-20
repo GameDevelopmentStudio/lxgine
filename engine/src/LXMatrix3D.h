@@ -18,8 +18,8 @@ class LXMatrix3D {
     const double &element(int i, int j) const;
     const double &operator()(int i, int j) const;
 
-    void setRow(int i, LXPoint3D *p);
-    void setColumn(int j, LXPoint3D *p);
+    void setRow(int i, const LXPoint3D &p);
+    void setColumn(int j, const LXPoint3D &p);
 
     // Transformations
     void translate(double tx, double ty, double tz);
@@ -28,6 +28,7 @@ class LXMatrix3D {
 };
 
 // Rotations
+// TODO: change this to use glRotate
 LXMatrix3D matrixWithXRotation(double alpha);
 LXMatrix3D matrixWithYRotation(double alpha);
 LXMatrix3D matrixWithZRotation(double alpha);
