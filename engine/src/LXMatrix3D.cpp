@@ -93,28 +93,34 @@ void LXMatrix3D::commit() {
 
 LXMatrix3D matrixWithXRotation(double alpha) {
   LXMatrix3D out;
-  out.matrix[0] = cos(alpha);   out.matrix[1] = 0;  out.matrix[2] = sin(alpha);   out.matrix[3] = 0;
-  out.matrix[4] = 0;            out.matrix[5] = 1;  out.matrix[6] = 0;            out.matrix[7] = 0;
-  out.matrix[8] = -sin(alpha);  out.matrix[9] = 0;  out.matrix[10] = cos(alpha);  out.matrix[11] = 0;
-  out.matrix[12] = 0;           out.matrix[13] = 0; out.matrix[14] = 0;           out.matrix[15] = 1;
+  double sin_a = sin(alpha);
+  double cos_a = cos(alpha);
+  out.matrix[0] = cos_a;  out.matrix[1] = 0;  out.matrix[2] = sin_a;  out.matrix[3] = 0;
+  out.matrix[4] = 0;      out.matrix[5] = 1;  out.matrix[6] = 0;      out.matrix[7] = 0;
+  out.matrix[8] = -sin_a; out.matrix[9] = 0;  out.matrix[10] = cos_a; out.matrix[11] = 0;
+  out.matrix[12] = 0;     out.matrix[13] = 0; out.matrix[14] = 0;     out.matrix[15] = 1;
   return out;
 }
 
 LXMatrix3D matrixWithYRotation(double alpha) {
   LXMatrix3D out;
-  out.matrix[0] = 1;   out.matrix[1] = 0;           out.matrix[2] = 0;             out.matrix[3] = 0;
-  out.matrix[4] = 0;   out.matrix[5] = cos(alpha);  out.matrix[6] = -sin(alpha);  out.matrix[7] = 0;
-  out.matrix[8] = 0;   out.matrix[9] = sin(alpha);  out.matrix[10] = cos(alpha);  out.matrix[11] = 0;
-  out.matrix[12] = 0;  out.matrix[13] = 0;          out.matrix[14] = 0;           out.matrix[15] = 1;
+  double sin_a= sin(alpha);
+  double cos_a= cos(alpha);
+  out.matrix[0] = 1;   out.matrix[1] = 0;     out.matrix[2] = 0;      out.matrix[3] = 0;
+  out.matrix[4] = 0;   out.matrix[5] = cos_a; out.matrix[6] = -sin_a; out.matrix[7] = 0;
+  out.matrix[8] = 0;   out.matrix[9] = sin_a; out.matrix[10] = cos_a; out.matrix[11] = 0;
+  out.matrix[12] = 0;  out.matrix[13] = 0;    out.matrix[14] = 0;     out.matrix[15] = 1;
   return out;
 }
 
 LXMatrix3D matrixWithZRotation(double alpha) {
   LXMatrix3D out;
-  out.matrix[0] = cos(alpha);   out.matrix[1] = -sin(alpha);  out.matrix[2] = 0;  out.matrix[3] = 0;
-  out.matrix[4] = sin(alpha);   out.matrix[5] = cos(alpha);   out.matrix[6] = 0;  out.matrix[7] = 0;
-  out.matrix[8] = 0;            out.matrix[9] = 0;            out.matrix[10] = 1; out.matrix[11] = 0;
-  out.matrix[12] = 0;           out.matrix[13] = 0;           out.matrix[14] = 0; out.matrix[15] = 1;
+  double sin_a= sin(alpha);
+  double cos_a= cos(alpha);
+  out.matrix[0] = cos_a;  out.matrix[1] = -sin_a; out.matrix[2] = 0;  out.matrix[3] = 0;
+  out.matrix[4] = sin_a;  out.matrix[5] = cos_a;  out.matrix[6] = 0;  out.matrix[7] = 0;
+  out.matrix[8] = 0;      out.matrix[9] = 0;      out.matrix[10] = 1; out.matrix[11] = 0;
+  out.matrix[12] = 0;     out.matrix[13] = 0;     out.matrix[14] = 0; out.matrix[15] = 1;
   return out;
 }
 
