@@ -53,9 +53,9 @@ void Level::render() {
   
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
-  gluLookAt(camera->eye->x, camera->eye->y, camera->eye->z,
-        camera->look->x, camera->look->y, camera->look->z,
-        camera->up->x, camera->up->y, camera->up->z);
+  gluLookAt(camera->eye.x, camera->eye.y, camera->eye.z,
+        camera->look.x, camera->look.y, camera->look.z,
+        camera->up.x, camera->up.y, camera->up.z);
 
   glBegin(GL_LINES);
 

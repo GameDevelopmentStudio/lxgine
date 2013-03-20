@@ -14,9 +14,9 @@ class LXCamera
  public:
   LXViewVolume viewVolume;
 
-  LXPoint3D *eye;
-  LXPoint3D *look;
-  LXPoint3D *up;
+  LXPoint3D eye;
+  LXPoint3D look;
+  LXPoint3D up;
   
   LXCamera();
   ~LXCamera();
