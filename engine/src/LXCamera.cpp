@@ -1,6 +1,9 @@
 #include "LXCamera.h"
 #include "LXMatrix3D.h"
+#include "LXGlut.h"
+
 #include <math.h>
+#include <iostream>
 
 LXCamera::LXCamera() {
 }
@@ -11,10 +14,12 @@ LXCamera::~LXCamera() {
 void LXCamera::init() {
   eye.x = 100.0; eye.y = 100.0; 
   eye.z = 100.0; eye.v = 1;
-  look.x = 0.0; look.y = 0.0; 
-  look.z = 0.0; look.v = 1;
-  up.x = 0; up.y = 1; 
-  up.z = 0; up.v = 0;
+  LXPoint3D target = LXPoint3D(0.0, 0.0, 0.0, 1);
+  lookAt = eye - target;
+  focalLength = lookAt.module();
+  lookAt = normalizedVector(lookAt);
+  up = normalizedVector(LXPoint3D(-100, 200, -100, 0));
+  right = crossProduct(up, lookAt);
 
   viewVolume.N = 2;
   viewVolume.F = 10000;
@@ -24,28 +29,28 @@ void LXCamera::init() {
   viewVolume.yB = -viewVolume.yT;
 }
 
+LXPoint3D LXCamera::getTarget() {
+  return eye - focalLength*lookAt;
+}
+
 void LXCamera::translate(double x, double y, double z) {
 
   LXPoint3D trans = LXPoint3D(x, y, z, 0.0);
 
-  // first we get camera.eye system of coordinates
-  LXPoint3D n = eye - look;
-  n = normalizedVector(n);
+  /* // first we get camera.eye system of coordinates */
+  /* LXPoint3D n = eye - look; */
+  /* n = normalizedVector(n); */
 
-  LXPoint3D u = crossProduct(up, n);
-  LXPoint3D v = crossProduct(n, u);
+  /* LXPoint3D u = crossProduct(up, n); */
+  /* LXPoint3D v = crossProduct(n, u); */
 
   // then we transform it (resulting matrix is kinda simple
   // so let's put the multiplication output here
   // notice how no eye vars appear here, that's because
   // desp is a vector and so desp.v is 0
-  LXPoint3D desp = LXPoint3D(u.x*trans.x + v.x*trans.y + n.x*trans.z,
-                             u.y*trans.x + v.y*trans.y + n.y*trans.z,
-                             u.z*trans.x + v.z*trans.y + n.z*trans.z,
-                             0);
-
+  LXPoint3D desp = LXPoint3D(right.x*trans.x + up.x*trans.y + lookAt.x*trans.z,
+                             right.y*trans.x + up.y*trans.y + lookAt.y*trans.z, right.z*trans.x + up.z*trans.y + lookAt.z*trans.z, 0); 
   eye = eye + desp;
-  look = look + desp;
 }
 
 void LXCamera::translateX(double x) {
@@ -60,88 +65,117 @@ void LXCamera::translateZ(double z) {
   translate(0.0, 0.0, z);
 }
 
-void LXCamera::rotate(double dx, double dy, double dz) {
-  // lots of shit going on here
-  // basically: a series of transformations are done here
-  //  - transform camera.look into camera.eye's system of coordinates
-  //  - rotate transformed camera.look horizontally and vertically, so
-  //    that it moves a distance equal to dx on x and dy on y (talking in
-  //    camera.eye system of coordinates)
-  //  - return transformed and rotated camera.look to global coordinates.
-  LXPoint3D n = eye - look;
-  double r = n.module();
-  n = normalizedVector(n);
-  LXPoint3D u = crossProduct(up, n);
-  LXPoint3D v = crossProduct(n, u);
+# pragma mark - Rotations
 
-  double halpha = asin((dx/2.f)/r);
-  double valpha = asin((dy/2.f)/r);
-  double zalpha = asin((dz/2.f)/r);
+/**
+ * Some notes about rotations:
+ *
+ * Rotations can be achieved in several ways. Some of the ones implemented here
+ * (present or past) are:
+ *
+ * 1. To rotate a camera point (i.e., target) around an orbitrary axis, perform 
+ *    these transformations:
+ *    
+ *    - transform camera.target into camera.eye's system of coordinates
+ *    - rotate transformed point in the desired axis (easier computation)
+ *    - return transformed and rotated camera.target to global coordinates.
+ *  
+ *    See code history for this implementation
+ *
+ * 2. To rotate a camera point around an orbitrary axis, transform the
+ *    correspondent vector (easier computation than rotating a point) around
+ *    the desired axis. Then recompute the point with the newly rotated vector.
+ *    This is the current implementation.
+ */
 
-  LXMatrix3D t1;
-  t1.matrix[0] = u.x; t1.matrix[1] = u.y; t1.matrix[2] = u.z;   t1.matrix[3] = -scalarDot(eye, u);
-  t1.matrix[4] = v.x; t1.matrix[5] = v.y; t1.matrix[6] = v.z;   t1.matrix[7] = -scalarDot(eye, v);
-  t1.matrix[8] = n.x; t1.matrix[9] = n.y; t1.matrix[10] = n.z;  t1.matrix[11] = -scalarDot(eye, n);
-  t1.matrix[12] = 0;  t1.matrix[13] = 0;  t1.matrix[14] = 0;    t1.matrix[15] = 1;
-
-  LXMatrix3D t2;
-  t2.matrix[0] = u.x; t2.matrix[1] = v.x; t2.matrix[2] = n.x;   t2.matrix[3] = eye.x;
-  t2.matrix[4] = u.y; t2.matrix[5] = v.y; t2.matrix[6] = n.y;   t2.matrix[7] = eye.y;
-  t2.matrix[8] = u.z; t2.matrix[9] = v.z; t2.matrix[10] = n.z;  t2.matrix[11] = eye.z;
-  t2.matrix[12] = 0; t2.matrix[13] = 0;   t2.matrix[14] = 0;    t2.matrix[15] = 1;
-  
-  LXMatrix3D rotatex = matrixWithXRotation(halpha);
-  LXMatrix3D rotatey = matrixWithYRotation(valpha);
-  // TODO: z rotation changes up vector
-  /* LXMatrix3D rotatez = matrixWithZRotation(zalpha); */
-
-  LXMatrix3D rotate = multiply(rotatex, rotatey);
-  /* rotate = multiply(rotate, rotatez); */
-  LXMatrix3D trasrot = multiply(t2, rotate);
-  LXMatrix3D matrix = multiply(trasrot, t1);
-
-  look = transformPoint(matrix, look);
+void LXCamera::pitch(double alpha) {
+  // Rotate lookAt vector around right vector
+  LXMatrix3D pitch = matrixWithRotationOnAxis(alpha, right);
+  // lookAt pitch modification implies changes on target point, 
+  // and also on the up vector
+  lookAt = transformPoint(pitch, lookAt);
+  up = crossProduct(lookAt, right);
 }
 
-void LXCamera::orbitate(double dx, double dy, double dz) {
-  // lots of shit going on here
-  // basically: a series of transformations are done here
-  //    - transform camera.eye into camera.look's system of coordinates
-  //    - rotate transformed camera.eye horizontally and vertically, so
-  //      that it moves a distance equal to dx on x and dy on y (talking in
-  //      camera.look system of coordinates)
-  //    - return transformed and rotated camera.eye to global coordinates.
-  LXPoint3D n = eye - look;
-  double r = n.module();
-  n = normalizedVector(n);
-  LXPoint3D u = crossProduct(up, n);
-  LXPoint3D v = crossProduct(n, u);
+void LXCamera::yaw(double alpha) {
+  // Rotate look over up-like vector
+  // We don't rotate directly around the up vector, but on the projection
+  // of the up vector agains the plane defined by the right vector and the 
+  // vertical axis. This way the camera rotates as if it were standing on a
+  // pole.
 
-  double halpha = asin((dx/2.f)/r);
-  double valpha = asin((dy/2.f)/r);
-  double zalpha = asin((dz/2.f)/r);
+  // planeNormal is the normal vector of the plane
+  LXPoint3D planeNormal = crossProduct(right, LXPoint3D(0,1,0,0));
+  // v_axis is the projection of up agains the plane
+  // v_axis is computed by substraction to up the projection of up in the 
+  // planeNormalVector. Said projection has the same direction as planeNormal,
+  // and scalarDot(placeNormal,up) as module (since we're dealing with 
+  // normalized vectors, we can just multiply these values)
+  LXPoint3D v_axis = up - scalarDot(planeNormal,up)*planeNormal;
+  v_axis = normalizedVector(v_axis);
 
-  LXMatrix3D t1;
-  t1.matrix[0] = u.x; t1.matrix[1] = u.y; t1.matrix[2] = u.z;   t1.matrix[3] = -scalarDot(look, u);
-  t1.matrix[4] = v.x; t1.matrix[5] = v.y; t1.matrix[6] = v.z;   t1.matrix[7] = -scalarDot(look, v);
-  t1.matrix[8] = n.x; t1.matrix[9] = n.y; t1.matrix[10] = n.z;  t1.matrix[11] = -scalarDot(look, n);
-  t1.matrix[12] = 0;  t1.matrix[13] = 0; t1.matrix[14] = 0;  t1.matrix[15] = 1;
+  // Rotate around the computed axis
+  LXMatrix3D yaw = matrixWithRotationOnAxis(alpha, -v_axis);
+  lookAt = transformPoint(yaw, lookAt);
+  up = transformPoint(yaw, up);
+  right = crossProduct(up, lookAt);
+}
 
-  LXMatrix3D t2;
-  t2.matrix[0] = u.x; t2.matrix[1] = v.x; t2.matrix[2] = n.x;   t2.matrix[3] = look.x;
-  t2.matrix[4] = u.y; t2.matrix[5] = v.y; t2.matrix[6] = n.y;   t2.matrix[7] = look.y;
-  t2.matrix[8] = u.z; t2.matrix[9] = v.z; t2.matrix[10] = n.z;  t2.matrix[11] = look.z;
-  t2.matrix[12] = 0;  t2.matrix[13] = 0;  t2.matrix[14] = 0;    t2.matrix[15] = 1;
-  
-  LXMatrix3D rotatex = matrixWithXRotation(halpha);
-  LXMatrix3D rotatey = matrixWithYRotation(valpha);
-  // TODO: z rotation changes up vector
-  /* LXMatrix3D rotatez = matrixWithZRotation(zalpha); */
+void LXCamera::roll(double alpha) {
+  // Rotate up vector arount lookAt
+  LXMatrix3D roll = matrixWithRotationOnAxis(alpha, lookAt);
+  // Only up and right vectors are modified after the operation
+  up = transformPoint(roll, up);
+  right = crossProduct(up, lookAt);
+}
 
-  LXMatrix3D rotate = multiply(rotatex, rotatey);
-  /* rotate = multiply(rotatez, rotate); */
-  LXMatrix3D trasrot = multiply(t2, rotate);
-  LXMatrix3D matrix = multiply(trasrot, t1);
+# pragma mark - Rotations
 
-  eye = transformPoint(matrix, eye);
+/**
+ * Orbitations are similar to rotations, except eye is changed instead
+ * of target.
+ *
+ * Notice there is no roll in orbitations, as it's the same as in rotations.
+ */
+
+void LXCamera::orbitate(double rx, double ry) {
+  if (rx != 0) {
+    // Yaw orbitation
+    // See LXCamera::yaw for further explanation
+    
+    LXPoint3D target = getTarget();
+    LXPoint3D planeNormal = crossProduct(right, LXPoint3D(0,1,0,0));
+    LXPoint3D v_axis = up - scalarDot(planeNormal,up)*planeNormal;
+    v_axis = normalizedVector(v_axis);
+
+    // Rotate eye around the computed camera axis
+    LXMatrix3D yaw = matrixWithRotationOnAxis(rx, v_axis);
+    lookAt = transformPoint(yaw, lookAt);
+    eye = target + focalLength*lookAt;
+    up = transformPoint(yaw, up);
+    right = crossProduct(up, lookAt);
+  }
+  if (ry != 0) {
+    // Pitch orbitation
+    // See LXCamera::Pitch for further explanation
+
+    // Rotate eye vector around right vector
+    LXMatrix3D pitch = matrixWithRotationOnAxis(ry, right);
+    LXPoint3D target = getTarget();
+    lookAt = transformPoint(pitch, lookAt);
+    eye = target + focalLength*lookAt;
+    up = crossProduct(lookAt, right);
+  }
+}
+
+#pragma mark - Apply changes
+
+void LXCamera::commit() {
+  LXPoint3D target = getTarget();
+
+  glMatrixMode(GL_MODELVIEW);
+  glLoadIdentity();
+  gluLookAt(eye.x, eye.y, eye.z,
+            target.x, target.y, target.z,
+            up.x, up.y, up.z);
 }

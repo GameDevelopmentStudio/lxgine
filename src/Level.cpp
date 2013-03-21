@@ -51,11 +51,8 @@ void Level::render() {
 
   glLightfv(GL_LIGHT0, GL_POSITION, light0Pos);
   
-  glMatrixMode(GL_MODELVIEW);
-  glLoadIdentity();
-  gluLookAt(camera->eye.x, camera->eye.y, camera->eye.z,
-        camera->look.x, camera->look.y, camera->look.z,
-        camera->up.x, camera->up.y, camera->up.z);
+  // Applies camera changes to the scene
+  camera->commit();
 
   glBegin(GL_LINES);
 
@@ -91,15 +88,15 @@ void Level::update() {
   }
 
   if (game->input->keyPressed('a')) {
-    camera->rotate(2.0, 0, 0);
+    camera->yaw(-0.005);
   } else if (game->input->keyPressed('d')) {
-    camera->rotate(-2.0, 0, 0);
+    camera->yaw(0.005);
   }
   
   if (game->input->keyPressed('w')) {
-    camera->rotate(0, 2.0, 0);
+    camera->pitch(0.005);
   } else if (game->input->keyPressed('s')) {
-    camera->rotate(0, -2.0, 0);
+    camera->pitch(-0.005);
   }
 
   if (game->input->keyPressed('y')) {

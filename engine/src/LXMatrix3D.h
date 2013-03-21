@@ -32,6 +32,8 @@ class LXMatrix3D {
 LXMatrix3D matrixWithXRotation(double alpha);
 LXMatrix3D matrixWithYRotation(double alpha);
 LXMatrix3D matrixWithZRotation(double alpha);
+LXMatrix3D matrixWithRotationOnAxis(double alpha, LXPoint3D a);
+LXMatrix3D matrixWithRotationOnAxisWithCenter(double alpha, LXPoint3D a, LXPoint3D center);
 // (R3->R3)x(R3->R3) -> (R3->R3)
 LXMatrix3D multiply(const LXMatrix3D &A, const LXMatrix3D &B);
 // (R3->R3)xR3 -> R3

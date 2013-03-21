@@ -18,6 +18,8 @@ class LXPoint3D {
     LXPoint3D(const LXPoint3D &other);
     ~LXPoint3D();
 
+    // -> R3
+    LXPoint3D operator-() const;
     // N -> R
     double &operator[](int i);
     const double &operator[](int i) const;
@@ -27,6 +29,9 @@ class LXPoint3D {
 
 // R3 -> R3
 LXPoint3D normalizedVector(const LXPoint3D &v);
+// RxR3 -> R3
+LXPoint3D operator*(const float &a, const LXPoint3D &v);
+LXPoint3D operator*(const LXPoint3D &v, const float &a);
 // R3xR3 -> R
 double scalarDot(const LXPoint3D &a, const LXPoint3D &b);
 // R3xR3 -> R3

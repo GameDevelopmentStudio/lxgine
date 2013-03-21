@@ -85,10 +85,6 @@ void LXMatrix3D::rotate(double rx, double ry, double rz) {
   *this = multiply(*this, transform);
 }
 
-void LXMatrix3D::commit() {
-    glMultMatrixd(matrix);
-}
-
 #pragma mark - Rotations
 
 LXMatrix3D matrixWithXRotation(double alpha) {
@@ -124,6 +120,81 @@ LXMatrix3D matrixWithZRotation(double alpha) {
   return out;
 }
 
+LXMatrix3D matrixWithRotationOnAxis(double alpha, LXPoint3D a) {
+  // center: rotation center
+  // a: rotation axis
+  //
+  // By rotating over a default center, (0,0,0,1), we skip the last column of the matrix
+  // (responsible for the traslation). This is useful when dealing with vector (in which
+  // we don't care about their position)
+  //
+  // a vector is normalized, which means that operations like a.x^2 + a.y^2 
+  // are equal to can be  to 1 - a.z^2, which considerably simplifies the code
+
+  double s = sin(alpha);
+  double c = cos(alpha);
+  double axx = a.x*a.x; 
+  double ayy = a.y*a.y;
+  double azz = a.z*a.z;
+
+  LXMatrix3D out;
+  out.matrix[0] = axx + (1.f - axx) * c;
+  out.matrix[1] = a.x * a.y * (1.f - c) - a.z * s;
+  out.matrix[2] = a.x * a.z * (1.f - c) + a.y * s;
+  out.matrix[3] = 0;
+
+  out.matrix[4] = a.x * a.y * (1.f - c) + a.z * s;
+  out.matrix[5] = ayy + (1.f - ayy) * c;
+  out.matrix[6] = a.y * a.z * (1.f - c) - a.x * s;
+  out.matrix[7] = 0;
+
+  out.matrix[8] = a.x * a.z * (1.f - c) - a.y * s;
+  out.matrix[9] = a.y * a.z * (1.f - c) + a.x * s;
+  out.matrix[10] = azz + (1.f - azz) * c;
+  out.matrix[11] = 0;
+
+  out.matrix[12] = 0;
+  out.matrix[13] = 0;
+  out.matrix[14] = 0;
+  out.matrix[15] = 1;
+
+  return out;
+}
+
+LXMatrix3D matrixWithRotationOnAxisWithCenter(double alpha, LXPoint3D a, LXPoint3D center) {
+  // center: rotation center
+  // a: rotation axis
+  //
+  // See LXMatrix3D::matrixWithRotationOnAxis for further explanation on the code
+  double s = sin(alpha);
+  double c = cos(alpha);
+  double axx = a.x*a.x; 
+  double ayy = a.y*a.y;
+  double azz = a.z*a.z;
+
+  LXMatrix3D out;
+  out.matrix[0] = axx + (1.f - axx) * c;
+  out.matrix[1] = a.x * a.y * (1.f - c) - a.z * s;
+  out.matrix[2] = a.x * a.z * (1.f - c) + a.y * s;
+  out.matrix[3] = (center.x*(1.f - axx) - a.x*(center.y*a.y + center.z*a.z))*(1.f - c) + (center.y*a.z - center.z*a.y)*s;
+
+  out.matrix[4] = a.x * a.y * (1.f - c) + a.z * s;
+  out.matrix[5] = ayy + (1.f - ayy) * c;
+  out.matrix[6] = a.y * a.z * (1.f - c) - a.x * s;
+  out.matrix[7] = (center.y*(1.f - ayy) - a.y*(center.x*a.x + center.z*a.z))*(1.f - c) + (center.z*a.x - center.x*a.z)*s;
+
+  out.matrix[8] = a.x * a.z * (1.f - c) - a.y * s;
+  out.matrix[9] = a.y * a.z * (1.f - c) + a.x * s;
+  out.matrix[10] = azz + (1.f - azz) * c;
+  out.matrix[11] = (center.z*(1.f - azz) - a.z*(center.x*a.x + center.y*a.y))*(1.f - c) + (center.x*a.y - center.y*a.x)*s;
+
+  out.matrix[12] = 0;
+  out.matrix[13] = 0;
+  out.matrix[14] = 0;
+  out.matrix[15] = 1;
+
+  return out;
+}
 
 #pragma mark -(R3->R3)x(R3->R3)->(R3->R3) Functions
 
@@ -155,3 +226,8 @@ LXPoint3D transformPoint(const LXMatrix3D &A, const LXPoint3D &p) {
   return out;
 }
 
+#pragma mark - Apply changes
+
+void LXMatrix3D::commit() {
+    glMultMatrixd(matrix);
+}

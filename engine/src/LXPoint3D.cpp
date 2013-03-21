@@ -39,11 +39,32 @@ double LXPoint3D::module() const {
 
 #pragma mark - R3->R3 Functions
 
+LXPoint3D LXPoint3D::operator-() const {
+  return LXPoint3D(-x, -y, -v, -z);
+}
+
 LXPoint3D normalizedVector(const LXPoint3D &v) {
   double mod = v.module();
   return LXPoint3D(v.x / mod, 
                    v.y / mod, 
-                   v.z / mod);
+                   v.z / mod,
+                   v.v / mod);
+}
+
+#pragma mark - RxR3->R3 Functions
+
+LXPoint3D operator*(const float &a, const LXPoint3D &v) {
+  return LXPoint3D(v.x * a,
+                   v.y * a,
+                   v.z * a,
+                   v.v * a);
+}
+
+LXPoint3D operator*(const LXPoint3D &v, const float &a) {
+  return LXPoint3D(v.x * a,
+                   v.y * a,
+                   v.z * a,
+                   v.v * a);
 }
 
 #pragma mark - R3xR3->R Functions
