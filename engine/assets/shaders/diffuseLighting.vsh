@@ -7,3 +7,4 @@ void main() {
     normalEye = gl_NormalMatrix * gl_Normal;
     gl_FrontColor = gl_Color;
 }
+

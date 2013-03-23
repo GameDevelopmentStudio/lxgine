@@ -4,17 +4,15 @@
 #include <stdlib.h>
 #include <string.h>
 
-char *mallocStringWithContentsOfFile(const char *filename) {
-  std::ifstream in(filename, std::ios::in);
-  if (in) {
-    // Get file length and prepare buffer
-    in.seekg(0, std::ios::end);
-    int dataLength = in.tellg();
-    char *data = (char *)malloc(dataLength);
-    // Start reading
-    in.seekg(0, std::ios::beg);
-    in.read(data, dataLength);
-    in.close();
+char *callocStringWithContentsOfFile(const char *filename) {
+  std::FILE *fp = std::fopen(filename, "r");
+  if (fp) {
+    std::fseek(fp, 0, SEEK_END);
+    int dataLength = ftell(fp);
+    char * data = (char *)calloc(dataLength,sizeof(char));
+    std::rewind(fp);
+    std::fread(data, 1, dataLength, fp);
+    std::fclose(fp);
     return data;
   } else {
     return NULL;
@@ -22,7 +20,7 @@ char *mallocStringWithContentsOfFile(const char *filename) {
 }
 
 char *mallocStringWithEngineResource(const char *name, const char *extension) {
-  char *result = (char *) malloc((strlen(name) + strlen(extension) + 2) * sizeof(char));
+  char *result = (char *) calloc((strlen(name) + strlen(extension) + 2), sizeof(char));
   // Create mutale copy of the name
   strcpy(result, name);
   // Append extension

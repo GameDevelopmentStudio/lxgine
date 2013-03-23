@@ -153,7 +153,7 @@ bool LXShader::checkCompileStatus(unsigned int shader) {
 }
 
 bool LXShader::compileShader(const char *vertPathName, GLenum shaderType, unsigned int &shader) {
-  char *source = mallocStringWithContentsOfFile(vertPathName);
+  char *source = callocStringWithContentsOfFile(vertPathName);
   if (!source) {
     printf("Failed to load shader");
   }
@@ -164,14 +164,13 @@ bool LXShader::compileShader(const char *vertPathName, GLenum shaderType, unsign
   glShaderSource(shader, 1, &shaderSource, 0);
   glCompileShader(shader);
 
-  free(source);
-
   if (!checkCompileStatus(shader)) {
     printf("<compileProgram compilation error with vertexShader>:\n");
     printf("%s\n", source);
     return false;
   }
 
+  free(source);
   return true;
 }
 
@@ -184,11 +183,13 @@ unsigned int LXShader::compileProgram(const char *vertPathName,
   unsigned int vertShader, fragShader, geomShader;
   vertShader = fragShader = geomShader = 0;
 
+    printf("Compiling %s\n", vertPathName);
   // Create and compile vertex shader
   if (!compileShader(vertPathName, GL_VERTEX_SHADER, vertShader)) {
     tearDown(vertShader, fragShader, geomShader);
     return 0;
   }
+    printf("Compiling %s\n", fragPathName);
   // Create and compile fragment shader
   if (!compileShader(fragPathName, GL_FRAGMENT_SHADER, fragShader)) {
     tearDown(vertShader, fragShader, geomShader);

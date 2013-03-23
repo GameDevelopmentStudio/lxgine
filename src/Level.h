@@ -12,6 +12,7 @@ class Level : public LXGameState {
  public:    
    
   LXShader *floorProg;
+  LXShader *objProg;
   LXTexture *floorTex;
   
   LXEntity *exampleEntity;

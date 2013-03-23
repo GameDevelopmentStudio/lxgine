@@ -16,11 +16,12 @@ void Player::init() {
 void Player::render() {
   LXEntity::render();
   
-  glColor3f(1.0, 1.0, 1.0);
+  /* glColor3f(1.0, 1.0, 1.0); */
   
   // HARCODED TEST
+  glRotatef(45, -1, 0, 0);
   glTranslatef(-1.5f,0.0f,0.0f);   // Move Left 1.5 Units And Into The Screen 6.0
-  
+  glNormal3f(0.0, 0.0, 1.0);
   // draw a triangle
   glBegin(GL_POLYGON);    // start drawing a polygon
   glVertex3f( 0.0f, 1.0f, 0.0f);  // Top

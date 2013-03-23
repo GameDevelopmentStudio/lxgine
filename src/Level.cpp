@@ -14,8 +14,9 @@
 #include "LXUtils.h"
 #include "LXTextureLoader.h"
 
-const char *floorVS = "engine/assets/shaders/diffuseTextureLighting.vsh";
-const char *floorPS = "engine/assets/shaders/diffuseTextureLighting.fsh";
+const char *diffuseTexFS = "engine/assets/shaders/diffuseTextureLighting.fsh";
+const char *diffuseVS = "engine/assets/shaders/diffuseLighting.vsh";
+const char *diffuseFS = "engine/assets/shaders/diffuseLighting.fsh";
 const char *floorTexPath = "assets/textures/floortile.tga";
 
 Level::Level(): LXGameState() {
@@ -25,6 +26,7 @@ Level::Level(): LXGameState() {
 Level::~Level() {
   delete exampleEntity;
   delete floorProg;
+  delete objProg;
   delete floorTex;
 }
 
@@ -42,8 +44,8 @@ void Level::init() {
   glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuseLight);
   GLfloat ambientLight[]={0.3, 0.3, 0.3, 1.0};
   glLightfv(GL_LIGHT0, GL_AMBIENT, ambientLight);
-  light0Pos[0] = 10.0; light0Pos[1] = 5.0; 
-  light0Pos[2] = -5.0; light0Pos[3] = 1.0;
+  light0Pos[0] = 0.0; light0Pos[1] = 8.0; 
+  light0Pos[2] = -0.0; light0Pos[3] = 1.0;
   glLightfv(GL_LIGHT0, GL_POSITION, light0Pos);
 
   glEnable(GL_COLOR_MATERIAL);
@@ -62,8 +64,10 @@ void Level::init() {
   /*           camera->viewVolume.N, camera-> viewVolume.F); */
 
 
+  objProg = new LXShader();
+  objProg->init(diffuseVS, diffuseFS);
   floorProg = new LXShader();
-  floorProg->init(floorVS, floorPS);
+  floorProg->init(diffuseVS, diffuseTexFS);
   floorTex = LXTextureLoader::newTextureAtPath(floorTexPath);
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
   glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAX_ANISOTROPY_EXT, 16.0f);
@@ -114,8 +118,12 @@ void Level::render() {
   glEnd();
   floorProg->disable();
 
+  objProg->enable();
+  /* GLfloat light0Color[]={1.0, 1.0, 0.8}; */
+  objProg->setUniformfv("lightColor", light0Color, 3);
+  glColor3f(1.0, 0.5, 0.2);
   exampleEntity->Render();
-  
+  objProg->disable();
 }
   
 void Level::update() {
