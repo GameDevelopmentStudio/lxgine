@@ -5,9 +5,14 @@
 #include "LXGameState.h"
 
 class LXEntity;
+class LXShader;
 
 class Level : public LXGameState {
  public:    
+   
+  LXShader *floorProg;
+  GLuint floorTex;
+  
   LXEntity *exampleEntity;
   GLfloat light0Pos[4];
 

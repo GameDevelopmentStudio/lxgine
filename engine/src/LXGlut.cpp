@@ -59,6 +59,8 @@ void LXGlut::init(int argc, char **argv) {
   window = glutCreateWindow("Batman was not here");
   fullscreen = false;
 
+  glewInit();
+
   // Register the callback to do all our OpenGL drawing.
   glutDisplayFunc(&renderWindow);  
   // Register the callback when our window is resized.

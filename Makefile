@@ -25,13 +25,13 @@ ifeq "$(shell uname)" "Darwin"
 	# Mac specifics
 	LIBPATH+=-L"/System/Library/Frameworks/OpenGL.framework/Libraries" $(addprefix -L,$(OBJ_DIRS))
 	CFLAGS+=-I/usr/X11R6/include -I/usr/local/include $(addprefix -I,$(SRC_DIRS))
-	LDFLAGS+=-framework GLUT -framework OpenGL -framework Cocoa
+	LDFLAGS+=-lglew -framework GLUT -framework OpenGL -framework Cocoa
 	BINARIES=test.osx
 else
 	# Windows specifics (no linux, easier this way)
-	LIBPATH+=-L"C:\MinGW\freeglut\lib" $(addprefix -L,$(OBJ_DIRS))
-	CFLAGS+=-I"C:\MinGW\freeglut\include" $(addprefix -I,$(SRC_DIRS))
-	LDFLAGS+=-lfreeglut -lopengl32 -lglu32 -Wl,--subsystem,windows
+	LIBPATH+=-L"C:\MinGW\lib" $(addprefix -L,$(OBJ_DIRS))
+	CFLAGS+=-I"C:\MinGW\include" $(addprefix -I,$(SRC_DIRS))
+	LDFLAGS+=-lglew32 -lfreeglut -lopengl32 -lglu32 -Wl,--subsystem,windows
 	BINARIES=test.exe
 endif
 

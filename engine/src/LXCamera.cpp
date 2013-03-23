@@ -12,8 +12,8 @@ LXCamera::~LXCamera() {
 }
 
 void LXCamera::init() {
-  eye.x = 100.0; eye.y = 100.0; 
-  eye.z = 100.0; eye.v = 1;
+  eye.x = 20.0; eye.y = 20.0; 
+  eye.z = 20.0; eye.v = 1;
   LXPoint3D target = LXPoint3D(0.0, 0.0, 0.0, 1);
   lookAt = eye - target;
   focalLength = lookAt.module();

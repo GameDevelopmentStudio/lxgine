@@ -15,6 +15,7 @@
 #Vim stuff
 *.un~
 *.swp
+*.swo
 
 #Executables
 *.exe
