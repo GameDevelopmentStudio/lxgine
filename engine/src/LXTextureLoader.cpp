@@ -4,14 +4,7 @@
 #include "LXTexturePPM.h"
 #include "LXTextureTGA.h"
 
-#include "stdio.h"
-
-/* LXTextureLoader::LXTextureLoader() { */
-/* } */
-  
-/* LXTextureLoader::~LXTextureLoader() { */
-
-/* } */
+#include <string>
 
 LXTexture *LXTextureLoader::newTextureAtPath(const char *path) {
   LXTexture *out;
