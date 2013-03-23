@@ -3,5 +3,6 @@
 
 char *mallocStringWithContentsOfFile(const char *filename);
 char *mallocStringWithEngineResource(const char *name, const char *extension);
+char *getFileExtension(const char *filename);
 
 #endif

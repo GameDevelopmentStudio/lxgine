@@ -6,12 +6,13 @@
 
 class LXEntity;
 class LXShader;
+class LXTexture;
 
 class Level : public LXGameState {
  public:    
    
   LXShader *floorProg;
-  GLuint floorTex;
+  LXTexture *floorTex;
   
   LXEntity *exampleEntity;
   GLfloat light0Pos[4];

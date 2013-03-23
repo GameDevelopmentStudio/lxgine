@@ -29,3 +29,13 @@ char *mallocStringWithEngineResource(const char *name, const char *extension) {
   strcat(result, extension);
   return result;
 }
+
+
+char *getFileExtension(const char *filename) {
+  // TODO: tmp implementation, better use ext library (boost)
+  std::string strPath = std::string(filename);
+  std::string extension = strPath.substr(strPath.find_last_of(".") + 1);
+
+  return &extension[0];
+}
+
