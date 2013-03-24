@@ -1,9 +1,5 @@
 #include "LXUtils.h"
 
-#include <fstream>
-#include <stdlib.h>
-#include <string.h>
-
 char *callocStringWithContentsOfFile(const char *filename) {
   std::FILE *fp = std::fopen(filename, "r");
   if (fp) {
@@ -29,11 +25,11 @@ char *mallocStringWithEngineResource(const char *name, const char *extension) {
 }
 
 
-char *getFileExtension(const char *filename) {
+std::string getFileExtension(const char *filename) {
   // TODO: tmp implementation, better use ext library (boost)
   std::string strPath = std::string(filename);
   std::string extension = strPath.substr(strPath.find_last_of(".") + 1);
 
-  return &extension[0];
+  return extension;
 }
 

@@ -15,5 +15,5 @@ void LXFace::init(int nvertex) {
 }
 
 LXPoint3D *LXFace::computeNormal(LXPoint3D *vertexPool) {
-
+	return 0;
 }

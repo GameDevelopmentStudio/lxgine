@@ -8,10 +8,10 @@
 
 LXTexture *LXTextureLoader::newTextureAtPath(const char *path) {
   LXTexture *out;
-  char *extension = getFileExtension(path);
-  if (strcmp(extension, "ppm") == 0) {
+  std::string extension = getFileExtension(path);
+  if (extension == "ppm") {
     out = new LXTexturePPM();
-  } else if (strcmp(extension, "tga") == 0) {
+  } else if (extension == "tga") {
     out = new LXTextureTGA();
   } else {
     return NULL;

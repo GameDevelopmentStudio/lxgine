@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{EA82B895-8B47-42AC-B989-236E7B6468C7}</ProjectGuid>
+    <RootNamespace>Butticulus</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <TreatWarningAsError>false</TreatWarningAsError>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <CompileAs>Default</CompileAs>
+      <AdditionalIncludeDirectories>.\engine\src;.\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>glew32.lib;freeglut.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="engine\src\LXCamera.cpp" />
+    <ClCompile Include="engine\src\LXEntity.cpp" />
+    <ClCompile Include="engine\src\LXFace.cpp" />
+    <ClCompile Include="engine\src\LXGame.cpp" />
+    <ClCompile Include="engine\src\LXGameState.cpp" />
+    <ClCompile Include="engine\src\LXGlut.cpp" />
+    <ClCompile Include="engine\src\LXInput.cpp" />
+    <ClCompile Include="engine\src\LXLockableTarget.cpp" />
+    <ClCompile Include="engine\src\LXMatrix3D.cpp" />
+    <ClCompile Include="engine\src\LXMesh.cpp" />
+    <ClCompile Include="engine\src\LXPoint3D.cpp" />
+    <ClCompile Include="engine\src\LXShader.cpp" />
+    <ClCompile Include="engine\src\LXTexture.cpp" />
+    <ClCompile Include="engine\src\LXTextureLoader.cpp" />
+    <ClCompile Include="engine\src\LXTexturePPM.cpp" />
+    <ClCompile Include="engine\src\LXTextureTGA.cpp" />
+    <ClCompile Include="engine\src\LXUtils.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="src\Derai.cpp" />
+    <ClCompile Include="src\Level.cpp" />
+    <ClCompile Include="src\Player.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="engine\src\LXCamera.h" />
+    <ClInclude Include="engine\src\LXEntity.h" />
+    <ClInclude Include="engine\src\LXFace.h" />
+    <ClInclude Include="engine\src\LXGame.h" />
+    <ClInclude Include="engine\src\LXGameState.h" />
+    <ClInclude Include="engine\src\LXGlut.h" />
+    <ClInclude Include="engine\src\LXInput.h" />
+    <ClInclude Include="engine\src\LXLockableTarget.h" />
+    <ClInclude Include="engine\src\LXMatrix3D.h" />
+    <ClInclude Include="engine\src\LXMesh.h" />
+    <ClInclude Include="engine\src\LXPoint3D.h" />
+    <ClInclude Include="engine\src\LXShader.h" />
+    <ClInclude Include="engine\src\LXTexture.h" />
+    <ClInclude Include="engine\src\LXTextureLoader.h" />
+    <ClInclude Include="engine\src\LXTexturePPM.h" />
+    <ClInclude Include="engine\src\LXTextureTGA.h" />
+    <ClInclude Include="engine\src\LXUtils.h" />
+    <ClInclude Include="src\Derai.h" />
+    <ClInclude Include="src\Level.h" />
+    <ClInclude Include="src\Player.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
