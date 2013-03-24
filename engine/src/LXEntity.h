@@ -2,11 +2,9 @@
 #define __LXENTITY_H__
 
 class LXMatrix3D;
+class LXPoint3D;
 
 class LXEntity {
- public:
-  LXMatrix3D *transform;
-
  public:
   LXEntity();
   virtual ~LXEntity();
@@ -15,6 +13,20 @@ class LXEntity {
   virtual void render();
   
   virtual void Render();
+
+  virtual void translate(double tx, double ty, double tz);
+  virtual void rotate(double rx, double ry, double rz);
+
+  LXPoint3D getPos();
+  double getPitch();
+  double getYaw();
+  double getRoll();
+
+ protected:
+  LXPoint3D *pos;
+  double pitch, yaw, roll;
+  
+  LXMatrix3D *transform;
 };
 
 #endif

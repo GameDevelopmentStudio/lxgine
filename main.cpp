@@ -3,12 +3,6 @@
 #include "Level.h"
 #include "LXShader.h"
 
-#include "stdlib.h" 
-#include <iostream>
-
-#define STRINGIFY(A) #A
-
-
 int main(int argc, char **argv) {
     Derai *game = new Derai();
     game->init(argc, argv);

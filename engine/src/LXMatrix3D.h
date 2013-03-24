@@ -9,9 +9,9 @@ class LXMatrix3D {
     
     LXMatrix3D();
     LXMatrix3D(const LXMatrix3D &other);
-    ~LXMatrix3D();
+    virtual ~LXMatrix3D();
 
-    void init();
+    virtual void init();
 
     double &element(int i, int j);
     double &operator()(int i, int j);
@@ -22,8 +22,8 @@ class LXMatrix3D {
     void setColumn(int j, const LXPoint3D &p);
 
     // Transformations
-    void translate(double tx, double ty, double tz);
-    void rotate(double rx, double ry, double rz);
+    virtual void translate(double tx, double ty, double tz);
+    virtual void rotate(double rx, double ry, double rz);
     void commit();
 };
 

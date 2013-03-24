@@ -32,7 +32,6 @@ Level::~Level() {
 
 void Level::init() {
   LXGameState::init();
-  exampleEntity->init();
 
   // Set up 3d view
   glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
@@ -71,6 +70,7 @@ void Level::init() {
   floorTex = LXTextureLoader::newTextureAtPath(floorTexPath);
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
   glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAX_ANISOTROPY_EXT, 16.0f);
+  exampleEntity->init();
 }
 
 void Level::render() {
@@ -119,9 +119,7 @@ void Level::render() {
   floorProg->disable();
 
   objProg->enable();
-  /* GLfloat light0Color[]={1.0, 1.0, 0.8}; */
   objProg->setUniformfv("lightColor", light0Color, 3);
-  glColor3f(1.0, 0.5, 0.2);
   exampleEntity->Render();
   objProg->disable();
 }
@@ -130,47 +128,44 @@ void Level::update() {
   LXGameState::update();
 
   if (game->input->specialKeyPressed(GLUT_KEY_LEFT)) {
-    camera->translateX(-0.2);
+    exampleEntity->translate(-0.5, 0, 0);
   } else if (game->input->specialKeyPressed(GLUT_KEY_RIGHT)) {
-    camera->translateX(0.2);
+    exampleEntity->translate(0.5, 0, 0);
   }
   
   if (game->input->specialKeyPressed(GLUT_KEY_UP)) {
-    camera->translateZ(-1.0);
-      /* glMatrixMode(GL_MODELVIEW); */
-      /* glTranslated(1.0, 0, 1.0); */
-  
+    exampleEntity->translate(0, 0, -0.5);
   } else if (game->input->specialKeyPressed(GLUT_KEY_DOWN)) {
-    camera->translateZ(1.0);
+    exampleEntity->translate(0, 0, 0.5);
   }
 
   if (game->input->keyPressed('a')) {
-    camera->yaw(-0.05);
+    exampleEntity->rotate(0, 0, -3.5f);
   } else if (game->input->keyPressed('d')) {
-    camera->yaw(0.05);
+    exampleEntity->rotate(0, 0, 3.5f);
   }
   
   if (game->input->keyPressed('w')) {
-    camera->pitch(0.05);
+    exampleEntity->rotate(3.5f, 0, 0);
   } else if (game->input->keyPressed('s')) {
-    camera->pitch(-0.05);
+    exampleEntity->rotate(-3.5f, 0, 0);
   }
 
   if (game->input->keyPressed('y')) {
-    exampleEntity->transform->rotate(2.0, 0, 0);
+    exampleEntity->rotate(2.0, 0, 0);
   } else if (game->input->keyPressed('u')) {
-    exampleEntity->transform->rotate(-2.0, 0, 0);
+    exampleEntity->rotate(-2.0, 0, 0);
   }
 
   if (game->input->keyPressed('i')) {
-    exampleEntity->transform->rotate(0, 2.0, 0);
+    exampleEntity->rotate(0, 2.0, 0);
   } else if (game->input->keyPressed('o')) {
-    exampleEntity->transform->rotate(0, -2.0, 0);
+    exampleEntity->rotate(0, -2.0, 0);
   }
 
   if (game->input->keyPressed('j')) {
-    exampleEntity->transform->rotate(0, 0, 2.0);
+    exampleEntity->rotate(0, 0, 2.0);
   } else if (game->input->keyPressed('k')) {
-    exampleEntity->transform->rotate(.0, 0, -2.0);
+    exampleEntity->rotate(.0, 0, -2.0);
   }  
 }

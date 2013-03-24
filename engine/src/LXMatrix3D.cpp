@@ -64,7 +64,7 @@ void LXMatrix3D::translate(double tx, double ty, double tz) {
   glPopMatrix();
 
   // Apply transform to one's matrix
-  *this = multiply(*this, transform);
+  *this = multiply(transform, *this);
 }
 
 void LXMatrix3D::rotate(double rx, double ry, double rz) {
@@ -82,7 +82,7 @@ void LXMatrix3D::rotate(double rx, double ry, double rz) {
   glPopMatrix();
 
   // Apply transform to one's matrix
-  *this = multiply(*this, transform);
+  *this = multiply(transform, *this);
 }
 
 #pragma mark - Rotations
