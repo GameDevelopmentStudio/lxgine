@@ -1,10 +1,12 @@
 #ifndef __LXENTITY_H__
 #define __LXENTITY_H__
 
+#include "LXLockableTarget.h"
+
 class LXMatrix3D;
 class LXPoint3D;
 
-class LXEntity {
+class LXEntity : public LXLockableTarget {
  public:
   LXEntity();
   virtual ~LXEntity();
@@ -21,6 +23,9 @@ class LXEntity {
   double getPitch();
   double getYaw();
   double getRoll();
+
+  // LXLockableTarget
+  virtual void setDelegate(LXLockableTargetDelegate *delegate);
 
  protected:
   LXPoint3D *pos;

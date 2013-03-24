@@ -2,6 +2,7 @@
 #define __LXCAMERA_H__
 
 #include "LXPoint3D.h"
+#include "LXLockableTarget.h"
 
 struct LXViewVolume {
     double N,F;
@@ -9,8 +10,7 @@ struct LXViewVolume {
     double yT, yB;
 };
 
-class LXCamera 
-{
+class LXCamera : public LXLockableTargetDelegate {
  public:
   LXViewVolume viewVolume;
 
@@ -39,6 +39,11 @@ class LXCamera
   void orbitate(double rx, double ry);
 
   void commit();
+
+  // LXLocableDelegateMethods
+  virtual void targetDidRotate(LXLockableTarget *target, double rx, double ry, double rz);
+  virtual void targetDidTranslate(LXLockableTarget *target, double tx, double ty, double tz);
+  virtual void targetResetPosition(LXLockableTarget *target, LXPoint3D position, double pitch, double yaw, double roll);
 };
 
 #endif

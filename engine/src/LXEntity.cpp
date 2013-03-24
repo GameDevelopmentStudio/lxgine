@@ -1,14 +1,12 @@
 #include "LXEntity.h"
 #include "LXMatrix3D.h"
 #include "LXPoint3D.h"
-
-#ifdef __APPLE__
-#include <GLUT/glut.h>
-#else
-#include <GL/glut.h>
-#endif
+#include "LXGlut.h"
 
 LXEntity::LXEntity() {
+  // no camera has locked on this entity yet
+  delegate = NULL;
+
   transform = new LXMatrix3D();
   pos = new LXPoint3D();
   pitch = yaw = roll = 0;
@@ -20,6 +18,10 @@ LXEntity::~LXEntity() {
 
 void LXEntity::init() {
   transform->init();
+
+  if (delegate) {
+    delegate->targetResetPosition(this, LXPoint3D(*pos), pitch, yaw, roll);
+  }
 }
 
 void LXEntity::render() {
@@ -51,6 +53,10 @@ void LXEntity::translate(double tx, double ty, double tz) {
   if (tz) {
     pos->z += tz;
   }
+
+  if (delegate) {
+    delegate->targetDidTranslate(this, tx, ty, tz);
+  }
 }
 
 void LXEntity::rotate(double rx, double ry, double rz) {
@@ -60,10 +66,14 @@ void LXEntity::rotate(double rx, double ry, double rz) {
     pitch += rx;
   }
   if (ry) {
-    yaw += ry;
+    roll += ry;
   }
   if (rz) {
-    roll += rz;
+    yaw += rz;
+  }
+  
+  if (delegate) {
+    delegate->targetDidRotate(this, rx, ry, rz);
   }
 }
 
@@ -83,3 +93,10 @@ double LXEntity::getRoll() {
   return roll;
 }
 
+void LXEntity::setDelegate(LXLockableTargetDelegate *delegate) {
+  LXLockableTarget::setDelegate(delegate);
+
+  if (delegate) {
+    delegate->targetResetPosition(this, LXPoint3D(*pos), pitch, yaw, roll);
+  }
+}

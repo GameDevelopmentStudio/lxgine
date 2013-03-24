@@ -12,8 +12,8 @@ LXCamera::~LXCamera() {
 }
 
 void LXCamera::init() {
-  eye.x = 20.0; eye.y = 20.0; 
-  eye.z = 20.0; eye.v = 1;
+  eye.x = 10.0; eye.y = 10.0; 
+  eye.z = 10.0; eye.v = 1;
   LXPoint3D target = LXPoint3D(0.0, 0.0, 0.0, 1);
   lookAt = eye - target;
   focalLength = lookAt.module();
@@ -166,6 +166,44 @@ void LXCamera::orbitate(double rx, double ry) {
     eye = target + focalLength*lookAt;
     up = crossProduct(lookAt, right);
   }
+}
+
+#pragma mark - LXLockableTargetDelegate Methods
+
+void LXCamera::targetDidRotate(LXLockableTarget *target, double rx, double ry, double rz) {
+  if (rx) {
+    pitch(rx);
+  }
+  if (ry) {
+    roll(ry);
+  }
+  if (rz) {
+    yaw(rz);
+  }
+}
+
+void LXCamera::targetDidTranslate(LXLockableTarget *target, double tx, double ty, double tz) {
+  /* double module = tx*tx + ty*ty + tz*tz; */
+  /* LXPoint3D d = LXPoint3D(tx, ty, tz, 0.0); */
+
+  /* tz = scalarDot(lookAt, d); */
+  /* ty = sqrt(module - tz*tz); */ 
+
+  translate(tx, ty, tz);
+}
+
+void LXCamera::targetResetPosition(LXLockableTarget *target, LXPoint3D position, double pitch, double yaw, double roll) {
+  // TODO: refactor eye pos considering pitch, yaw and roll
+  eye.x = position.x; 
+  eye.y = position.y + 10.0; 
+  eye.z = position.z + 10.0; 
+  eye.v = 1;
+  lookAt = eye - position;
+  focalLength = lookAt.module();
+  lookAt = normalizedVector(lookAt);
+  up = normalizedVector(LXPoint3D(0, 1, 0, 0));
+  right = crossProduct(up, lookAt);
+  up = crossProduct(lookAt, right);
 }
 
 #pragma mark - Apply changes

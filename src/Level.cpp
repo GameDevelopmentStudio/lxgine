@@ -70,7 +70,9 @@ void Level::init() {
   floorTex = LXTextureLoader::newTextureAtPath(floorTexPath);
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
   glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAX_ANISOTROPY_EXT, 16.0f);
+  
   exampleEntity->init();
+  camera->lockOn(exampleEntity);
 }
 
 void Level::render() {
