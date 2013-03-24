@@ -53,7 +53,7 @@ void LXMatrix3D::setColumn(int j, const LXPoint3D &p) {
 #pragma mark - Transformations
 
 // Transformations
-void LXMatrix3D::translate(double tx, double ty, double tz) {
+void LXMatrix3D::translate(double tx, double ty, double tz, bool premultiply) {
 
   glMatrixMode(GL_MODELVIEW);
   glPushMatrix();
@@ -64,10 +64,13 @@ void LXMatrix3D::translate(double tx, double ty, double tz) {
   glPopMatrix();
 
   // Apply transform to one's matrix
-  *this = multiply(transform, *this);
+  if (premultiply)
+    *this = multiply(transform, *this);
+  else
+    *this = multiply(*this, transform);
 }
 
-void LXMatrix3D::rotate(double rx, double ry, double rz) {
+void LXMatrix3D::rotate(double rx, double ry, double rz, bool premultiply) {
   glMatrixMode(GL_MODELVIEW);
   glPushMatrix();
     glLoadIdentity();
@@ -82,7 +85,10 @@ void LXMatrix3D::rotate(double rx, double ry, double rz) {
   glPopMatrix();
 
   // Apply transform to one's matrix
-  *this = multiply(transform, *this);
+  if (premultiply)
+    *this = multiply(transform, *this);
+  else
+    *this = multiply(*this, transform);
 }
 
 #pragma mark - Rotations
@@ -223,6 +229,137 @@ LXPoint3D transformPoint(const LXMatrix3D &A, const LXPoint3D &p) {
       out[i] += A(i,j) * p[j];
     }
   }
+  return out;
+}
+
+#pragma mark - (R3->R3)->(R3->R3)
+
+LXMatrix3D LXMatrix3D::inverse() const {
+  // TODO: refactor to consider false cases
+  LXMatrix3D out;
+
+  out.matrix[0] = matrix[5]  * matrix[10] * matrix[15] - 
+           matrix[5]  * matrix[11] * matrix[14] - 
+           matrix[9]  * matrix[6]  * matrix[15] + 
+           matrix[9]  * matrix[7]  * matrix[14] +
+           matrix[13] * matrix[6]  * matrix[11] - 
+           matrix[13] * matrix[7]  * matrix[10];
+
+  out.matrix[4] = -matrix[4]  * matrix[10] * matrix[15] + 
+            matrix[4]  * matrix[11] * matrix[14] + 
+            matrix[8]  * matrix[6]  * matrix[15] - 
+            matrix[8]  * matrix[7]  * matrix[14] - 
+            matrix[12] * matrix[6]  * matrix[11] + 
+            matrix[12] * matrix[7]  * matrix[10];
+
+  out.matrix[8] = matrix[4]  * matrix[9] * matrix[15] - 
+           matrix[4]  * matrix[11] * matrix[13] - 
+           matrix[8]  * matrix[5] * matrix[15] + 
+           matrix[8]  * matrix[7] * matrix[13] + 
+           matrix[12] * matrix[5] * matrix[11] - 
+           matrix[12] * matrix[7] * matrix[9];
+
+  out.matrix[12] = -matrix[4]  * matrix[9] * matrix[14] + 
+             matrix[4]  * matrix[10] * matrix[13] +
+             matrix[8]  * matrix[5] * matrix[14] - 
+             matrix[8]  * matrix[6] * matrix[13] - 
+             matrix[12] * matrix[5] * matrix[10] + 
+             matrix[12] * matrix[6] * matrix[9];
+
+  out.matrix[1] = -matrix[1]  * matrix[10] * matrix[15] + 
+            matrix[1]  * matrix[11] * matrix[14] + 
+            matrix[9]  * matrix[2] * matrix[15] - 
+            matrix[9]  * matrix[3] * matrix[14] - 
+            matrix[13] * matrix[2] * matrix[11] + 
+            matrix[13] * matrix[3] * matrix[10];
+
+  out.matrix[5] = matrix[0]  * matrix[10] * matrix[15] - 
+           matrix[0]  * matrix[11] * matrix[14] - 
+           matrix[8]  * matrix[2] * matrix[15] + 
+           matrix[8]  * matrix[3] * matrix[14] + 
+           matrix[12] * matrix[2] * matrix[11] - 
+           matrix[12] * matrix[3] * matrix[10];
+
+  out.matrix[9] = -matrix[0]  * matrix[9] * matrix[15] + 
+            matrix[0]  * matrix[11] * matrix[13] + 
+            matrix[8]  * matrix[1] * matrix[15] - 
+            matrix[8]  * matrix[3] * matrix[13] - 
+            matrix[12] * matrix[1] * matrix[11] + 
+            matrix[12] * matrix[3] * matrix[9];
+
+  out.matrix[13] = matrix[0]  * matrix[9] * matrix[14] - 
+            matrix[0]  * matrix[10] * matrix[13] - 
+            matrix[8]  * matrix[1] * matrix[14] + 
+            matrix[8]  * matrix[2] * matrix[13] + 
+            matrix[12] * matrix[1] * matrix[10] - 
+            matrix[12] * matrix[2] * matrix[9];
+
+  out.matrix[2] = matrix[1]  * matrix[6] * matrix[15] - 
+           matrix[1]  * matrix[7] * matrix[14] - 
+           matrix[5]  * matrix[2] * matrix[15] + 
+           matrix[5]  * matrix[3] * matrix[14] + 
+           matrix[13] * matrix[2] * matrix[7] - 
+           matrix[13] * matrix[3] * matrix[6];
+
+  out.matrix[6] = -matrix[0]  * matrix[6] * matrix[15] + 
+            matrix[0]  * matrix[7] * matrix[14] + 
+            matrix[4]  * matrix[2] * matrix[15] - 
+            matrix[4]  * matrix[3] * matrix[14] - 
+            matrix[12] * matrix[2] * matrix[7] + 
+            matrix[12] * matrix[3] * matrix[6];
+
+  out.matrix[10] = matrix[0]  * matrix[5] * matrix[15] - 
+            matrix[0]  * matrix[7] * matrix[13] - 
+            matrix[4]  * matrix[1] * matrix[15] + 
+            matrix[4]  * matrix[3] * matrix[13] + 
+            matrix[12] * matrix[1] * matrix[7] - 
+            matrix[12] * matrix[3] * matrix[5];
+
+  out.matrix[14] = -matrix[0]  * matrix[5] * matrix[14] + 
+             matrix[0]  * matrix[6] * matrix[13] + 
+             matrix[4]  * matrix[1] * matrix[14] - 
+             matrix[4]  * matrix[2] * matrix[13] - 
+             matrix[12] * matrix[1] * matrix[6] + 
+             matrix[12] * matrix[2] * matrix[5];
+
+  out.matrix[3] = -matrix[1] * matrix[6] * matrix[11] + 
+            matrix[1] * matrix[7] * matrix[10] + 
+            matrix[5] * matrix[2] * matrix[11] - 
+            matrix[5] * matrix[3] * matrix[10] - 
+            matrix[9] * matrix[2] * matrix[7] + 
+            matrix[9] * matrix[3] * matrix[6];
+
+  out.matrix[7] = matrix[0] * matrix[6] * matrix[11] - 
+           matrix[0] * matrix[7] * matrix[10] - 
+           matrix[4] * matrix[2] * matrix[11] + 
+           matrix[4] * matrix[3] * matrix[10] + 
+           matrix[8] * matrix[2] * matrix[7] - 
+           matrix[8] * matrix[3] * matrix[6];
+
+  out.matrix[11] = -matrix[0] * matrix[5] * matrix[11] + 
+             matrix[0] * matrix[7] * matrix[9] + 
+             matrix[4] * matrix[1] * matrix[11] - 
+             matrix[4] * matrix[3] * matrix[9] - 
+             matrix[8] * matrix[1] * matrix[7] + 
+             matrix[8] * matrix[3] * matrix[5];
+
+  out.matrix[15] = matrix[0] * matrix[5] * matrix[10] - 
+            matrix[0] * matrix[6] * matrix[9] - 
+            matrix[4] * matrix[1] * matrix[10] + 
+            matrix[4] * matrix[2] * matrix[9] + 
+            matrix[8] * matrix[1] * matrix[6] - 
+            matrix[8] * matrix[2] * matrix[5];
+
+  double det;
+  det = matrix[0] * out.matrix[0] + matrix[1] * out.matrix[4] + matrix[2] * out.matrix[8] + matrix[3] * out.matrix[12];
+  if (det == 0)
+    LXMatrix3D();
+
+  det = 1.0 / det;
+
+  for (int i = 0; i < 16; i++)
+    out.matrix[i] = out.matrix[i] * det;
+
   return out;
 }
 

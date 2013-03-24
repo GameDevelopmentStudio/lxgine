@@ -22,9 +22,12 @@ class LXMatrix3D {
     void setColumn(int j, const LXPoint3D &p);
 
     // Transformations
-    virtual void translate(double tx, double ty, double tz);
-    virtual void rotate(double rx, double ry, double rz);
+    virtual void translate(double tx, double ty, double tz, bool premultiply=true);
+    virtual void rotate(double rx, double ry, double rz, bool premultiply=true);
     void commit();
+
+    // (R3->R3) -> (R3->R3)
+    LXMatrix3D inverse() const;
 };
 
 // Rotations

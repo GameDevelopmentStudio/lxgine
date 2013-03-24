@@ -1,4 +1,5 @@
 #include "LXCamera.h"
+#include "LXPoint3D.h"
 #include "LXMatrix3D.h"
 #include "LXGlut.h"
 
@@ -6,9 +7,12 @@
 #include <iostream>
 
 LXCamera::LXCamera() {
+  targetInverseTransform = NULL;
 }
 
 LXCamera::~LXCamera() {
+  if (targetInverseTransform)
+    delete targetInverseTransform;
 }
 
 void LXCamera::init() {
@@ -27,6 +31,9 @@ void LXCamera::init() {
   viewVolume.xL = -viewVolume.xR;
   viewVolume.yT = 0.2;
   viewVolume.yB = -viewVolume.yT;
+
+  glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
 }
 
 LXPoint3D LXCamera::getTarget() {
@@ -170,50 +177,45 @@ void LXCamera::orbitate(double rx, double ry) {
 
 #pragma mark - LXLockableTargetDelegate Methods
 
+void LXCamera::lockOn(LXLockableTarget* target) {
+  targetInverseTransform = new LXMatrix3D();
+
+  LXLockableTargetDelegate::lockOn(target);
+}
+
 void LXCamera::targetDidRotate(LXLockableTarget *target, double rx, double ry, double rz) {
-  if (rx) {
-    pitch(rx);
-  }
-  if (ry) {
-    roll(ry);
-  }
-  if (rz) {
-    yaw(rz);
-  }
+  targetInverseTransform->rotate(-rx, -ry, -rz, false);
 }
 
 void LXCamera::targetDidTranslate(LXLockableTarget *target, double tx, double ty, double tz) {
-  /* double module = tx*tx + ty*ty + tz*tz; */
-  /* LXPoint3D d = LXPoint3D(tx, ty, tz, 0.0); */
-
-  /* tz = scalarDot(lookAt, d); */
-  /* ty = sqrt(module - tz*tz); */ 
-
-  translate(tx, ty, tz);
+  targetInverseTransform->translate(-tx, -ty, -tz, false);
 }
 
-void LXCamera::targetResetPosition(LXLockableTarget *target, LXPoint3D position, double pitch, double yaw, double roll) {
-  // TODO: refactor eye pos considering pitch, yaw and roll
-  eye.x = position.x; 
-  eye.y = position.y + 10.0; 
-  eye.z = position.z + 10.0; 
-  eye.v = 1;
-  lookAt = eye - position;
-  focalLength = lookAt.module();
-  lookAt = normalizedVector(lookAt);
-  up = normalizedVector(LXPoint3D(0, 1, 0, 0));
-  right = crossProduct(up, lookAt);
-  up = crossProduct(lookAt, right);
+void LXCamera::targetResetPosition(LXLockableTarget *target, const LXMatrix3D *transform) {
+  *targetInverseTransform = transform->inverse();
 }
 
 #pragma mark - Apply changes
 
 void LXCamera::commit() {
-  LXPoint3D target = getTarget();
+  if (targetInverseTransform) {
+    // If lockOn is activated, targetInverseTransform contains
+    // the necessary transform to follow the target
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+  
+    glRotated(45, 1, 0, 0);
+    glTranslated(0, -5, -5);
+    targetInverseTransform->commit();
+  } else {
+    // If mode is not lockOn, set up view with our coordinates
+    // TODO: update our coordinates during lockOn
+    LXPoint3D target = getTarget();
 
-  glMatrixMode(GL_MODELVIEW);
-  glLoadIdentity();
-  gluLookAt(eye.x, eye.y, eye.z,
-            target.x, target.y, target.z,
-            up.x, up.y, up.z);
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    gluLookAt(eye.x, eye.y, eye.z,
+              target.x, target.y, target.z,
+              up.x, up.y, up.z);
+  }
 }

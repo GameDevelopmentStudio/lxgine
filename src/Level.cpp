@@ -43,7 +43,7 @@ void Level::init() {
   glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuseLight);
   GLfloat ambientLight[]={0.3, 0.3, 0.3, 1.0};
   glLightfv(GL_LIGHT0, GL_AMBIENT, ambientLight);
-  light0Pos[0] = 0.0; light0Pos[1] = 8.0; 
+  light0Pos[0] = 0.0; light0Pos[1] = 5.0; 
   light0Pos[2] = -0.0; light0Pos[3] = 1.0;
   glLightfv(GL_LIGHT0, GL_POSITION, light0Pos);
 
@@ -56,8 +56,8 @@ void Level::init() {
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
 
+  // TODO: refactor with camera params
   gluPerspective(60.0, 1.0, 1.0, 200.0);
-
   /* glFrustum(camera->viewVolume.xL, camera->viewVolume.xR, */
   /*           camera->viewVolume.yB, camera->viewVolume.yT, */
   /*           camera->viewVolume.N, camera-> viewVolume.F); */
@@ -142,9 +142,9 @@ void Level::update() {
   }
 
   if (game->input->keyPressed('a')) {
-    exampleEntity->rotate(0, 0, -3.5f);
-  } else if (game->input->keyPressed('d')) {
     exampleEntity->rotate(0, 0, 3.5f);
+  } else if (game->input->keyPressed('d')) {
+    exampleEntity->rotate(0, 0, -3.5f);
   }
   
   if (game->input->keyPressed('w')) {

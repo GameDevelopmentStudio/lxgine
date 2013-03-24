@@ -1,8 +1,10 @@
 #ifndef __LXCAMERA_H__
 #define __LXCAMERA_H__
 
-#include "LXPoint3D.h"
 #include "LXLockableTarget.h"
+#include "LXPoint3D.h"
+
+class LXMatrix3D;
 
 struct LXViewVolume {
     double N,F;
@@ -20,6 +22,9 @@ class LXCamera : public LXLockableTargetDelegate {
   LXPoint3D eye;
   // Distance to target
   double focalLength;
+
+  // Lock on mode
+  LXMatrix3D *targetInverseTransform;
 
   LXCamera();
   ~LXCamera();
@@ -41,9 +46,9 @@ class LXCamera : public LXLockableTargetDelegate {
   void commit();
 
   // LXLocableDelegateMethods
+  virtual void lockOn(LXLockableTarget* target);
   virtual void targetDidRotate(LXLockableTarget *target, double rx, double ry, double rz);
   virtual void targetDidTranslate(LXLockableTarget *target, double tx, double ty, double tz);
-  virtual void targetResetPosition(LXLockableTarget *target, LXPoint3D position, double pitch, double yaw, double roll);
+  virtual void targetResetPosition(LXLockableTarget *target, const LXMatrix3D *transform);
 };
-
 #endif

@@ -20,7 +20,7 @@ void LXEntity::init() {
   transform->init();
 
   if (delegate) {
-    delegate->targetResetPosition(this, LXPoint3D(*pos), pitch, yaw, roll);
+    delegate->targetResetPosition(this, transform);
   }
 }
 
@@ -97,6 +97,6 @@ void LXEntity::setDelegate(LXLockableTargetDelegate *delegate) {
   LXLockableTarget::setDelegate(delegate);
 
   if (delegate) {
-    delegate->targetResetPosition(this, LXPoint3D(*pos), pitch, yaw, roll);
+    delegate->targetResetPosition(this, transform);
   }
 }
