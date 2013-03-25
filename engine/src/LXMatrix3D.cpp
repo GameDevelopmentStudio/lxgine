@@ -202,7 +202,7 @@ LXMatrix3D matrixWithRotationOnAxisWithCenter(double alpha, LXPoint3D a, LXPoint
   return out;
 }
 
-#pragma mark -(R3->R3)x(R3->R3)->(R3->R3) Functions
+#pragma mark - (R3->R3)x(R3->R3)->(R3->R3) Functions
 
 LXMatrix3D multiply(const LXMatrix3D &A, const LXMatrix3D &B) {
   // Save result in tmp matrix to avoid conflicts between A, B and this

@@ -33,7 +33,7 @@ void LXGame::init(int argc, char **argv) {
   glut->init(argc, argv);
 
   // Set seed here (who knows what we'll need)
-  srand(time(NULL));
+  srand((unsigned int)time(NULL));
 }
 
 void LXGame::run() {

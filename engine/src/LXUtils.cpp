@@ -4,7 +4,7 @@ char *callocStringWithContentsOfFile(const char *filename) {
   std::FILE *fp = std::fopen(filename, "r");
   if (fp) {
     std::fseek(fp, 0, SEEK_END);
-    int dataLength = ftell(fp);
+    long dataLength = ftell(fp);
     char * data = (char *)calloc(dataLength,sizeof(char));
     std::rewind(fp);
     std::fread(data, 1, dataLength, fp);
