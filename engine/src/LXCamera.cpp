@@ -2,6 +2,7 @@
 #include "LXPoint3D.h"
 #include "LXMatrix3D.h"
 #include "LXGlut.h"
+#include "LXEntity.h"
 
 #include <math.h>
 #include <iostream>
@@ -184,7 +185,16 @@ void LXCamera::lockOn(LXLockableTarget* target) {
 }
 
 void LXCamera::targetDidRotate(LXLockableTarget *target, double rx, double ry, double rz) {
-  targetInverseTransform->rotate(-rx, -ry, -rz, false);
+
+  if (ry == 0) {
+    targetInverseTransform->rotate(((LXEntity *) target)->pitch, 0.0, 0.0, false);
+    targetInverseTransform->rotate(-rx, -ry, -rz, false);
+    targetInverseTransform->rotate(-((LXEntity *) target)->pitch, 0.0, 0.0, false);
+  } else {
+    targetInverseTransform->rotate(-rx, -ry, -rz, false);
+  }
+
+  /* targetInverseTransform->rotate(-rx, -ry, -rz, false); */
 }
 
 void LXCamera::targetDidTranslate(LXLockableTarget *target, double tx, double ty, double tz) {

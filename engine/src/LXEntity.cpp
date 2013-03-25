@@ -60,7 +60,15 @@ void LXEntity::translate(double tx, double ty, double tz) {
 }
 
 void LXEntity::rotate(double rx, double ry, double rz) {
-  transform->rotate(rx, ry, rz);
+
+  if (ry == 0) {
+    transform->rotate(-pitch, 0.0, 0.0);
+    transform->rotate(rx, ry, rz);
+    transform->rotate(pitch, 0.0, 0.0);
+  } else {
+    transform->rotate(rx, ry, rz);
+  }
+
 
   if (rx) {
     pitch += rx;

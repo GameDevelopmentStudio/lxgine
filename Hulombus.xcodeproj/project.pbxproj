@@ -53,20 +53,11 @@
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = engine/assets/shaders;
-			dstSubfolderSpec = 16;
+			dstSubfolderSpec = 7;
 			files = (
 				F2A5B04A16FFC1AF002FDD12 /* diffuseLighting.fsh in CopyFiles */,
 				F2A5B04B16FFC1AF002FDD12 /* diffuseLighting.vsh in CopyFiles */,
 				F2A5B04C16FFC1AF002FDD12 /* diffuseTextureLighting.fsh in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F2A5B04E16FFC239002FDD12 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 6;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,7 +256,6 @@
 			buildPhases = (
 				F2A5AFDA16FFB515002FDD12 /* Sources */,
 				F2A5AFDB16FFB515002FDD12 /* Frameworks */,
-				F2A5B04E16FFC239002FDD12 /* CopyFiles */,
 				F2A5B04916FFC181002FDD12 /* CopyFiles */,
 				F2A5AFDC16FFB515002FDD12 /* CopyFiles */,
 			);

@@ -27,9 +27,9 @@ class LXEntity : public LXLockableTarget {
   // LXLockableTarget
   virtual void setDelegate(LXLockableTargetDelegate *delegate);
 
+  double pitch, yaw, roll;
  protected:
   LXPoint3D *pos;
-  double pitch, yaw, roll;
   
   LXMatrix3D *transform;
 };
