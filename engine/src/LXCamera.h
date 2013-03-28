@@ -45,10 +45,17 @@ class LXCamera : public LXLockableTargetDelegate {
 
   void commit();
 
+  void toggleFPS();
+
   // LXLocableDelegateMethods
   virtual void lockOn(LXLockableTarget* target);
+  virtual bool isLockedOn();
+  virtual void stopLock(LXLockableTarget* target);
   virtual void targetDidRotate(LXLockableTarget *target, double rx, double ry, double rz);
   virtual void targetDidTranslate(LXLockableTarget *target, double tx, double ty, double tz);
   virtual void targetResetPosition(LXLockableTarget *target, const LXMatrix3D *transform);
+
+ private:
+  bool fpsMode;
 };
 #endif

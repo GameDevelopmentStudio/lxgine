@@ -5,15 +5,20 @@
 
 class LXMatrix3D;
 class LXPoint3D;
+class LXGame;
 
 class LXEntity : public LXLockableTarget {
  public:
+  // Not owned pointers
+  LXGame *game;
+  
   LXEntity();
   virtual ~LXEntity();
 
   virtual void init();
+
+  virtual void update();
   virtual void render();
-  
   virtual void Render();
 
   virtual void translate(double tx, double ty, double tz);

@@ -13,6 +13,7 @@ class Player : public LXEntity {
   ~Player();
 
   void init();
+  void update();
   void render();
 };
 

@@ -23,6 +23,8 @@ class LXLockableTargetDelegate {
   virtual ~LXLockableTargetDelegate() {};
 
   virtual void lockOn(LXLockableTarget* target);
+  virtual bool isLockedOn() = 0;
+  virtual void stopLock(LXLockableTarget* target);
   virtual void targetDidRotate(LXLockableTarget *target, double rx, double ry, double rz) = 0;
   virtual void targetDidTranslate(LXLockableTarget *target, double tx, double ty, double tz) = 0;
   virtual void targetResetPosition(LXLockableTarget *target, const LXMatrix3D *transform) = 0;

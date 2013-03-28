@@ -2,6 +2,7 @@
 #include "LXMatrix3D.h"
 #include "LXPoint3D.h"
 #include "LXGlut.h"
+#include "LXGame.h"
 
 LXEntity::LXEntity() {
   // no camera has locked on this entity yet
@@ -22,6 +23,10 @@ void LXEntity::init() {
   if (delegate) {
     delegate->targetResetPosition(this, transform);
   }
+}
+
+void LXEntity::update() {
+
 }
 
 void LXEntity::render() {

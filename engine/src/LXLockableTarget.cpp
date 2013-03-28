@@ -11,3 +11,7 @@ LXLockableTargetDelegate *LXLockableTarget::getDelegate() {
 void LXLockableTargetDelegate::lockOn(LXLockableTarget* target) {
   target->setDelegate(this);
 }
+
+void LXLockableTargetDelegate::stopLock(LXLockableTarget* target) {
+  target->setDelegate(0);
+}

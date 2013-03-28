@@ -24,6 +24,7 @@ void LXCamera::init() {
   focalLength = lookAt.module();
   lookAt = normalizedVector(lookAt);
   up = normalizedVector(LXPoint3D(-100, 200, -100, 0));
+  /* up = LXPoint3D(0,1,0,0); */
   right = crossProduct(up, lookAt);
 
   viewVolume.N = 2;
@@ -32,6 +33,8 @@ void LXCamera::init() {
   viewVolume.xL = -viewVolume.xR;
   viewVolume.yT = 0.2;
   viewVolume.yB = -viewVolume.yT;
+
+  fpsMode = false;
 
   glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
@@ -124,6 +127,7 @@ void LXCamera::yaw(double alpha) {
 
   // Rotate around the computed axis
   LXMatrix3D yaw = matrixWithRotationOnAxis(alpha, -v_axis);
+  /* LXMatrix3D yaw = matrixWithRotationOnAxis(alpha, up); */
   lookAt = transformPoint(yaw, lookAt);
   up = transformPoint(yaw, up);
   right = crossProduct(up, lookAt);
@@ -184,6 +188,19 @@ void LXCamera::lockOn(LXLockableTarget* target) {
   LXLockableTargetDelegate::lockOn(target);
 }
 
+bool LXCamera::isLockedOn() {
+  return targetInverseTransform;
+}
+
+void LXCamera::stopLock(LXLockableTarget* target) {
+  if (isLockedOn()) {
+    delete targetInverseTransform;
+    targetInverseTransform = NULL;
+
+    LXLockableTargetDelegate::stopLock(target);
+  }
+}
+
 void LXCamera::targetDidRotate(LXLockableTarget *target, double rx, double ry, double rz) {
 
   if (ry == 0) {
@@ -205,6 +222,10 @@ void LXCamera::targetResetPosition(LXLockableTarget *target, const LXMatrix3D *t
   *targetInverseTransform = transform->inverse();
 }
 
+void LXCamera::toggleFPS() {
+  fpsMode = !fpsMode;
+}
+
 #pragma mark - Apply changes
 
 void LXCamera::commit() {
@@ -214,8 +235,10 @@ void LXCamera::commit() {
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
   
-    glRotated(45, 1, 0, 0);
-    glTranslated(0, -5, -5);
+    if (!fpsMode) {
+      glRotated(45, 1, 0, 0);
+      glTranslated(0, -5, -5);
+    }
     targetInverseTransform->commit();
   } else {
     // If mode is not lockOn, set up view with our coordinates

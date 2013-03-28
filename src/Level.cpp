@@ -71,8 +71,8 @@ void Level::init() {
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
   glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAX_ANISOTROPY_EXT, 16.0f);
   
+  exampleEntity->game = this->game;
   exampleEntity->init();
-  camera->lockOn(exampleEntity);
 }
 
 void Level::render() {
@@ -129,45 +129,85 @@ void Level::render() {
 void Level::update() {
   LXGameState::update();
 
-  if (game->input->specialKeyPressed(GLUT_KEY_LEFT)) {
-    exampleEntity->translate(-0.5, 0, 0);
-  } else if (game->input->specialKeyPressed(GLUT_KEY_RIGHT)) {
-    exampleEntity->translate(0.5, 0, 0);
-  }
-  
-  if (game->input->specialKeyPressed(GLUT_KEY_UP)) {
-    exampleEntity->translate(0, 0, -0.5);
-  } else if (game->input->specialKeyPressed(GLUT_KEY_DOWN)) {
-    exampleEntity->translate(0, 0, 0.5);
+  if (game->input->keyPressed('v')) {
+    if (camera->isLockedOn()) {
+      camera->stopLock(exampleEntity);
+    } else {
+      camera->lockOn(exampleEntity);
+    }
   }
 
-  if (game->input->keyPressed('a')) {
-    exampleEntity->rotate(0, 0, 3.5f);
-  } else if (game->input->keyPressed('d')) {
-    exampleEntity->rotate(0, 0, -3.5f);
-  }
-  
-  if (game->input->keyPressed('w')) {
-    exampleEntity->rotate(3.5f, 0, 0);
-  } else if (game->input->keyPressed('s')) {
-    exampleEntity->rotate(-3.5f, 0, 0);
+  if (!camera->isLockedOn()) {
+    if (game->input->specialKeyPressed(GLUT_KEY_LEFT)) {
+      camera->translate(-0.5, 0, 0);
+    } else if (game->input->specialKeyPressed(GLUT_KEY_RIGHT)) {
+      camera->translate(0.5, 0, 0);
+    }
+    
+    if (game->input->specialKeyPressed(GLUT_KEY_UP)) {
+      camera->translate(0, 0, -0.5);
+    } else if (game->input->specialKeyPressed(GLUT_KEY_DOWN)) {
+      camera->translate(0, 0, 0.5);
+    }
+
+    if (game->input->keyPressed('a')) {
+      camera->yaw(-0.05f);
+    } else if (game->input->keyPressed('d')) {
+      camera->yaw(0.05f);
+    }
+    
+    if (game->input->keyPressed('w')) {
+      camera->pitch(0.05f);
+    } else if (game->input->keyPressed('s')) {
+      camera->pitch(-0.05f);
+    }
+  } else { 
+    if (game->input->specialKeyPressed(GLUT_KEY_LEFT)) {
+      exampleEntity->translate(-0.5, 0, 0);
+    } else if (game->input->specialKeyPressed(GLUT_KEY_RIGHT)) {
+      exampleEntity->translate(0.5, 0, 0);
+    }
+    
+    if (game->input->specialKeyPressed(GLUT_KEY_UP)) {
+      exampleEntity->translate(0, 0, -0.5);
+    } else if (game->input->specialKeyPressed(GLUT_KEY_DOWN)) {
+      exampleEntity->translate(0, 0, 0.5);
+    }
+
+    if (game->input->keyPressed('a')) {
+      exampleEntity->rotate(0, 0, 3.5f);
+    } else if (game->input->keyPressed('d')) {
+      exampleEntity->rotate(0, 0, -3.5f);
+    }
+    
+    if (game->input->keyPressed('w')) {
+      exampleEntity->rotate(3.5f, 0, 0);
+    } else if (game->input->keyPressed('s')) {
+      exampleEntity->rotate(-3.5f, 0, 0);
+    }
+
+    if (game->input->keyPressed('y')) {
+      exampleEntity->rotate(2.0, 0, 0);
+    } else if (game->input->keyPressed('u')) {
+      exampleEntity->rotate(-2.0, 0, 0);
+    }
+
+    if (game->input->keyPressed('i')) {
+      exampleEntity->rotate(0, 2.0, 0);
+    } else if (game->input->keyPressed('o')) {
+      exampleEntity->rotate(0, -2.0, 0);
+    }
+
+    if (game->input->keyPressed('j')) {
+      exampleEntity->rotate(0, 0, 2.0);
+    } else if (game->input->keyPressed('k')) {
+      exampleEntity->rotate(.0, 0, -2.0);
+    }  
+
+    if (game->input->keyPressed('p')) {
+      camera->toggleFPS();
+    }  
   }
 
-  if (game->input->keyPressed('y')) {
-    exampleEntity->rotate(2.0, 0, 0);
-  } else if (game->input->keyPressed('u')) {
-    exampleEntity->rotate(-2.0, 0, 0);
-  }
-
-  if (game->input->keyPressed('i')) {
-    exampleEntity->rotate(0, 2.0, 0);
-  } else if (game->input->keyPressed('o')) {
-    exampleEntity->rotate(0, -2.0, 0);
-  }
-
-  if (game->input->keyPressed('j')) {
-    exampleEntity->rotate(0, 0, 2.0);
-  } else if (game->input->keyPressed('k')) {
-    exampleEntity->rotate(.0, 0, -2.0);
-  }  
+  exampleEntity->update();
 }
