@@ -1,7 +1,7 @@
 #ifndef __LXFace_H__
 #define __LXFace_H__
 
-class LXPoint3D;
+#include "LXPoint3D.h"
 
 class LXFace {
  public:
@@ -12,15 +12,18 @@ class LXFace {
   };
 
   int nvertex;
-  LXVertexNormalPair *vertexNormals;
+  LXVertexNormalPair *vertexNormalPairs;
   
   LXFace();
   virtual ~LXFace();
 
   virtual void init(int nvertex);
 
-  LXPoint3D *computeNormal(LXPoint3D *vertexPool);
-  /* LXPoint3D *getCenter(); */
+  LXPoint3D computeNormal(LXPoint3D *vertexPool);
+  LXPoint3D computeCenter(LXPoint3D *vertexPool);
+
+ private:
+  int nextVertex(int idx);
 };
 
 #endif

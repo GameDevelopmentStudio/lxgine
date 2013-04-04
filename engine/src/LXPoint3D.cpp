@@ -54,10 +54,10 @@ LXPoint3D normalizedVector(const LXPoint3D &v) {
 #pragma mark - RxR3->R3 Functions
 
 LXPoint3D operator*(const float &a, const LXPoint3D &v) {
-  return LXPoint3D(v.x * a,
-                   v.y * a,
-                   v.z * a,
-                   v.v * a);
+  return LXPoint3D(a * v.x,
+                   a * v.y,
+                   a * v.z,
+                   a * v.v);
 }
 
 LXPoint3D operator*(const LXPoint3D &v, const float &a) {
@@ -87,6 +87,20 @@ LXPoint3D operator+(const LXPoint3D &a, const LXPoint3D &b) {
                    a.y + b.y,
                    a.z + b.z,
                    a.v + b.v);
+}
+
+LXPoint3D LXPoint3D::operator-=(const LXPoint3D &other) {
+  x -= other.x;
+  y -= other.y;
+  z -= other.z;
+  v -= other.v;
+}
+
+LXPoint3D LXPoint3D::operator+=(const LXPoint3D &other) {
+  x += other.x;
+  y += other.y;
+  z += other.z;
+  v += other.v;
 }
 
 LXPoint3D crossProduct(const LXPoint3D &a, const LXPoint3D &b) {

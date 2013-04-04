@@ -25,6 +25,9 @@ class LXPoint3D {
     const double &operator[](int i) const;
     // R3 -> R
     double module() const;
+    // R3xR3 -> R3
+    LXPoint3D operator-=(const LXPoint3D &other);
+    LXPoint3D operator+=(const LXPoint3D &other);
 };
 
 // R3 -> R3
