@@ -106,16 +106,16 @@ void Level::render() {
   glNormal3f(0.0, 1.0, 0.0);
   glBegin(GL_QUADS);
   {
-      float s = 20.f;
-      float rep = 20.f;
-      glTexCoord2f(0.f, 0.f);
-      glVertex3f(-s, -5, -s);
-      glTexCoord2f(rep, 0.f);
-      glVertex3f(s, -5, -s);
-      glTexCoord2f(rep, rep);
-      glVertex3f(s, -5, s);
-      glTexCoord2f(0.f, rep);
-      glVertex3f(-s, -5, s);
+    float s = 20.f;
+    float rep = 20.f;
+    glTexCoord2f(0.f, 0.f);
+    glVertex3f(-s, -5, -s);
+    glTexCoord2f(rep, 0.f);
+    glVertex3f(s, -5, -s);
+    glTexCoord2f(rep, rep);
+    glVertex3f(s, -5, s);
+    glTexCoord2f(0.f, rep);
+    glVertex3f(-s, -5, s);
   }
   glEnd();
   floorProg->disable();

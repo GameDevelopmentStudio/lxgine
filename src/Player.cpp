@@ -13,6 +13,8 @@
 
 
 LXMesh *m;
+GLuint vaoID[1];
+GLuint vboID[1];
 
 int i = 0;
 
@@ -76,7 +78,7 @@ void Player::init() {
   LXEntity::init();
 
   m = new LXMesh();
-  m->init(8, 16);
+  m->init(8, 12);
   m->vertexPool[0] = LXPoint3D(-0.5, -0.5, -0.5, 1);
   m->vertexPool[1] = LXPoint3D(-0.5, -0.5, 0.5, 1);
   m->vertexPool[2] = LXPoint3D(-0.5, 0.5, -0.5, 1);
@@ -140,36 +142,19 @@ void Player::init() {
   m->faces[11].vertexNormalPairs[1].vertex = 0;
   m->faces[11].vertexNormalPairs[2].vertex = 2;
   
-  // Tetrahedron 
-  /* m->init(4, 4); */
-  /* m->vertexPool[0] = LXPoint3D(0, 0, 0, 1); */
-  /* m->vertexPool[1] = LXPoint3D(1, 0, 0, 1); */
-  /* m->vertexPool[2] = LXPoint3D(0, 1, 0, 1); */
-  /* m->vertexPool[3] = LXPoint3D(0, 0, 1, 1); */
- 
-  /* m->faces[0].init(3); */
-  /* m->faces[0].vertexNormalPairs[0].vertex = 1; */
-  /* m->faces[0].vertexNormalPairs[1].vertex = 2; */
-  /* m->faces[0].vertexNormalPairs[2].vertex = 3; */
-  
-  /* m->faces[1].init(3); */
-  /* m->faces[1].vertexNormalPairs[0].vertex = 3; */
-  /* m->faces[1].vertexNormalPairs[1].vertex = 0; */
-  /* m->faces[1].vertexNormalPairs[2].vertex = 1; */
-  
-  /* m->faces[1].init(3); */
-  /* m->faces[1].vertexNormalPairs[0].vertex = 1; */
-  /* m->faces[1].vertexNormalPairs[1].vertex = 0; */
-  /* m->faces[1].vertexNormalPairs[2].vertex = 2; */
-
-  /* m->faces[3].init(3); */
-  /* m->faces[3].vertexNormalPairs[0].vertex = 2; */
-  /* m->faces[3].vertexNormalPairs[1].vertex = 0; */
-  /* m->faces[3].vertexNormalPairs[2].vertex = 3; */
-
-  
   m->computeNormals();
   m->compile();
+
+  /* glGenVertexArrays(1, &vaoID[0]); */
+	/* glBindVertexArray(vaoID[0]); */
+
+	/* glGenBuffers(1, &vboID[0]); */
+	/* glBindBuffer(GL_ARRAY_BUFFER, vboID[0]); */
+	/* glBufferData(GL_ARRAY_BUFFER, 6 * sizeof(GLfloat), gCubeVertexData + 3, GL_STATIC_DRAW); */
+	/* glBufferData(GL_ARRAY_BUFFER, 6 * sizeof(GLfloat), gCubeVertexData, GL_STATIC_DRAW); */
+
+	/* glEnableVertexAttribArray(0); */
+	/* glBindVertexArray(0); */
 }
 
 void Player::update() {
@@ -183,6 +168,10 @@ void Player::render() {
   LXEntity::render();
   
   glColor3f(0.34, 0.32, 1.0);
+
+  /* glBindVertexArray(vaoID[0]); */
+  /*   glDrawArrays(GL_TRIANGLES, 0, 36); */
+  /* glBindVertexArray(0); */
 
   m->render();
   /* glEnableClientState(GL_NORMAL_ARRAY); */
