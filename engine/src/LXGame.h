@@ -12,9 +12,10 @@ class LXGame {
   //
   // Owned pointers
   LXGameState *world;
-   
-  int width;
-  int height;
+  
+  // Getters
+  int getWidth();
+  int getHeight();
 
   LXGame();
   virtual ~LXGame();
@@ -26,6 +27,7 @@ class LXGame {
   virtual void init(int argc, char **argv);
   virtual void run();
   virtual void changeWorld(LXGameState *newWorld);
+  virtual void screenshot();
 
   // Event calls from glut
   virtual void Render();
@@ -33,6 +35,8 @@ class LXGame {
   virtual void Resize(int width, int height);
 
  protected:
+  int width;
+  int height;
   // OpenGL's window manager
   LXGlut *glut;
 };

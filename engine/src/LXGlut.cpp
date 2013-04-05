@@ -54,7 +54,7 @@ void LXGlut::init(int argc, char **argv) {
   // Depth buffer
   glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_ALPHA | GLUT_DEPTH);  
 
-  glutInitWindowSize(game->width, game->height);  
+  glutInitWindowSize(game->getWidth(), game->getHeight());
   glutInitWindowPosition(0, 0);  
   window = glutCreateWindow("Batman was not here");
   fullscreen = false;
@@ -108,7 +108,7 @@ void LXGlut::close() {
 
 void LXGlut::toggleFullscreen() {
   if (fullscreen)
-    glutReshapeWindow(game->width, game->height);
+    glutReshapeWindow(game->getWidth(), game->getHeight());
   else
     glutFullScreen();
 

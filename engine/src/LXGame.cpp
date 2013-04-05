@@ -42,6 +42,16 @@ void LXGame::run() {
   glut->run();
 }
 
+#pragma mark - Getters
+
+int LXGame::getWidth() {
+  return width;
+}
+
+int LXGame::getHeight() {
+  return height;
+}
+
 #pragma mark - Main Virtual Methods
 
 void LXGame::initSettings() {
@@ -130,4 +140,10 @@ void LXGame::Resize(int width, int height) {
              glViewportOriginY, 
              glViewportWidth,
              glViewportHeight);
+}
+
+#pragma mark - Helpers
+
+void LXGame::screenshot() {
+  
 }

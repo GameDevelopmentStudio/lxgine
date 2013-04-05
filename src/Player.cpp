@@ -2,9 +2,12 @@
 
 #include "LXGlut.h"
 #include "LXPoint3D.h"
-
 #include "LXMesh.h"
 #include "LXFace.h"
+#include "LXGameState.h"
+#include "LXGame.h"
+#include "LXCamera.h"
+#include "LXInput.h"
 
 #include <stdio.h>
 #include <math.h>
@@ -66,7 +69,6 @@ GLfloat gCubeVertexData[216] =
 };
 
 Player::Player() : LXEntity() {
-  
 }
 
 Player::~Player() {
@@ -158,6 +160,54 @@ void Player::init() {
 }
 
 void Player::update() {
+  if (world->camera->isLockedOn()) {
+    if (game->input->specialKeyPressed(GLUT_KEY_LEFT)) {
+      translate(-0.5, 0, 0);
+    } else if (game->input->specialKeyPressed(GLUT_KEY_RIGHT)) {
+      translate(0.5, 0, 0);
+    }
+    
+    if (game->input->specialKeyPressed(GLUT_KEY_UP)) {
+      translate(0, 0, -0.5);
+    } else if (game->input->specialKeyPressed(GLUT_KEY_DOWN)) {
+      translate(0, 0, 0.5);
+    }
+    
+    if (game->input->keyPressed('a')) {
+      rotate(0, 0, 3.5f);
+    } else if (game->input->keyPressed('d')) {
+      rotate(0, 0, -3.5f);
+    }
+    
+    if (game->input->keyPressed('w')) {
+      rotate(3.5f, 0, 0);
+    } else if (game->input->keyPressed('s')) {
+      rotate(-3.5f, 0, 0);
+    }
+    
+    if (game->input->keyPressed('y')) {
+      rotate(2.0, 0, 0);
+    } else if (game->input->keyPressed('u')) {
+      rotate(-2.0, 0, 0);
+    }
+    
+    if (game->input->keyPressed('i')) {
+      rotate(0, 2.0, 0);
+    } else if (game->input->keyPressed('o')) {
+      rotate(0, -2.0, 0);
+    }
+    
+    if (game->input->keyPressed('j')) {
+      rotate(0, 0, 2.0);
+    } else if (game->input->keyPressed('k')) {
+      rotate(.0, 0, -2.0);
+    }
+    
+    if (game->input->keyPressed('p')) {
+      world->camera->toggleFPS();
+    }
+  }
+
   // TODO: unhardcode this
   double idlation = 0.03*sin(0.1*i);
   translate(0, idlation, 0);

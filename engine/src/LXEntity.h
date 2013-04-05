@@ -6,11 +6,13 @@
 class LXMatrix3D;
 class LXPoint3D;
 class LXGame;
+class LXGameState;
 
 class LXEntity : public LXLockableTarget {
  public:
   // Not owned pointers
   LXGame *game;
+  LXGameState *world;
   
   LXEntity();
   virtual ~LXEntity();
@@ -21,9 +23,11 @@ class LXEntity : public LXLockableTarget {
   virtual void render();
   virtual void Render();
 
+  // Transformation setters
   virtual void translate(double tx, double ty, double tz);
   virtual void rotate(double rx, double ry, double rz);
 
+  // Transformation getters
   LXPoint3D getPos();
   double getPitch();
   double getYaw();

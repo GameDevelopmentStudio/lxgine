@@ -2,9 +2,11 @@
 #include "LXMatrix3D.h"
 #include "LXPoint3D.h"
 #include "LXGlut.h"
-#include "LXGame.h"
 
 LXEntity::LXEntity() {
+  game = NULL;
+  world = NULL;
+  
   // no camera has locked on this entity yet
   delegate = NULL;
 

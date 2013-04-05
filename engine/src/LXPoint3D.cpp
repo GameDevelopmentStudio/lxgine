@@ -89,14 +89,14 @@ LXPoint3D operator+(const LXPoint3D &a, const LXPoint3D &b) {
                    a.v + b.v);
 }
 
-LXPoint3D LXPoint3D::operator-=(const LXPoint3D &other) {
+void LXPoint3D::operator-=(const LXPoint3D &other) {
   x -= other.x;
   y -= other.y;
   z -= other.z;
   v -= other.v;
 }
 
-LXPoint3D LXPoint3D::operator+=(const LXPoint3D &other) {
+void LXPoint3D::operator+=(const LXPoint3D &other) {
   x += other.x;
   y += other.y;
   z += other.z;
