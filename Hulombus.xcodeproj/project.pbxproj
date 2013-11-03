@@ -10,23 +10,23 @@
 		F2A5AFE816FFB52E002FDD12 /* Derai.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFAF16FFB47F002FDD12 /* Derai.cpp */; };
 		F2A5AFEA16FFB52E002FDD12 /* Level.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFB116FFB47F002FDD12 /* Level.cpp */; };
 		F2A5AFEC16FFB52E002FDD12 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFB316FFB47F002FDD12 /* Player.cpp */; };
-		F2A5AFEE16FFB52E002FDD12 /* LXCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFB516FFB48D002FDD12 /* LXCamera.cpp */; };
-		F2A5AFF016FFB52E002FDD12 /* LXEntity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFB716FFB48D002FDD12 /* LXEntity.cpp */; };
-		F2A5AFF216FFB52E002FDD12 /* LXFace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFB916FFB48D002FDD12 /* LXFace.cpp */; };
-		F2A5AFF416FFB52E002FDD12 /* LXGame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFBB16FFB48D002FDD12 /* LXGame.cpp */; };
-		F2A5AFF616FFB52E002FDD12 /* LXGameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFBD16FFB48D002FDD12 /* LXGameState.cpp */; };
-		F2A5AFF816FFB52E002FDD12 /* LXGlut.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFBF16FFB48D002FDD12 /* LXGlut.cpp */; };
-		F2A5AFFA16FFB52E002FDD12 /* LXInput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFC116FFB48D002FDD12 /* LXInput.cpp */; };
-		F2A5AFFC16FFB52E002FDD12 /* LXLockableTarget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFC316FFB48D002FDD12 /* LXLockableTarget.cpp */; };
-		F2A5AFFE16FFB52E002FDD12 /* LXMatrix3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFC516FFB48D002FDD12 /* LXMatrix3D.cpp */; };
-		F2A5B00016FFB52E002FDD12 /* LXMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFC716FFB48D002FDD12 /* LXMesh.cpp */; };
-		F2A5B00216FFB52E002FDD12 /* LXPoint3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFC916FFB48D002FDD12 /* LXPoint3D.cpp */; };
-		F2A5B00416FFB52E002FDD12 /* LXShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFCB16FFB48D002FDD12 /* LXShader.cpp */; };
-		F2A5B00616FFB52E002FDD12 /* LXTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFCD16FFB48D002FDD12 /* LXTexture.cpp */; };
-		F2A5B00816FFB52E002FDD12 /* LXTextureLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFCF16FFB48D002FDD12 /* LXTextureLoader.cpp */; };
-		F2A5B00A16FFB52E002FDD12 /* LXTexturePPM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFD116FFB48D002FDD12 /* LXTexturePPM.cpp */; };
-		F2A5B00C16FFB52E002FDD12 /* LXTextureTGA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFD316FFB48D002FDD12 /* LXTextureTGA.cpp */; };
-		F2A5B00E16FFB52E002FDD12 /* LXUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFD516FFB48D002FDD12 /* LXUtils.cpp */; };
+		F2A5AFEE16FFB52E002FDD12 /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFB516FFB48D002FDD12 /* Camera.cpp */; };
+		F2A5AFF016FFB52E002FDD12 /* Entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFB716FFB48D002FDD12 /* Entity.cpp */; };
+		F2A5AFF216FFB52E002FDD12 /* Face.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFB916FFB48D002FDD12 /* Face.cpp */; };
+		F2A5AFF416FFB52E002FDD12 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFBB16FFB48D002FDD12 /* Game.cpp */; };
+		F2A5AFF616FFB52E002FDD12 /* GameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFBD16FFB48D002FDD12 /* GameState.cpp */; };
+		F2A5AFF816FFB52E002FDD12 /* Glut.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFBF16FFB48D002FDD12 /* Glut.cpp */; };
+		F2A5AFFA16FFB52E002FDD12 /* Input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFC116FFB48D002FDD12 /* Input.cpp */; };
+		F2A5AFFC16FFB52E002FDD12 /* LockableTarget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFC316FFB48D002FDD12 /* LockableTarget.cpp */; };
+		F2A5AFFE16FFB52E002FDD12 /* Matrix3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFC516FFB48D002FDD12 /* Matrix3D.cpp */; };
+		F2A5B00016FFB52E002FDD12 /* Mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFC716FFB48D002FDD12 /* Mesh.cpp */; };
+		F2A5B00216FFB52E002FDD12 /* Point3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFC916FFB48D002FDD12 /* Point3D.cpp */; };
+		F2A5B00416FFB52E002FDD12 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFCB16FFB48D002FDD12 /* Shader.cpp */; };
+		F2A5B00616FFB52E002FDD12 /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFCD16FFB48D002FDD12 /* Texture.cpp */; };
+		F2A5B00816FFB52E002FDD12 /* TextureLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFCF16FFB48D002FDD12 /* TextureLoader.cpp */; };
+		F2A5B00A16FFB52E002FDD12 /* TexturePPM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFD116FFB48D002FDD12 /* TexturePPM.cpp */; };
+		F2A5B00C16FFB52E002FDD12 /* TextureTGA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFD316FFB48D002FDD12 /* TextureTGA.cpp */; };
+		F2A5B00E16FFB52E002FDD12 /* Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFD516FFB48D002FDD12 /* Utils.cpp */; };
 		F2A5B01116FFB537002FDD12 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2A5B01016FFB537002FDD12 /* OpenGL.framework */; };
 		F2A5B01316FFB53F002FDD12 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2A5B01216FFB53F002FDD12 /* GLUT.framework */; };
 		F2A5B04716FFC085002FDD12 /* floortile.ppm in CopyFiles */ = {isa = PBXBuildFile; fileRef = F2A5B03C16FFC06B002FDD12 /* floortile.ppm */; };
@@ -70,40 +70,40 @@
 		F2A5AFB216FFB47F002FDD12 /* Level.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Level.h; path = src/Level.h; sourceTree = "<group>"; };
 		F2A5AFB316FFB47F002FDD12 /* Player.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Player.cpp; path = src/Player.cpp; sourceTree = "<group>"; };
 		F2A5AFB416FFB47F002FDD12 /* Player.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Player.h; path = src/Player.h; sourceTree = "<group>"; };
-		F2A5AFB516FFB48D002FDD12 /* LXCamera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = LXCamera.cpp; path = engine/src/LXCamera.cpp; sourceTree = "<group>"; };
-		F2A5AFB616FFB48D002FDD12 /* LXCamera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LXCamera.h; path = engine/src/LXCamera.h; sourceTree = "<group>"; };
-		F2A5AFB716FFB48D002FDD12 /* LXEntity.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = LXEntity.cpp; path = engine/src/LXEntity.cpp; sourceTree = "<group>"; };
-		F2A5AFB816FFB48D002FDD12 /* LXEntity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LXEntity.h; path = engine/src/LXEntity.h; sourceTree = "<group>"; };
-		F2A5AFB916FFB48D002FDD12 /* LXFace.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = LXFace.cpp; path = engine/src/LXFace.cpp; sourceTree = "<group>"; };
-		F2A5AFBA16FFB48D002FDD12 /* LXFace.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LXFace.h; path = engine/src/LXFace.h; sourceTree = "<group>"; };
-		F2A5AFBB16FFB48D002FDD12 /* LXGame.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = LXGame.cpp; path = engine/src/LXGame.cpp; sourceTree = "<group>"; };
-		F2A5AFBC16FFB48D002FDD12 /* LXGame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LXGame.h; path = engine/src/LXGame.h; sourceTree = "<group>"; };
-		F2A5AFBD16FFB48D002FDD12 /* LXGameState.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = LXGameState.cpp; path = engine/src/LXGameState.cpp; sourceTree = "<group>"; };
-		F2A5AFBE16FFB48D002FDD12 /* LXGameState.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LXGameState.h; path = engine/src/LXGameState.h; sourceTree = "<group>"; };
-		F2A5AFBF16FFB48D002FDD12 /* LXGlut.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = LXGlut.cpp; path = engine/src/LXGlut.cpp; sourceTree = "<group>"; };
-		F2A5AFC016FFB48D002FDD12 /* LXGlut.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LXGlut.h; path = engine/src/LXGlut.h; sourceTree = "<group>"; };
-		F2A5AFC116FFB48D002FDD12 /* LXInput.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = LXInput.cpp; path = engine/src/LXInput.cpp; sourceTree = "<group>"; };
-		F2A5AFC216FFB48D002FDD12 /* LXInput.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LXInput.h; path = engine/src/LXInput.h; sourceTree = "<group>"; };
-		F2A5AFC316FFB48D002FDD12 /* LXLockableTarget.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = LXLockableTarget.cpp; path = engine/src/LXLockableTarget.cpp; sourceTree = "<group>"; };
-		F2A5AFC416FFB48D002FDD12 /* LXLockableTarget.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LXLockableTarget.h; path = engine/src/LXLockableTarget.h; sourceTree = "<group>"; };
-		F2A5AFC516FFB48D002FDD12 /* LXMatrix3D.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = LXMatrix3D.cpp; path = engine/src/LXMatrix3D.cpp; sourceTree = "<group>"; };
-		F2A5AFC616FFB48D002FDD12 /* LXMatrix3D.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LXMatrix3D.h; path = engine/src/LXMatrix3D.h; sourceTree = "<group>"; };
-		F2A5AFC716FFB48D002FDD12 /* LXMesh.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = LXMesh.cpp; path = engine/src/LXMesh.cpp; sourceTree = "<group>"; };
-		F2A5AFC816FFB48D002FDD12 /* LXMesh.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LXMesh.h; path = engine/src/LXMesh.h; sourceTree = "<group>"; };
-		F2A5AFC916FFB48D002FDD12 /* LXPoint3D.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = LXPoint3D.cpp; path = engine/src/LXPoint3D.cpp; sourceTree = "<group>"; };
-		F2A5AFCA16FFB48D002FDD12 /* LXPoint3D.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LXPoint3D.h; path = engine/src/LXPoint3D.h; sourceTree = "<group>"; };
-		F2A5AFCB16FFB48D002FDD12 /* LXShader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = LXShader.cpp; path = engine/src/LXShader.cpp; sourceTree = "<group>"; };
-		F2A5AFCC16FFB48D002FDD12 /* LXShader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LXShader.h; path = engine/src/LXShader.h; sourceTree = "<group>"; };
-		F2A5AFCD16FFB48D002FDD12 /* LXTexture.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = LXTexture.cpp; path = engine/src/LXTexture.cpp; sourceTree = "<group>"; };
-		F2A5AFCE16FFB48D002FDD12 /* LXTexture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LXTexture.h; path = engine/src/LXTexture.h; sourceTree = "<group>"; };
-		F2A5AFCF16FFB48D002FDD12 /* LXTextureLoader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = LXTextureLoader.cpp; path = engine/src/LXTextureLoader.cpp; sourceTree = "<group>"; };
-		F2A5AFD016FFB48D002FDD12 /* LXTextureLoader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LXTextureLoader.h; path = engine/src/LXTextureLoader.h; sourceTree = "<group>"; };
-		F2A5AFD116FFB48D002FDD12 /* LXTexturePPM.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = LXTexturePPM.cpp; path = engine/src/LXTexturePPM.cpp; sourceTree = "<group>"; };
-		F2A5AFD216FFB48D002FDD12 /* LXTexturePPM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LXTexturePPM.h; path = engine/src/LXTexturePPM.h; sourceTree = "<group>"; };
-		F2A5AFD316FFB48D002FDD12 /* LXTextureTGA.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = LXTextureTGA.cpp; path = engine/src/LXTextureTGA.cpp; sourceTree = "<group>"; };
-		F2A5AFD416FFB48D002FDD12 /* LXTextureTGA.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LXTextureTGA.h; path = engine/src/LXTextureTGA.h; sourceTree = "<group>"; };
-		F2A5AFD516FFB48D002FDD12 /* LXUtils.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = LXUtils.cpp; path = engine/src/LXUtils.cpp; sourceTree = "<group>"; };
-		F2A5AFD616FFB48D002FDD12 /* LXUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LXUtils.h; path = engine/src/LXUtils.h; sourceTree = "<group>"; };
+		F2A5AFB516FFB48D002FDD12 /* Camera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Camera.cpp; path = engine/src/Camera.cpp; sourceTree = "<group>"; };
+		F2A5AFB616FFB48D002FDD12 /* Camera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Camera.h; path = engine/src/Camera.h; sourceTree = "<group>"; };
+		F2A5AFB716FFB48D002FDD12 /* Entity.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Entity.cpp; path = engine/src/Entity.cpp; sourceTree = "<group>"; };
+		F2A5AFB816FFB48D002FDD12 /* Entity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Entity.h; path = engine/src/Entity.h; sourceTree = "<group>"; };
+		F2A5AFB916FFB48D002FDD12 /* Face.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Face.cpp; path = engine/src/Face.cpp; sourceTree = "<group>"; };
+		F2A5AFBA16FFB48D002FDD12 /* Face.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Face.h; path = engine/src/Face.h; sourceTree = "<group>"; };
+		F2A5AFBB16FFB48D002FDD12 /* Game.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Game.cpp; path = engine/src/Game.cpp; sourceTree = "<group>"; };
+		F2A5AFBC16FFB48D002FDD12 /* Game.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Game.h; path = engine/src/Game.h; sourceTree = "<group>"; };
+		F2A5AFBD16FFB48D002FDD12 /* GameState.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = GameState.cpp; path = engine/src/GameState.cpp; sourceTree = "<group>"; };
+		F2A5AFBE16FFB48D002FDD12 /* GameState.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GameState.h; path = engine/src/GameState.h; sourceTree = "<group>"; };
+		F2A5AFBF16FFB48D002FDD12 /* Glut.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Glut.cpp; path = engine/src/Glut.cpp; sourceTree = "<group>"; };
+		F2A5AFC016FFB48D002FDD12 /* Glut.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Glut.h; path = engine/src/Glut.h; sourceTree = "<group>"; };
+		F2A5AFC116FFB48D002FDD12 /* Input.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Input.cpp; path = engine/src/Input.cpp; sourceTree = "<group>"; };
+		F2A5AFC216FFB48D002FDD12 /* Input.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Input.h; path = engine/src/Input.h; sourceTree = "<group>"; };
+		F2A5AFC316FFB48D002FDD12 /* LockableTarget.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = LockableTarget.cpp; path = engine/src/LockableTarget.cpp; sourceTree = "<group>"; };
+		F2A5AFC416FFB48D002FDD12 /* LockableTarget.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LockableTarget.h; path = engine/src/LockableTarget.h; sourceTree = "<group>"; };
+		F2A5AFC516FFB48D002FDD12 /* Matrix3D.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Matrix3D.cpp; path = engine/src/Matrix3D.cpp; sourceTree = "<group>"; };
+		F2A5AFC616FFB48D002FDD12 /* Matrix3D.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Matrix3D.h; path = engine/src/Matrix3D.h; sourceTree = "<group>"; };
+		F2A5AFC716FFB48D002FDD12 /* Mesh.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Mesh.cpp; path = engine/src/Mesh.cpp; sourceTree = "<group>"; };
+		F2A5AFC816FFB48D002FDD12 /* Mesh.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Mesh.h; path = engine/src/Mesh.h; sourceTree = "<group>"; };
+		F2A5AFC916FFB48D002FDD12 /* Point3D.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Point3D.cpp; path = engine/src/Point3D.cpp; sourceTree = "<group>"; };
+		F2A5AFCA16FFB48D002FDD12 /* Point3D.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Point3D.h; path = engine/src/Point3D.h; sourceTree = "<group>"; };
+		F2A5AFCB16FFB48D002FDD12 /* Shader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Shader.cpp; path = engine/src/Shader.cpp; sourceTree = "<group>"; };
+		F2A5AFCC16FFB48D002FDD12 /* Shader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Shader.h; path = engine/src/Shader.h; sourceTree = "<group>"; };
+		F2A5AFCD16FFB48D002FDD12 /* Texture.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Texture.cpp; path = engine/src/Texture.cpp; sourceTree = "<group>"; };
+		F2A5AFCE16FFB48D002FDD12 /* Texture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Texture.h; path = engine/src/Texture.h; sourceTree = "<group>"; };
+		F2A5AFCF16FFB48D002FDD12 /* TextureLoader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = TextureLoader.cpp; path = engine/src/TextureLoader.cpp; sourceTree = "<group>"; };
+		F2A5AFD016FFB48D002FDD12 /* TextureLoader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TextureLoader.h; path = engine/src/TextureLoader.h; sourceTree = "<group>"; };
+		F2A5AFD116FFB48D002FDD12 /* TexturePPM.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = TexturePPM.cpp; path = engine/src/TexturePPM.cpp; sourceTree = "<group>"; };
+		F2A5AFD216FFB48D002FDD12 /* TexturePPM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TexturePPM.h; path = engine/src/TexturePPM.h; sourceTree = "<group>"; };
+		F2A5AFD316FFB48D002FDD12 /* TextureTGA.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = TextureTGA.cpp; path = engine/src/TextureTGA.cpp; sourceTree = "<group>"; };
+		F2A5AFD416FFB48D002FDD12 /* TextureTGA.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TextureTGA.h; path = engine/src/TextureTGA.h; sourceTree = "<group>"; };
+		F2A5AFD516FFB48D002FDD12 /* Utils.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Utils.cpp; path = engine/src/Utils.cpp; sourceTree = "<group>"; };
+		F2A5AFD616FFB48D002FDD12 /* Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Utils.h; path = engine/src/Utils.h; sourceTree = "<group>"; };
 		F2A5AFDE16FFB515002FDD12 /* hulombus */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = hulombus; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2A5B01016FFB537002FDD12 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/OpenGL.framework; sourceTree = DEVELOPER_DIR; };
 		F2A5B01216FFB53F002FDD12 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/GLUT.framework; sourceTree = DEVELOPER_DIR; };
@@ -131,12 +131,12 @@
 		F253158617057B5000A01240 /* Game */ = {
 			isa = PBXGroup;
 			children = (
-				F2A5AFB716FFB48D002FDD12 /* LXEntity.cpp */,
-				F2A5AFB816FFB48D002FDD12 /* LXEntity.h */,
-				F2A5AFBB16FFB48D002FDD12 /* LXGame.cpp */,
-				F2A5AFBC16FFB48D002FDD12 /* LXGame.h */,
-				F2A5AFBD16FFB48D002FDD12 /* LXGameState.cpp */,
-				F2A5AFBE16FFB48D002FDD12 /* LXGameState.h */,
+				F2A5AFB716FFB48D002FDD12 /* Entity.cpp */,
+				F2A5AFB816FFB48D002FDD12 /* Entity.h */,
+				F2A5AFBB16FFB48D002FDD12 /* Game.cpp */,
+				F2A5AFBC16FFB48D002FDD12 /* Game.h */,
+				F2A5AFBD16FFB48D002FDD12 /* GameState.cpp */,
+				F2A5AFBE16FFB48D002FDD12 /* GameState.h */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -144,10 +144,10 @@
 		F253158717057B6C00A01240 /* Math */ = {
 			isa = PBXGroup;
 			children = (
-				F2A5AFC516FFB48D002FDD12 /* LXMatrix3D.cpp */,
-				F2A5AFC616FFB48D002FDD12 /* LXMatrix3D.h */,
-				F2A5AFC916FFB48D002FDD12 /* LXPoint3D.cpp */,
-				F2A5AFCA16FFB48D002FDD12 /* LXPoint3D.h */,
+				F2A5AFC516FFB48D002FDD12 /* Matrix3D.cpp */,
+				F2A5AFC616FFB48D002FDD12 /* Matrix3D.h */,
+				F2A5AFC916FFB48D002FDD12 /* Point3D.cpp */,
+				F2A5AFCA16FFB48D002FDD12 /* Point3D.h */,
 			);
 			name = Math;
 			sourceTree = "<group>";
@@ -155,12 +155,12 @@
 		F253158817057B8800A01240 /* Glut */ = {
 			isa = PBXGroup;
 			children = (
-				F2A5AFD516FFB48D002FDD12 /* LXUtils.cpp */,
-				F2A5AFD616FFB48D002FDD12 /* LXUtils.h */,
-				F2A5AFBF16FFB48D002FDD12 /* LXGlut.cpp */,
-				F2A5AFC016FFB48D002FDD12 /* LXGlut.h */,
-				F2A5AFC116FFB48D002FDD12 /* LXInput.cpp */,
-				F2A5AFC216FFB48D002FDD12 /* LXInput.h */,
+				F2A5AFD516FFB48D002FDD12 /* Utils.cpp */,
+				F2A5AFD616FFB48D002FDD12 /* Utils.h */,
+				F2A5AFBF16FFB48D002FDD12 /* Glut.cpp */,
+				F2A5AFC016FFB48D002FDD12 /* Glut.h */,
+				F2A5AFC116FFB48D002FDD12 /* Input.cpp */,
+				F2A5AFC216FFB48D002FDD12 /* Input.h */,
 			);
 			name = Glut;
 			sourceTree = "<group>";
@@ -168,10 +168,10 @@
 		F253158917057BAB00A01240 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				F2A5AFC716FFB48D002FDD12 /* LXMesh.cpp */,
-				F2A5AFC816FFB48D002FDD12 /* LXMesh.h */,
-				F2A5AFB916FFB48D002FDD12 /* LXFace.cpp */,
-				F2A5AFBA16FFB48D002FDD12 /* LXFace.h */,
+				F2A5AFC716FFB48D002FDD12 /* Mesh.cpp */,
+				F2A5AFC816FFB48D002FDD12 /* Mesh.h */,
+				F2A5AFB916FFB48D002FDD12 /* Face.cpp */,
+				F2A5AFBA16FFB48D002FDD12 /* Face.h */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -179,16 +179,16 @@
 		F253158A17057BDA00A01240 /* Textures */ = {
 			isa = PBXGroup;
 			children = (
-				F2A5AFCB16FFB48D002FDD12 /* LXShader.cpp */,
-				F2A5AFCC16FFB48D002FDD12 /* LXShader.h */,
-				F2A5AFCD16FFB48D002FDD12 /* LXTexture.cpp */,
-				F2A5AFCE16FFB48D002FDD12 /* LXTexture.h */,
-				F2A5AFCF16FFB48D002FDD12 /* LXTextureLoader.cpp */,
-				F2A5AFD016FFB48D002FDD12 /* LXTextureLoader.h */,
-				F2A5AFD116FFB48D002FDD12 /* LXTexturePPM.cpp */,
-				F2A5AFD216FFB48D002FDD12 /* LXTexturePPM.h */,
-				F2A5AFD316FFB48D002FDD12 /* LXTextureTGA.cpp */,
-				F2A5AFD416FFB48D002FDD12 /* LXTextureTGA.h */,
+				F2A5AFCB16FFB48D002FDD12 /* Shader.cpp */,
+				F2A5AFCC16FFB48D002FDD12 /* Shader.h */,
+				F2A5AFCD16FFB48D002FDD12 /* Texture.cpp */,
+				F2A5AFCE16FFB48D002FDD12 /* Texture.h */,
+				F2A5AFCF16FFB48D002FDD12 /* TextureLoader.cpp */,
+				F2A5AFD016FFB48D002FDD12 /* TextureLoader.h */,
+				F2A5AFD116FFB48D002FDD12 /* TexturePPM.cpp */,
+				F2A5AFD216FFB48D002FDD12 /* TexturePPM.h */,
+				F2A5AFD316FFB48D002FDD12 /* TextureTGA.cpp */,
+				F2A5AFD416FFB48D002FDD12 /* TextureTGA.h */,
 			);
 			name = Textures;
 			sourceTree = "<group>";
@@ -196,10 +196,10 @@
 		F253158B17057BF600A01240 /* Camera */ = {
 			isa = PBXGroup;
 			children = (
-				F2A5AFB516FFB48D002FDD12 /* LXCamera.cpp */,
-				F2A5AFB616FFB48D002FDD12 /* LXCamera.h */,
-				F2A5AFC316FFB48D002FDD12 /* LXLockableTarget.cpp */,
-				F2A5AFC416FFB48D002FDD12 /* LXLockableTarget.h */,
+				F2A5AFB516FFB48D002FDD12 /* Camera.cpp */,
+				F2A5AFB616FFB48D002FDD12 /* Camera.h */,
+				F2A5AFC316FFB48D002FDD12 /* LockableTarget.cpp */,
+				F2A5AFC416FFB48D002FDD12 /* LockableTarget.h */,
 			);
 			name = Camera;
 			sourceTree = "<group>";
@@ -349,23 +349,23 @@
 				F2A5AFE816FFB52E002FDD12 /* Derai.cpp in Sources */,
 				F2A5AFEA16FFB52E002FDD12 /* Level.cpp in Sources */,
 				F2A5AFEC16FFB52E002FDD12 /* Player.cpp in Sources */,
-				F2A5AFEE16FFB52E002FDD12 /* LXCamera.cpp in Sources */,
-				F2A5AFF016FFB52E002FDD12 /* LXEntity.cpp in Sources */,
-				F2A5AFF216FFB52E002FDD12 /* LXFace.cpp in Sources */,
-				F2A5AFF416FFB52E002FDD12 /* LXGame.cpp in Sources */,
-				F2A5AFF616FFB52E002FDD12 /* LXGameState.cpp in Sources */,
-				F2A5AFF816FFB52E002FDD12 /* LXGlut.cpp in Sources */,
-				F2A5AFFA16FFB52E002FDD12 /* LXInput.cpp in Sources */,
-				F2A5AFFC16FFB52E002FDD12 /* LXLockableTarget.cpp in Sources */,
-				F2A5AFFE16FFB52E002FDD12 /* LXMatrix3D.cpp in Sources */,
-				F2A5B00016FFB52E002FDD12 /* LXMesh.cpp in Sources */,
-				F2A5B00216FFB52E002FDD12 /* LXPoint3D.cpp in Sources */,
-				F2A5B00416FFB52E002FDD12 /* LXShader.cpp in Sources */,
-				F2A5B00616FFB52E002FDD12 /* LXTexture.cpp in Sources */,
-				F2A5B00816FFB52E002FDD12 /* LXTextureLoader.cpp in Sources */,
-				F2A5B00A16FFB52E002FDD12 /* LXTexturePPM.cpp in Sources */,
-				F2A5B00C16FFB52E002FDD12 /* LXTextureTGA.cpp in Sources */,
-				F2A5B00E16FFB52E002FDD12 /* LXUtils.cpp in Sources */,
+				F2A5AFEE16FFB52E002FDD12 /* Camera.cpp in Sources */,
+				F2A5AFF016FFB52E002FDD12 /* Entity.cpp in Sources */,
+				F2A5AFF216FFB52E002FDD12 /* Face.cpp in Sources */,
+				F2A5AFF416FFB52E002FDD12 /* Game.cpp in Sources */,
+				F2A5AFF616FFB52E002FDD12 /* GameState.cpp in Sources */,
+				F2A5AFF816FFB52E002FDD12 /* Glut.cpp in Sources */,
+				F2A5AFFA16FFB52E002FDD12 /* Input.cpp in Sources */,
+				F2A5AFFC16FFB52E002FDD12 /* LockableTarget.cpp in Sources */,
+				F2A5AFFE16FFB52E002FDD12 /* Matrix3D.cpp in Sources */,
+				F2A5B00016FFB52E002FDD12 /* Mesh.cpp in Sources */,
+				F2A5B00216FFB52E002FDD12 /* Point3D.cpp in Sources */,
+				F2A5B00416FFB52E002FDD12 /* Shader.cpp in Sources */,
+				F2A5B00616FFB52E002FDD12 /* Texture.cpp in Sources */,
+				F2A5B00816FFB52E002FDD12 /* TextureLoader.cpp in Sources */,
+				F2A5B00A16FFB52E002FDD12 /* TexturePPM.cpp in Sources */,
+				F2A5B00C16FFB52E002FDD12 /* TextureTGA.cpp in Sources */,
+				F2A5B00E16FFB52E002FDD12 /* Utils.cpp in Sources */,
 				F2AE905116FFC46600B80EF0 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

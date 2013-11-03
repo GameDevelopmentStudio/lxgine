@@ -1,30 +1,29 @@
 #ifndef __LEVEL_H__
 #define __LEVEL_H__
 
-#include "LXGlut.h"
-#include "LXGameState.h"
+#include "Glut.h"
+#include "GameState.h"
 
-class LXEntity;
-class LXShader;
-class LXTexture;
+class Entity;
+class Shader;
+class Texture;
 
-class Level : public LXGameState {
- public:    
-   
-  LXShader *floorProg;
-  LXShader *objProg;
-  LXTexture *floorTex;
-  
-  LXEntity *exampleEntity;
-  GLfloat light0Pos[4];
+class Level : public GameState {
+public:     
+    Shader *floorProg;
+    Shader *objProg;
+    Texture *floorTex;
+    
+    Entity *exampleEntity;
+    GLfloat light0Pos[4];
 
-  Level();
-  ~Level();
+    Level();
+    ~Level();
 
-  void init();
+    void init();
 
-  void render();
-  void update();
+    void render();
+    void update();
 };
 
 #endif

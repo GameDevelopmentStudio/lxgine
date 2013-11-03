@@ -1,7 +1,7 @@
 #include "Derai.h"
 #include "Level.h"
 
-Derai::Derai() : LXGame() {
+Derai::Derai() : Game() {
 }
 
 Derai::~Derai() {
@@ -10,15 +10,15 @@ Derai::~Derai() {
 #pragma mark - Initialization Methods
 
 void Derai::init(int argc, char **argv) {
-  LXGame::init(argc, argv);
+    Game::init(argc, argv);
 
-  Level *world = new Level();
-  changeWorld(world);
+    Level *world = new Level();
+    changeWorld(world);
 }
 
 #pragma mark - Main Virtual Methods
 
 void Derai::initSettings() {
-  width = 640;
-  height = 480;
+    width = 640;
+    height = 480;
 }

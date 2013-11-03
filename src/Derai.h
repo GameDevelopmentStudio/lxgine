@@ -1,16 +1,16 @@
 #ifndef __DERAI_H__
 #define __DERAI_H__
 
-#include "LXGame.h"
+#include "Game.h"
 
-class Derai : public LXGame {
- public:    
-  Derai();
-  ~Derai();
+class Derai : public Game {
+public:
+    Derai();
+    ~Derai();
 
-  void initSettings();
+    void initSettings();
 
-  void init(int argc, char **argv);
+    void init(int argc, char **argv);
 };
 
 #endif
