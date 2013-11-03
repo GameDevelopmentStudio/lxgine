@@ -12,12 +12,11 @@
 #include <stdio.h>
 #include <math.h>
 
+GLuint vaoID2[1];
+GLuint vboID2[1];
 #define BUFFER_OFFSET(i) ((char *)NULL + (i))
 
-
 LXMesh *m;
-GLuint vaoID[1];
-GLuint vboID[1];
 
 int i = 0;
 
@@ -146,17 +145,6 @@ void Player::init() {
   
   m->computeNormals();
   m->compile();
-
-  /* glGenVertexArrays(1, &vaoID[0]); */
-	/* glBindVertexArray(vaoID[0]); */
-
-	/* glGenBuffers(1, &vboID[0]); */
-	/* glBindBuffer(GL_ARRAY_BUFFER, vboID[0]); */
-	/* glBufferData(GL_ARRAY_BUFFER, 6 * sizeof(GLfloat), gCubeVertexData + 3, GL_STATIC_DRAW); */
-	/* glBufferData(GL_ARRAY_BUFFER, 6 * sizeof(GLfloat), gCubeVertexData, GL_STATIC_DRAW); */
-
-	/* glEnableVertexAttribArray(0); */
-	/* glBindVertexArray(0); */
 }
 
 void Player::update() {
@@ -219,18 +207,5 @@ void Player::render() {
   
   glColor3f(0.34, 0.32, 1.0);
 
-  /* glBindVertexArray(vaoID[0]); */
-  /*   glDrawArrays(GL_TRIANGLES, 0, 36); */
-  /* glBindVertexArray(0); */
-
   m->render();
-  /* glEnableClientState(GL_NORMAL_ARRAY); */
-  /* glEnableClientState(GL_VERTEX_ARRAY); */
-
-  /* glNormalPointer(GL_FLOAT, 6 * sizeof(GLfloat), gCubeVertexData + 3); */
-  /* glVertexPointer(3, GL_FLOAT, 6 * sizeof(GLfloat), gCubeVertexData); */
-
-  /* glDrawArrays(GL_TRIANGLES, 0, 36); */
-  /* glDisableClientState(GL_VERTEX_ARRAY); */
-  /* glDisableClientState(GL_NORMAL_ARRAY); */
 }

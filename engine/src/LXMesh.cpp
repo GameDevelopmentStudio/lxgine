@@ -1,6 +1,7 @@
 #include "LXMesh.h"
 #include "LXFace.h"
-#include "LXGlut.h"
+
+#define BUFFER_OFFSET(i) ((char *)NULL + (i))
 
 LXMesh::LXMesh() {
   nvertex = 0;
@@ -63,11 +64,37 @@ void LXMesh::compile() {
       n += 6;
     }
   }
+    
+  glGenVertexArrays(1, &vaoIdx[0]);
+  if (vaoIdx[0] != 0) {
+    glBindVertexArray(vaoIdx[0]);
+    
+    glGenBuffers(1, &vboIdx[0]);
+    if (vboIdx[0] != 0) {
+      glBindBuffer(GL_ARRAY_BUFFER, vboIdx[0]);
+      glBufferData(GL_ARRAY_BUFFER, compiledVertexCount * 6 * sizeof(double), compiledVertex, GL_DYNAMIC_DRAW);
+        
+      glEnableClientState(GL_VERTEX_ARRAY);
+      glVertexPointer(3, GL_DOUBLE, 6 * sizeof(double), BUFFER_OFFSET(0));   //The starting point of the VBO, for the vertices
+      glEnableClientState(GL_NORMAL_ARRAY);
+      glNormalPointer(GL_DOUBLE, 6 * sizeof(double), BUFFER_OFFSET(3 * sizeof(double)));   //The starting point of normals
+
+      // Don't need this anymore
+      delete compiledVertex;
+      compiledVertex = NULL;
+      compiledVertexCount = 0;
+    }
+    glBindVertexArray(0);
+  }
 }
 
 void LXMesh::render() {
 
-  if (compiledVertex) {
+  if (vaoIdx != 0 && vaoIdx[0] != 0) {
+    glBindVertexArray(vaoIdx[0]);
+    glDrawArrays(GL_TRIANGLES, 0, 36);
+    glBindVertexArray(0);
+  } else if (compiledVertex) {
     glEnableClientState(GL_NORMAL_ARRAY);
     glEnableClientState(GL_VERTEX_ARRAY);
 
