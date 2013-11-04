@@ -5,6 +5,8 @@
 #include "Game.h"
 #include "Input.h"
 
+#include <stdio.h>
+
 #include <stdlib.h>
 
 #pragma mark - Static Initializations
@@ -122,17 +124,17 @@ bool Glut::isFullscreen() {
 #pragma mark - Input Methods
 
 void Glut::specialKeyReleased(int key, int x, int y) {
-    instance->input->specialKeyStates[key] = false;
+    instance->input->onSpecialKeyReleased(key);
 }
 
 void Glut::specialKeyPressed(int key, int x, int y) {
-    instance->input->specialKeyStates[key] = true;
+    instance->input->onSpecialKeyPressed(key);
 }
 
 void Glut::keyReleased(unsigned char key, int x, int y) {
-    instance->input->keyStates[key] = false;
+    instance->input->onKeyReleased(key);
 }
 
 void Glut::keyPressed(unsigned char key, int x, int y) {
-    instance->input->keyStates[key] = true;
+    instance->input->onKeyPressed(key);
 }

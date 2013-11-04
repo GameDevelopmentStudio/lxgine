@@ -131,6 +131,7 @@ void Level::update() {
     GameState::update();
 
     if (game->input->keyPressed('v')) {
+        game->input->keyPressed('v');
         if (camera->isLockedOn()) {
             camera->stopLock(exampleEntity);
         } else {
@@ -139,27 +140,27 @@ void Level::update() {
     }
 
     if (!camera->isLockedOn()) {
-        if (game->input->specialKeyPressed(GLUT_KEY_LEFT)) {
+        if (game->input->specialKeyCheck(GLUT_KEY_LEFT)) {
             camera->translate(-0.5, 0, 0);
-        } else if (game->input->specialKeyPressed(GLUT_KEY_RIGHT)) {
+        } else if (game->input->specialKeyCheck(GLUT_KEY_RIGHT)) {
             camera->translate(0.5, 0, 0);
         }
         
-        if (game->input->specialKeyPressed(GLUT_KEY_UP)) {
+        if (game->input->specialKeyCheck(GLUT_KEY_UP)) {
             camera->translate(0, 0, -0.5);
-        } else if (game->input->specialKeyPressed(GLUT_KEY_DOWN)) {
+        } else if (game->input->specialKeyCheck(GLUT_KEY_DOWN)) {
             camera->translate(0, 0, 0.5);
         }
 
-        if (game->input->keyPressed('a')) {
+        if (game->input->keyCheck('a')) {
             camera->yaw(-0.05f);
-        } else if (game->input->keyPressed('d')) {
+        } else if (game->input->keyCheck('d')) {
             camera->yaw(0.05f);
         }
         
-        if (game->input->keyPressed('w')) {
+        if (game->input->keyCheck('w')) {
             camera->pitch(0.05f);
-        } else if (game->input->keyPressed('s')) {
+        } else if (game->input->keyCheck('s')) {
             camera->pitch(-0.05f);
         }
     }

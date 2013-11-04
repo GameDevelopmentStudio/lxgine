@@ -102,45 +102,45 @@ void Player::init() {
 
 void Player::update() {
     if (world->camera->isLockedOn()) {
-        if (game->input->specialKeyPressed(GLUT_KEY_LEFT)) {
+        if (game->input->specialKeyCheck(GLUT_KEY_LEFT)) {
             translate(-0.5, 0, 0);
-        } else if (game->input->specialKeyPressed(GLUT_KEY_RIGHT)) {
+        } else if (game->input->specialKeyCheck(GLUT_KEY_RIGHT)) {
             translate(0.5, 0, 0);
         }
         
-        if (game->input->specialKeyPressed(GLUT_KEY_UP)) {
+        if (game->input->specialKeyCheck(GLUT_KEY_UP)) {
             translate(0, 0, -0.5);
-        } else if (game->input->specialKeyPressed(GLUT_KEY_DOWN)) {
+        } else if (game->input->specialKeyCheck(GLUT_KEY_DOWN)) {
             translate(0, 0, 0.5);
         }
         
-        if (game->input->keyPressed('a')) {
+        if (game->input->keyCheck('a')) {
             rotate(0, 0, 3.5f);
-        } else if (game->input->keyPressed('d')) {
+        } else if (game->input->keyCheck('d')) {
             rotate(0, 0, -3.5f);
         }
         
-        if (game->input->keyPressed('w')) {
+        if (game->input->keyCheck('w')) {
             rotate(3.5f, 0, 0);
-        } else if (game->input->keyPressed('s')) {
+        } else if (game->input->keyCheck('s')) {
             rotate(-3.5f, 0, 0);
         }
         
-        if (game->input->keyPressed('y')) {
+        if (game->input->keyCheck('y')) {
             rotate(2.0, 0, 0);
-        } else if (game->input->keyPressed('u')) {
+        } else if (game->input->keyCheck('u')) {
             rotate(-2.0, 0, 0);
         }
         
-        if (game->input->keyPressed('i')) {
+        if (game->input->keyCheck('i')) {
             rotate(0, 2.0, 0);
-        } else if (game->input->keyPressed('o')) {
+        } else if (game->input->keyCheck('o')) {
             rotate(0, -2.0, 0);
         }
         
-        if (game->input->keyPressed('j')) {
+        if (game->input->keyCheck('j')) {
             rotate(0, 0, 2.0);
-        } else if (game->input->keyPressed('k')) {
+        } else if (game->input->keyCheck('k')) {
             rotate(.0, 0, -2.0);
         }
         
