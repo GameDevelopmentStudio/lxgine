@@ -1,6 +1,6 @@
 #include "Entity.h"
 #include "Matrix3D.h"
-#include "Point3D.h"
+#include "Vector3.h"
 #include "Glut.h"
 
 Entity::Entity() {
@@ -11,12 +11,13 @@ Entity::Entity() {
     delegate = NULL;
 
     transform = new Matrix3D();
-    pos = new Point3D();
+    pos = new Vector3();
     pitch = yaw = roll = 0;
 }
 
 Entity::~Entity() {
     delete transform;
+    delete pos;
 }
 
 void Entity::init() {
@@ -92,8 +93,8 @@ void Entity::rotate(double rx, double ry, double rz) {
     }
 }
 
-Point3D Entity::getPos() {
-    return Point3D(*pos);
+Vector3 Entity::getPos() {
+    return Vector3(*pos);
 }
 
 double Entity::getPitch() {

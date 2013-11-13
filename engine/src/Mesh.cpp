@@ -29,8 +29,8 @@ void Mesh::init(int nvertex, int nnormals) {
     this->nnormals = nnormals;
     this->nfaces = nnormals;
 
-    vertexPool = new Point3D[nvertex];
-    normalPool = new Point3D[nnormals];
+    vertexPool = new Vector3[nvertex];
+    normalPool = new Vector3[nnormals];
     faces = new Face[nfaces];
 }
 

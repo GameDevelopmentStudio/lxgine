@@ -1,7 +1,7 @@
 #include "Player.h"
 
 #include "Glut.h"
-#include "Point3D.h"
+#include "Vector3.h"
 #include "Mesh.h"
 #include "Face.h"
 #include "GameState.h"
@@ -33,14 +33,14 @@ void Player::init() {
 
     m = new Mesh();
     m->init(8, 12);
-    m->vertexPool[0] = Point3D(-0.5, -0.5, -0.5, 1);
-    m->vertexPool[1] = Point3D(-0.5, -0.5, 0.5, 1);
-    m->vertexPool[2] = Point3D(-0.5, 0.5, -0.5, 1);
-    m->vertexPool[3] = Point3D(-0.5, 0.5, 0.5, 1);
-    m->vertexPool[4] = Point3D(0.5, -0.5, -0.5, 1);
-    m->vertexPool[5] = Point3D(0.5, -0.5, 0.5, 1);
-    m->vertexPool[6] = Point3D(0.5, 0.5, -0.5, 1);
-    m->vertexPool[7] = Point3D(0.5, 0.5, 0.5, 1);
+    m->vertexPool[0] = Vector3(-0.5, -0.5, -0.5, 1);
+    m->vertexPool[1] = Vector3(-0.5, -0.5, 0.5, 1);
+    m->vertexPool[2] = Vector3(-0.5, 0.5, -0.5, 1);
+    m->vertexPool[3] = Vector3(-0.5, 0.5, 0.5, 1);
+    m->vertexPool[4] = Vector3(0.5, -0.5, -0.5, 1);
+    m->vertexPool[5] = Vector3(0.5, -0.5, 0.5, 1);
+    m->vertexPool[6] = Vector3(0.5, 0.5, -0.5, 1);
+    m->vertexPool[7] = Vector3(0.5, 0.5, 0.5, 1);
     
     m->faces[0].init(3);
     m->faces[0].vertexNormalPairs[0].vertex = 4;

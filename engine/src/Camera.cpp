@@ -1,5 +1,5 @@
 #include "Camera.h"
-#include "Point3D.h"
+#include "Vector3.h"
 #include "Matrix3D.h"
 #include "Glut.h"
 #include "Entity.h"
@@ -19,12 +19,12 @@ Camera::~Camera() {
 void Camera::init() {
     eye.x = 10.0; eye.y = 10.0; 
     eye.z = 10.0; eye.v = 1;
-    Point3D target = Point3D(0.0, 0.0, 0.0, 1);
+    Vector3 target = Vector3(0.0, 0.0, 0.0, 1);
     lookAt = eye - target;
     focalLength = lookAt.module();
     lookAt = normalizedVector(lookAt);
-    up = normalizedVector(Point3D(-100, 200, -100, 0));
-    /* up = Point3D(0,1,0,0); */
+    up = normalizedVector(Vector3(-100, 200, -100, 0));
+    /* up = Vector3(0,1,0,0); */
     right = crossProduct(up, lookAt);
 
     viewVolume.N = 2;
@@ -40,26 +40,26 @@ void Camera::init() {
         glLoadIdentity();
 }
 
-Point3D Camera::getTarget() {
+Vector3 Camera::getTarget() {
     return eye - focalLength*lookAt;
 }
 
 void Camera::translate(double x, double y, double z) {
 
-    Point3D trans = Point3D(x, y, z, 0.0);
+    Vector3 trans = Vector3(x, y, z, 0.0);
 
     /* // first we get camera.eye system of coordinates */
-    /* Point3D n = eye - look; */
+    /* Vector3 n = eye - look; */
     /* n = normalizedVector(n); */
 
-    /* Point3D u = crossProduct(up, n); */
-    /* Point3D v = crossProduct(n, u); */
+    /* Vector3 u = crossProduct(up, n); */
+    /* Vector3 v = crossProduct(n, u); */
 
     // then we transform it (resulting matrix is kinda simple
     // so let's put the multiplication output here
     // notice how no eye vars appear here, that's because
     // desp is a vector and so desp.v is 0
-    Point3D desp = Point3D(right.x*trans.x + up.x*trans.y + lookAt.x*trans.z,
+    Vector3 desp = Vector3(right.x*trans.x + up.x*trans.y + lookAt.x*trans.z,
                                                          right.y*trans.x + up.y*trans.y + lookAt.y*trans.z, right.z*trans.x + up.z*trans.y + lookAt.z*trans.z, 0); 
     eye = eye + desp;
 }
@@ -104,7 +104,7 @@ void Camera::pitch(double alpha) {
     Matrix3D pitch = matrixWithRotationOnAxis(alpha, right);
     // lookAt pitch modification implies changes on target point, 
     // and also on the up vector
-    lookAt = transformPoint(pitch, lookAt);
+    lookAt = pitch * lookAt;
     up = crossProduct(lookAt, right);
 }
 
@@ -116,20 +116,20 @@ void Camera::yaw(double alpha) {
     // pole.
 
     // planeNormal is the normal vector of the plane
-    Point3D planeNormal = crossProduct(right, Point3D(0,1,0,0));
+    Vector3 planeNormal = crossProduct(right, Vector3(0,1,0,0));
     // v_axis is the projection of up agains the plane
     // v_axis is computed by substraction to up the projection of up in the 
     // planeNormalVector. Said projection has the same direction as planeNormal,
     // and scalarDot(placeNormal,up) as module (since we're dealing with 
     // normalized vectors, we can just multiply these values)
-    Point3D v_axis = up - scalarDot(planeNormal,up)*planeNormal;
+    Vector3 v_axis = up - scalarDot(planeNormal,up)*planeNormal;
     v_axis = normalizedVector(v_axis);
 
     // Rotate around the computed axis
     Matrix3D yaw = matrixWithRotationOnAxis(alpha, -v_axis);
     /* Matrix3D yaw = matrixWithRotationOnAxis(alpha, up); */
-    lookAt = transformPoint(yaw, lookAt);
-    up = transformPoint(yaw, up);
+    lookAt = yaw * lookAt;
+    up = yaw * up;
     right = crossProduct(up, lookAt);
 }
 
@@ -137,7 +137,7 @@ void Camera::roll(double alpha) {
     // Rotate up vector arount lookAt
     Matrix3D roll = matrixWithRotationOnAxis(alpha, lookAt);
     // Only up and right vectors are modified after the operation
-    up = transformPoint(roll, up);
+    up = roll * up;
     right = crossProduct(up, lookAt);
 }
 
@@ -155,16 +155,16 @@ void Camera::orbitate(double rx, double ry) {
         // Yaw orbitation
         // See Camera::yaw for further explanation
         
-        Point3D target = getTarget();
-        Point3D planeNormal = crossProduct(right, Point3D(0,1,0,0));
-        Point3D v_axis = up - scalarDot(planeNormal,up)*planeNormal;
+        Vector3 target = getTarget();
+        Vector3 planeNormal = crossProduct(right, Vector3(0,1,0,0));
+        Vector3 v_axis = up - scalarDot(planeNormal,up)*planeNormal;
         v_axis = normalizedVector(v_axis);
 
         // Rotate eye around the computed camera axis
         Matrix3D yaw = matrixWithRotationOnAxis(rx, v_axis);
-        lookAt = transformPoint(yaw, lookAt);
+        lookAt = yaw * lookAt;
         eye = target + focalLength*lookAt;
-        up = transformPoint(yaw, up);
+        up = yaw * up;
         right = crossProduct(up, lookAt);
     }
     if (ry != 0) {
@@ -173,8 +173,8 @@ void Camera::orbitate(double rx, double ry) {
 
         // Rotate eye vector around right vector
         Matrix3D pitch = matrixWithRotationOnAxis(ry, right);
-        Point3D target = getTarget();
-        lookAt = transformPoint(pitch, lookAt);
+        Vector3 target = getTarget();
+        lookAt = pitch * lookAt;
         eye = target + focalLength*lookAt;
         up = crossProduct(lookAt, right);
     }
@@ -243,7 +243,7 @@ void Camera::commit() {
     } else {
         // If mode is not lockOn, set up view with our coordinates
         // TODO: update our coordinates during lockOn
-        Point3D target = getTarget();
+        Vector3 target = getTarget();
 
         glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();

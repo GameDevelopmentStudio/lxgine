@@ -2,9 +2,8 @@
 #define __CAMERA_H__
 
 #include "LockableTarget.h"
-#include "Point3D.h"
 
-class Matrix3D;
+#include "Matrix3D.h"
 
 struct ViewVolume {
         double N,F;
@@ -17,9 +16,9 @@ public:
     ViewVolume viewVolume;
 
     // Camera coordinates
-    Point3D lookAt, up, right;
+    Vector3 lookAt, up, right;
     // Camera center
-    Point3D eye;
+    Vector3 eye;
     // Distance to target
     double focalLength;
 
@@ -31,7 +30,7 @@ public:
 
     void init();
 
-    Point3D getTarget();
+    Vector3 getTarget();
 
     void translate(double x, double y, double z);
     void translateX(double x);

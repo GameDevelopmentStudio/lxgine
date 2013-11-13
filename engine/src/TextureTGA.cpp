@@ -133,7 +133,7 @@ void TextureTGA::initWithPath(const char *path) {
                     printf("Loaded '%s', %d x %d pixels\n", path, width, height);
 
                     index = createTexture(GL_TEXTURE_2D, width, height, data);
-                    delete data;
+                    delete[] data;
                 }
         }
 }

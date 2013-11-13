@@ -2,16 +2,13 @@
 #include <math.h>
 
 #include "Glut.h"
-#include "Point3D.h"
+#include "Vector3.h"
 
 Matrix3D::Matrix3D() {
-
 }
 
 Matrix3D::Matrix3D(const Matrix3D &other) {
-    for (int n = 0; n < 16; n++) {
-        matrix[n] = other.matrix[n];
-    }
+    load(other);
 }
 
 Matrix3D::~Matrix3D() {
@@ -20,8 +17,14 @@ Matrix3D::~Matrix3D() {
 void Matrix3D::init() {
     matrix[0] = 1;    matrix[1] = 0;    matrix[2] = 0;    matrix[3] = 0;
     matrix[4] = 0;    matrix[5] = 1;    matrix[6] = 0;    matrix[7] = 0;
-    matrix[8] = 0;    matrix[9] = 0;    matrix[10] = 1; matrix[11] = 0;
-    matrix[12] = 0; matrix[13] = 0; matrix[14] = 0; matrix[15] = 1;
+    matrix[8] = 0;    matrix[9] = 0;    matrix[10] = 1;   matrix[11] = 0;
+    matrix[12] = 0;   matrix[13] = 0;   matrix[14] = 0;   matrix[15] = 1;
+}
+
+void Matrix3D::load(const Matrix3D &other) {
+    for (int n = 0; n < 16; n++) {
+        matrix[n] = other.matrix[n];
+    }
 }
 
 double &Matrix3D::operator()(int i, int j) {
@@ -40,12 +43,12 @@ const double &Matrix3D::element(int i, int j) const {
     return matrix[i << 2 | j];
 }
 
-void Matrix3D::setRow(int i, const Point3D &p) {
+void Matrix3D::setRow(int i, const Vector3 &p) {
     for (int j = 0; j < 4; j++)
         element(i, j) = p[j];
 }
 
-void Matrix3D::setColumn(int j, const Point3D &p) {
+void Matrix3D::setColumn(int j, const Vector3 &p) {
     for (int i = 0; i < 4; i++)
         element(i, j) = p[i];
 }
@@ -64,10 +67,11 @@ void Matrix3D::translate(double tx, double ty, double tz, bool premultiply) {
     glPopMatrix();
 
     // Apply transform to one's matrix
+    Matrix3D self = *this;
     if (premultiply)
-        *this = multiply(transform, *this);
+        load(transform * self);
     else
-        *this = multiply(*this, transform);
+        load(self * transform);
 }
 
 void Matrix3D::rotate(double rx, double ry, double rz, bool premultiply) {
@@ -85,10 +89,11 @@ void Matrix3D::rotate(double rx, double ry, double rz, bool premultiply) {
     glPopMatrix();
 
     // Apply transform to one's matrix
+    Matrix3D self = *this;
     if (premultiply)
-        *this = multiply(transform, *this);
+        load(transform * self);
     else
-        *this = multiply(*this, transform);
+        load(self * transform);
 }
 
 #pragma mark - Rotations
@@ -98,9 +103,9 @@ Matrix3D matrixWithXRotation(double alpha) {
     double sin_a = sin(alpha);
     double cos_a = cos(alpha);
     out.matrix[0] = cos_a;    out.matrix[1] = 0;    out.matrix[2] = sin_a;    out.matrix[3] = 0;
-    out.matrix[4] = 0;            out.matrix[5] = 1;    out.matrix[6] = 0;            out.matrix[7] = 0;
-    out.matrix[8] = -sin_a; out.matrix[9] = 0;    out.matrix[10] = cos_a; out.matrix[11] = 0;
-    out.matrix[12] = 0;         out.matrix[13] = 0; out.matrix[14] = 0;         out.matrix[15] = 1;
+    out.matrix[4] = 0;        out.matrix[5] = 1;    out.matrix[6] = 0;        out.matrix[7] = 0;
+    out.matrix[8] = -sin_a;   out.matrix[9] = 0;    out.matrix[10] = cos_a;   out.matrix[11] = 0;
+    out.matrix[12] = 0;       out.matrix[13] = 0;   out.matrix[14] = 0;       out.matrix[15] = 1;
     return out;
 }
 
@@ -109,9 +114,9 @@ Matrix3D matrixWithYRotation(double alpha) {
     double sin_a= sin(alpha);
     double cos_a= cos(alpha);
     out.matrix[0] = 1;     out.matrix[1] = 0;         out.matrix[2] = 0;            out.matrix[3] = 0;
-    out.matrix[4] = 0;     out.matrix[5] = cos_a; out.matrix[6] = -sin_a; out.matrix[7] = 0;
-    out.matrix[8] = 0;     out.matrix[9] = sin_a; out.matrix[10] = cos_a; out.matrix[11] = 0;
-    out.matrix[12] = 0;    out.matrix[13] = 0;        out.matrix[14] = 0;         out.matrix[15] = 1;
+    out.matrix[4] = 0;     out.matrix[5] = cos_a;     out.matrix[6] = -sin_a;       out.matrix[7] = 0;
+    out.matrix[8] = 0;     out.matrix[9] = sin_a;     out.matrix[10] = cos_a;       out.matrix[11] = 0;
+    out.matrix[12] = 0;    out.matrix[13] = 0;        out.matrix[14] = 0;           out.matrix[15] = 1;
     return out;
 }
 
@@ -119,14 +124,14 @@ Matrix3D matrixWithZRotation(double alpha) {
     Matrix3D out;
     double sin_a= sin(alpha);
     double cos_a= cos(alpha);
-    out.matrix[0] = cos_a;    out.matrix[1] = -sin_a; out.matrix[2] = 0;    out.matrix[3] = 0;
-    out.matrix[4] = sin_a;    out.matrix[5] = cos_a;    out.matrix[6] = 0;    out.matrix[7] = 0;
-    out.matrix[8] = 0;            out.matrix[9] = 0;            out.matrix[10] = 1; out.matrix[11] = 0;
-    out.matrix[12] = 0;         out.matrix[13] = 0;         out.matrix[14] = 0; out.matrix[15] = 1;
+    out.matrix[0] = cos_a;    out.matrix[1] = -sin_a;   out.matrix[2] = 0;      out.matrix[3] = 0;
+    out.matrix[4] = sin_a;    out.matrix[5] = cos_a;    out.matrix[6] = 0;      out.matrix[7] = 0;
+    out.matrix[8] = 0;        out.matrix[9] = 0;        out.matrix[10] = 1;     out.matrix[11] = 0;
+    out.matrix[12] = 0;       out.matrix[13] = 0;       out.matrix[14] = 0;     out.matrix[15] = 1;
     return out;
 }
 
-Matrix3D matrixWithRotationOnAxis(double alpha, Point3D a) {
+Matrix3D matrixWithRotationOnAxis(double alpha, const Vector3 &a) {
     // center: rotation center
     // a: rotation axis
     //
@@ -167,7 +172,7 @@ Matrix3D matrixWithRotationOnAxis(double alpha, Point3D a) {
     return out;
 }
 
-Matrix3D matrixWithRotationOnAxisWithCenter(double alpha, Point3D a, Point3D center) {
+Matrix3D matrixWithRotationOnAxisWithCenter(double alpha, const Vector3 &a, const Vector3 &center) {
     // center: rotation center
     // a: rotation axis
     //
@@ -204,7 +209,7 @@ Matrix3D matrixWithRotationOnAxisWithCenter(double alpha, Point3D a, Point3D cen
 
 #pragma mark - (R3->R3)x(R3->R3)->(R3->R3) Functions
 
-Matrix3D multiply(const Matrix3D &A, const Matrix3D &B) {
+Matrix3D operator *(const Matrix3D &A, const Matrix3D &B) {
     // Save result in tmp matrix to avoid conflicts between A, B and this
     Matrix3D out;
 
@@ -221,8 +226,8 @@ Matrix3D multiply(const Matrix3D &A, const Matrix3D &B) {
 
 #pragma mark - (R3->R3)xR3->R3 Functions
 
-Point3D transformPoint(const Matrix3D &A, const Point3D &p) {
-    Point3D out;
+Vector3 operator *(const Matrix3D &A, const Vector3 &p) {
+    Vector3 out;
     for (int i = 0; i < 4; i++) {
         out[i] = 0;
         for (int j = 0; j < 4; j++) {
@@ -238,122 +243,123 @@ Matrix3D Matrix3D::inverse() const {
     // TODO: refactor to consider false cases
     Matrix3D out;
 
-    out.matrix[0] = matrix[5]    * matrix[10] * matrix[15] - 
-                     matrix[5]    * matrix[11] * matrix[14] - 
-                     matrix[9]    * matrix[6]    * matrix[15] + 
-                     matrix[9]    * matrix[7]    * matrix[14] +
-                     matrix[13] * matrix[6]    * matrix[11] - 
-                     matrix[13] * matrix[7]    * matrix[10];
+    out.matrix[0] = matrix[5]    * matrix[10]   * matrix[15] -
+                    matrix[5]    * matrix[11]   * matrix[14] -
+                    matrix[9]    * matrix[6]    * matrix[15] +
+                    matrix[9]    * matrix[7]    * matrix[14] +
+                    matrix[13]   * matrix[6]    * matrix[11] -
+                    matrix[13]   * matrix[7]    * matrix[10];
 
-    out.matrix[4] = -matrix[4]    * matrix[10] * matrix[15] + 
-                        matrix[4]    * matrix[11] * matrix[14] + 
-                        matrix[8]    * matrix[6]    * matrix[15] - 
-                        matrix[8]    * matrix[7]    * matrix[14] - 
-                        matrix[12] * matrix[6]    * matrix[11] + 
-                        matrix[12] * matrix[7]    * matrix[10];
+    out.matrix[4] = -matrix[4]  * matrix[10]    * matrix[15] +
+                    matrix[4]   * matrix[11]    * matrix[14] +
+                    matrix[8]   * matrix[6]     * matrix[15] -
+                    matrix[8]   * matrix[7]     * matrix[14] -
+                    matrix[12]  * matrix[6]     * matrix[11] +
+                    matrix[12]  * matrix[7]     * matrix[10];
 
-    out.matrix[8] = matrix[4]    * matrix[9] * matrix[15] - 
-                     matrix[4]    * matrix[11] * matrix[13] - 
-                     matrix[8]    * matrix[5] * matrix[15] + 
-                     matrix[8]    * matrix[7] * matrix[13] + 
-                     matrix[12] * matrix[5] * matrix[11] - 
-                     matrix[12] * matrix[7] * matrix[9];
+    out.matrix[8] = matrix[4]   * matrix[9]     * matrix[15] -
+                    matrix[4]   * matrix[11]    * matrix[13] -
+                    matrix[8]   * matrix[5]     * matrix[15] +
+                    matrix[8]   * matrix[7]     * matrix[13] +
+                    matrix[12]  * matrix[5]     * matrix[11] -
+                    matrix[12]  * matrix[7]     * matrix[9];
 
-    out.matrix[12] = -matrix[4]    * matrix[9] * matrix[14] + 
-                         matrix[4]    * matrix[10] * matrix[13] +
-                         matrix[8]    * matrix[5] * matrix[14] - 
-                         matrix[8]    * matrix[6] * matrix[13] - 
-                         matrix[12] * matrix[5] * matrix[10] + 
-                         matrix[12] * matrix[6] * matrix[9];
+    out.matrix[12] = -matrix[4] * matrix[9]     * matrix[14] +
+                     matrix[4]  * matrix[10]    * matrix[13] +
+                     matrix[8]  * matrix[5]     * matrix[14] -
+                     matrix[8]  * matrix[6]     * matrix[13] -
+                     matrix[12] * matrix[5]     * matrix[10] +
+                     matrix[12] * matrix[6]     * matrix[9];
 
-    out.matrix[1] = -matrix[1]    * matrix[10] * matrix[15] + 
-                        matrix[1]    * matrix[11] * matrix[14] + 
-                        matrix[9]    * matrix[2] * matrix[15] - 
-                        matrix[9]    * matrix[3] * matrix[14] - 
-                        matrix[13] * matrix[2] * matrix[11] + 
-                        matrix[13] * matrix[3] * matrix[10];
+    out.matrix[1] = -matrix[1]  * matrix[10]    * matrix[15] +
+                    matrix[1]   * matrix[11]    * matrix[14] +
+                    matrix[9]   * matrix[2]     * matrix[15] -
+                    matrix[9]   * matrix[3]     * matrix[14] -
+                    matrix[13]  * matrix[2]     * matrix[11] +
+                    matrix[13]  * matrix[3]     * matrix[10];
 
-    out.matrix[5] = matrix[0]    * matrix[10] * matrix[15] - 
-                     matrix[0]    * matrix[11] * matrix[14] - 
-                     matrix[8]    * matrix[2] * matrix[15] + 
-                     matrix[8]    * matrix[3] * matrix[14] + 
-                     matrix[12] * matrix[2] * matrix[11] - 
-                     matrix[12] * matrix[3] * matrix[10];
+    out.matrix[5] = matrix[0]   * matrix[10]    * matrix[15] -
+                    matrix[0]   * matrix[11]    * matrix[14] -
+                    matrix[8]   * matrix[2]     * matrix[15] +
+                    matrix[8]   * matrix[3]     * matrix[14] +
+                    matrix[12]  * matrix[2]     * matrix[11] -
+                    matrix[12]  * matrix[3]     * matrix[10];
 
-    out.matrix[9] = -matrix[0]    * matrix[9] * matrix[15] + 
-                        matrix[0]    * matrix[11] * matrix[13] + 
-                        matrix[8]    * matrix[1] * matrix[15] - 
-                        matrix[8]    * matrix[3] * matrix[13] - 
-                        matrix[12] * matrix[1] * matrix[11] + 
-                        matrix[12] * matrix[3] * matrix[9];
+    out.matrix[9] = -matrix[0]  * matrix[9]     * matrix[15] +
+                    matrix[0]   * matrix[11]    * matrix[13] +
+                    matrix[8]   * matrix[1]     * matrix[15] -
+                    matrix[8]   * matrix[3]     * matrix[13] -
+                    matrix[12]  * matrix[1]     * matrix[11] +
+                    matrix[12]  * matrix[3]     * matrix[9];
 
-    out.matrix[13] = matrix[0]    * matrix[9] * matrix[14] - 
-                        matrix[0]    * matrix[10] * matrix[13] - 
-                        matrix[8]    * matrix[1] * matrix[14] + 
-                        matrix[8]    * matrix[2] * matrix[13] + 
-                        matrix[12] * matrix[1] * matrix[10] - 
-                        matrix[12] * matrix[2] * matrix[9];
+    out.matrix[13] = matrix[0]  * matrix[9]     * matrix[14] -
+                     matrix[0]  * matrix[10]    * matrix[13] -
+                     matrix[8]  * matrix[1]     * matrix[14] +
+                     matrix[8]  * matrix[2]     * matrix[13] +
+                     matrix[12] * matrix[1]     * matrix[10] -
+                     matrix[12] * matrix[2]     * matrix[9];
 
-    out.matrix[2] = matrix[1]    * matrix[6] * matrix[15] - 
-                     matrix[1]    * matrix[7] * matrix[14] - 
-                     matrix[5]    * matrix[2] * matrix[15] + 
-                     matrix[5]    * matrix[3] * matrix[14] + 
-                     matrix[13] * matrix[2] * matrix[7] - 
-                     matrix[13] * matrix[3] * matrix[6];
+    out.matrix[2] = matrix[1]   * matrix[6]     * matrix[15] -
+                    matrix[1]   * matrix[7]     * matrix[14] -
+                    matrix[5]   * matrix[2]     * matrix[15] +
+                    matrix[5]   * matrix[3]     * matrix[14] +
+                    matrix[13]  * matrix[2]     * matrix[7] -
+                    matrix[13]  * matrix[3]     * matrix[6];
 
-    out.matrix[6] = -matrix[0]    * matrix[6] * matrix[15] + 
-                        matrix[0]    * matrix[7] * matrix[14] + 
-                        matrix[4]    * matrix[2] * matrix[15] - 
-                        matrix[4]    * matrix[3] * matrix[14] - 
-                        matrix[12] * matrix[2] * matrix[7] + 
-                        matrix[12] * matrix[3] * matrix[6];
+    out.matrix[6] = -matrix[0]  * matrix[6]     * matrix[15] +
+                    matrix[0]   * matrix[7]     * matrix[14] +
+                    matrix[4]   * matrix[2]     * matrix[15] -
+                    matrix[4]   * matrix[3]     * matrix[14] -
+                    matrix[12]  * matrix[2]     * matrix[7] +
+                    matrix[12]  * matrix[3]     * matrix[6];
 
-    out.matrix[10] = matrix[0]    * matrix[5] * matrix[15] - 
-                        matrix[0]    * matrix[7] * matrix[13] - 
-                        matrix[4]    * matrix[1] * matrix[15] + 
-                        matrix[4]    * matrix[3] * matrix[13] + 
-                        matrix[12] * matrix[1] * matrix[7] - 
-                        matrix[12] * matrix[3] * matrix[5];
+    out.matrix[10] = matrix[0]  * matrix[5]     * matrix[15] -
+                     matrix[0]  * matrix[7]     * matrix[13] -
+                     matrix[4]  * matrix[1]     * matrix[15] +
+                     matrix[4]  * matrix[3]     * matrix[13] +
+                     matrix[12] * matrix[1]     * matrix[7] -
+                     matrix[12] * matrix[3]     * matrix[5];
 
-    out.matrix[14] = -matrix[0]    * matrix[5] * matrix[14] + 
-                         matrix[0]    * matrix[6] * matrix[13] + 
-                         matrix[4]    * matrix[1] * matrix[14] - 
-                         matrix[4]    * matrix[2] * matrix[13] - 
-                         matrix[12] * matrix[1] * matrix[6] + 
-                         matrix[12] * matrix[2] * matrix[5];
+    out.matrix[14] = -matrix[0] * matrix[5]     * matrix[14] +
+                     matrix[0]  * matrix[6]     * matrix[13] +
+                     matrix[4]  * matrix[1]     * matrix[14] -
+                     matrix[4]  * matrix[2]     * matrix[13] -
+                     matrix[12] * matrix[1]     * matrix[6] +
+                     matrix[12] * matrix[2]     * matrix[5];
 
-    out.matrix[3] = -matrix[1] * matrix[6] * matrix[11] + 
-                        matrix[1] * matrix[7] * matrix[10] + 
-                        matrix[5] * matrix[2] * matrix[11] - 
-                        matrix[5] * matrix[3] * matrix[10] - 
-                        matrix[9] * matrix[2] * matrix[7] + 
-                        matrix[9] * matrix[3] * matrix[6];
+    out.matrix[3] = -matrix[1]  * matrix[6]     * matrix[11] +
+                    matrix[1]   * matrix[7]     * matrix[10] +
+                    matrix[5]   * matrix[2]     * matrix[11] -
+                    matrix[5]   * matrix[3]     * matrix[10] -
+                    matrix[9]   * matrix[2]     * matrix[7] +
+                    matrix[9]   * matrix[3]     * matrix[6];
 
-    out.matrix[7] = matrix[0] * matrix[6] * matrix[11] - 
-                     matrix[0] * matrix[7] * matrix[10] - 
-                     matrix[4] * matrix[2] * matrix[11] + 
-                     matrix[4] * matrix[3] * matrix[10] + 
-                     matrix[8] * matrix[2] * matrix[7] - 
-                     matrix[8] * matrix[3] * matrix[6];
+    out.matrix[7] = matrix[0]   * matrix[6]     * matrix[11] -
+                    matrix[0]   * matrix[7]     * matrix[10] -
+                    matrix[4]   * matrix[2]     * matrix[11] +
+                    matrix[4]   * matrix[3]     * matrix[10] +
+                    matrix[8]   * matrix[2]     * matrix[7] -
+                    matrix[8]   * matrix[3]     * matrix[6];
 
-    out.matrix[11] = -matrix[0] * matrix[5] * matrix[11] + 
-                         matrix[0] * matrix[7] * matrix[9] + 
-                         matrix[4] * matrix[1] * matrix[11] - 
-                         matrix[4] * matrix[3] * matrix[9] - 
-                         matrix[8] * matrix[1] * matrix[7] + 
-                         matrix[8] * matrix[3] * matrix[5];
+    out.matrix[11] = -matrix[0] * matrix[5]     * matrix[11] +
+                     matrix[0]  * matrix[7]     * matrix[9] +
+                     matrix[4]  * matrix[1]     * matrix[11] -
+                     matrix[4]  * matrix[3]     * matrix[9] -
+                     matrix[8]  * matrix[1]     * matrix[7] +
+                     matrix[8]  * matrix[3]     * matrix[5];
 
-    out.matrix[15] = matrix[0] * matrix[5] * matrix[10] - 
-                        matrix[0] * matrix[6] * matrix[9] - 
-                        matrix[4] * matrix[1] * matrix[10] + 
-                        matrix[4] * matrix[2] * matrix[9] + 
-                        matrix[8] * matrix[1] * matrix[6] - 
-                        matrix[8] * matrix[2] * matrix[5];
+    out.matrix[15] = matrix[0]  * matrix[5]     * matrix[10] -
+                     matrix[0]  * matrix[6]     * matrix[9] -
+                     matrix[4]  * matrix[1]     * matrix[10] +
+                     matrix[4]  * matrix[2]     * matrix[9] +
+                     matrix[8]  * matrix[1]     * matrix[6] -
+                     matrix[8]  * matrix[2]     * matrix[5];
 
     double det;
     det = matrix[0] * out.matrix[0] + matrix[1] * out.matrix[4] + matrix[2] * out.matrix[8] + matrix[3] * out.matrix[12];
     if (det == 0)
-        Matrix3D();
+        out.init();
+        return out;
 
     det = 1.0 / det;
 
@@ -366,5 +372,5 @@ Matrix3D Matrix3D::inverse() const {
 #pragma mark - Apply changes
 
 void Matrix3D::commit() {
-        glMultMatrixd(matrix);
+    glMultMatrixd(matrix);
 }

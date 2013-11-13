@@ -3,7 +3,7 @@
 
 class LockableTargetDelegate;
 class Matrix3D;
-/* class Point3D; */
+/* class Vector3; */
 
 class LockableTarget {
 public:

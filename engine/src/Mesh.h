@@ -3,16 +3,16 @@
 
 #include "Glut.h"
 
-class Point3D;
+class Vector3;
 class Face;
 
 class Mesh {
 public:
     // Uncompiled
     int nvertex;
-    Point3D *vertexPool;
+    Vector3 *vertexPool;
     int nnormals;
-    Point3D *normalPool;
+    Vector3 *normalPool;
     int nfaces;
     Face *faces;
 

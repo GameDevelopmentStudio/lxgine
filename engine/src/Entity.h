@@ -4,7 +4,7 @@
 #include "LockableTarget.h"
 
 class Matrix3D;
-class Point3D;
+class Vector3;
 class Game;
 class GameState;
 
@@ -28,7 +28,7 @@ class Entity : public LockableTarget {
     virtual void rotate(double rx, double ry, double rz);
 
     // Transformation getters
-    Point3D getPos();
+    Vector3 getPos();
     double getPitch();
     double getYaw();
     double getRoll();
@@ -38,8 +38,7 @@ class Entity : public LockableTarget {
 
     double pitch, yaw, roll;
  protected:
-    Point3D *pos;
-    
+    Vector3 *pos;    
     Matrix3D *transform;
 };
 

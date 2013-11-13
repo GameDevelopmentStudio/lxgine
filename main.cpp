@@ -1,5 +1,5 @@
 #include "Derai.h"
-#include "Point3D.h"
+#include "Vector3.h"
 #include "Level.h"
 #include "Shader.h"
 

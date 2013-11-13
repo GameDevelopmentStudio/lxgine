@@ -17,9 +17,9 @@ int Face::nextVertex(int idx) {
     return (idx + 1) % nvertex;
 }
 
-Point3D Face::computeNormal(Point3D *vertexPool) {
+Vector3 Face::computeNormal(Vector3 *vertexPool) {
     
-    Point3D out = Point3D(0, 0, 0, 0);
+    Vector3 out = Vector3(0, 0, 0, 0);
     for (int i = 0; i < nvertex; i++) {
         // (yi - suc(yi))*(zi + suc(zi)
         out.x += (vertexPool[vertexNormalPairs[i].vertex].y - vertexPool[vertexNormalPairs[nextVertex(i)].vertex].y) *
@@ -36,9 +36,9 @@ Point3D Face::computeNormal(Point3D *vertexPool) {
 	return out;
 }
 
-Point3D Face::computeCenter(Point3D *vertexPool) {
+Vector3 Face::computeCenter(Vector3 *vertexPool) {
     // TODO: test
-    Point3D center = Point3D(0, 0, 0, 1);
+    Vector3 center = Vector3(0, 0, 0, 1);
     for (int i = 0; i < nvertex; i++) {
         center.x += vertexPool[vertexNormalPairs[i].vertex].x;
         center.y += vertexPool[vertexNormalPairs[i].vertex].y;
