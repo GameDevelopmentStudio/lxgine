@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F20408341833704100997BA2 /* Vector2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F20408321833704100997BA2 /* Vector2.cpp */; };
 		F2A5AFE816FFB52E002FDD12 /* Derai.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFAF16FFB47F002FDD12 /* Derai.cpp */; };
 		F2A5AFEA16FFB52E002FDD12 /* Level.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFB116FFB47F002FDD12 /* Level.cpp */; };
 		F2A5AFEC16FFB52E002FDD12 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFB316FFB47F002FDD12 /* Player.cpp */; };
@@ -21,7 +20,6 @@
 		F2A5AFFC16FFB52E002FDD12 /* LockableTarget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFC316FFB48D002FDD12 /* LockableTarget.cpp */; };
 		F2A5AFFE16FFB52E002FDD12 /* Matrix3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFC516FFB48D002FDD12 /* Matrix3D.cpp */; };
 		F2A5B00016FFB52E002FDD12 /* Mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFC716FFB48D002FDD12 /* Mesh.cpp */; };
-		F2A5B00216FFB52E002FDD12 /* Vector3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFC916FFB48D002FDD12 /* Vector3.cpp */; };
 		F2A5B00416FFB52E002FDD12 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFCB16FFB48D002FDD12 /* Shader.cpp */; };
 		F2A5B00616FFB52E002FDD12 /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFCD16FFB48D002FDD12 /* Texture.cpp */; };
 		F2A5B00816FFB52E002FDD12 /* TextureLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFCF16FFB48D002FDD12 /* TextureLoader.cpp */; };
@@ -65,8 +63,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		F20408321833704100997BA2 /* Vector2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Vector2.cpp; path = engine/src/Vector2.cpp; sourceTree = "<group>"; };
 		F20408331833704100997BA2 /* Vector2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Vector2.h; path = engine/src/Vector2.h; sourceTree = "<group>"; };
+		F20408361833778700997BA2 /* Vector3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Vector3.h; path = engine/src/Vector3.h; sourceTree = "<group>"; };
+		F237354818347B160099A194 /* Vector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Vector.h; path = engine/src/Vector.h; sourceTree = "<group>"; };
 		F2A5AFAF16FFB47F002FDD12 /* Derai.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Derai.cpp; path = src/Derai.cpp; sourceTree = "<group>"; };
 		F2A5AFB016FFB47F002FDD12 /* Derai.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Derai.h; path = src/Derai.h; sourceTree = "<group>"; };
 		F2A5AFB116FFB47F002FDD12 /* Level.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Level.cpp; path = src/Level.cpp; sourceTree = "<group>"; };
@@ -93,8 +92,7 @@
 		F2A5AFC616FFB48D002FDD12 /* Matrix3D.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Matrix3D.h; path = engine/src/Matrix3D.h; sourceTree = "<group>"; };
 		F2A5AFC716FFB48D002FDD12 /* Mesh.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Mesh.cpp; path = engine/src/Mesh.cpp; sourceTree = "<group>"; };
 		F2A5AFC816FFB48D002FDD12 /* Mesh.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Mesh.h; path = engine/src/Mesh.h; sourceTree = "<group>"; };
-		F2A5AFC916FFB48D002FDD12 /* Vector3.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Vector3.cpp; path = engine/src/Vector3.cpp; sourceTree = "<group>"; };
-		F2A5AFCA16FFB48D002FDD12 /* Vector3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Vector3.h; path = engine/src/Vector3.h; sourceTree = "<group>"; };
+		F2A5AFCA16FFB48D002FDD12 /* Vector4.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Vector4.h; path = engine/src/Vector4.h; sourceTree = "<group>"; };
 		F2A5AFCB16FFB48D002FDD12 /* Shader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Shader.cpp; path = engine/src/Shader.cpp; sourceTree = "<group>"; };
 		F2A5AFCC16FFB48D002FDD12 /* Shader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Shader.h; path = engine/src/Shader.h; sourceTree = "<group>"; };
 		F2A5AFCD16FFB48D002FDD12 /* Texture.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Texture.cpp; path = engine/src/Texture.cpp; sourceTree = "<group>"; };
@@ -147,12 +145,12 @@
 		F253158717057B6C00A01240 /* Math */ = {
 			isa = PBXGroup;
 			children = (
-				F20408321833704100997BA2 /* Vector2.cpp */,
+				F20408361833778700997BA2 /* Vector3.h */,
 				F20408331833704100997BA2 /* Vector2.h */,
 				F2A5AFC516FFB48D002FDD12 /* Matrix3D.cpp */,
 				F2A5AFC616FFB48D002FDD12 /* Matrix3D.h */,
-				F2A5AFC916FFB48D002FDD12 /* Vector3.cpp */,
-				F2A5AFCA16FFB48D002FDD12 /* Vector3.h */,
+				F2A5AFCA16FFB48D002FDD12 /* Vector4.h */,
+				F237354818347B160099A194 /* Vector.h */,
 			);
 			name = Math;
 			sourceTree = "<group>";
@@ -327,7 +325,7 @@
 		F279336616FFB43900A788E6 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0500;
 			};
 			buildConfigurationList = F279336916FFB43900A788E6 /* Build configuration list for PBXProject "Hulombus" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -364,8 +362,6 @@
 				F2A5AFFC16FFB52E002FDD12 /* LockableTarget.cpp in Sources */,
 				F2A5AFFE16FFB52E002FDD12 /* Matrix3D.cpp in Sources */,
 				F2A5B00016FFB52E002FDD12 /* Mesh.cpp in Sources */,
-				F20408341833704100997BA2 /* Vector2.cpp in Sources */,
-				F2A5B00216FFB52E002FDD12 /* Vector3.cpp in Sources */,
 				F2A5B00416FFB52E002FDD12 /* Shader.cpp in Sources */,
 				F2A5B00616FFB52E002FDD12 /* Texture.cpp in Sources */,
 				F2A5B00816FFB52E002FDD12 /* TextureLoader.cpp in Sources */,
@@ -383,6 +379,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				LIBRARY_SEARCH_PATHS = "";
+				ONLY_ACTIVE_ARCH = YES;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
@@ -399,7 +396,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
@@ -438,7 +434,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_CONSTANT_CONVERSION = YES;

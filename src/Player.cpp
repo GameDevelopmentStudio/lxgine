@@ -1,7 +1,7 @@
 #include "Player.h"
 
 #include "Glut.h"
-#include "Vector3.h"
+#include "Vector.h"
 #include "Mesh.h"
 #include "Face.h"
 #include "GameState.h"
@@ -12,9 +12,9 @@
 #include <stdio.h>
 #include <math.h>
 
-GLuint vaoID2[1];
-GLuint vboID2[1];
-#define BUFFER_OFFSET(i) ((char *)NULL + (i))
+//GLuint vaoID2[1];
+//GLuint vboID2[1];
+//#define BUFFER_OFFSET(i) ((char *)NULL + (i))
 
 Mesh *m;
 
@@ -33,14 +33,14 @@ void Player::init() {
 
     m = new Mesh();
     m->init(8, 12);
-    m->vertexPool[0] = Vector3(-0.5, -0.5, -0.5, 1);
-    m->vertexPool[1] = Vector3(-0.5, -0.5, 0.5, 1);
-    m->vertexPool[2] = Vector3(-0.5, 0.5, -0.5, 1);
-    m->vertexPool[3] = Vector3(-0.5, 0.5, 0.5, 1);
-    m->vertexPool[4] = Vector3(0.5, -0.5, -0.5, 1);
-    m->vertexPool[5] = Vector3(0.5, -0.5, 0.5, 1);
-    m->vertexPool[6] = Vector3(0.5, 0.5, -0.5, 1);
-    m->vertexPool[7] = Vector3(0.5, 0.5, 0.5, 1);
+    m->vertexPool[0] = Vector4f(-0.5, -0.5, -0.5, 1);
+    m->vertexPool[1] = Vector4f(-0.5, -0.5, 0.5, 1);
+    m->vertexPool[2] = Vector4f(-0.5, 0.5, -0.5, 1);
+    m->vertexPool[3] = Vector4f(-0.5, 0.5, 0.5, 1);
+    m->vertexPool[4] = Vector4f(0.5, -0.5, -0.5, 1);
+    m->vertexPool[5] = Vector4f(0.5, -0.5, 0.5, 1);
+    m->vertexPool[6] = Vector4f(0.5, 0.5, -0.5, 1);
+    m->vertexPool[7] = Vector4f(0.5, 0.5, 0.5, 1);
     
     m->faces[0].init(3);
     m->faces[0].vertexNormalPairs[0].vertex = 4;
@@ -150,7 +150,7 @@ void Player::update() {
     }
 
     // TODO: unhardcode this
-    double idlation = 0.03*sin(0.1*i);
+    float idlation = 0.03*sin(0.1*i);
     translate(0, idlation, 0);
     i++;
 }

@@ -3,12 +3,13 @@
 
 #include "LockableTarget.h"
 
+#include "Vector.h"
 #include "Matrix3D.h"
 
 struct ViewVolume {
-        double N,F;
-        double xR, xL;
-        double yT, yB;
+        float N,F;
+        float xR, xL;
+        float yT, yB;
 };
 
 class Camera : public LockableTargetDelegate {
@@ -16,11 +17,11 @@ public:
     ViewVolume viewVolume;
 
     // Camera coordinates
-    Vector3 lookAt, up, right;
+    Vector4f lookAt, up, right;
     // Camera center
-    Vector3 eye;
+    Vector4f eye;
     // Distance to target
-    double focalLength;
+    float focalLength;
 
     // Lock on mode
     Matrix3D *targetInverseTransform;
@@ -30,17 +31,17 @@ public:
 
     void init();
 
-    Vector3 getTarget();
+    Vector4f getTarget();
 
-    void translate(double x, double y, double z);
-    void translateX(double x);
-    void translateY(double y);
-    void translateZ(double z);
+    void translate(float x, float y, float z);
+    void translateX(float x);
+    void translateY(float y);
+    void translateZ(float z);
 
-    void pitch(double alpha);
-    void yaw(double alpha);
-    void roll(double alpha);
-    void orbitate(double rx, double ry);
+    void pitch(float alpha);
+    void yaw(float alpha);
+    void roll(float alpha);
+    void orbitate(float rx, float ry);
 
     void commit();
 
@@ -50,8 +51,8 @@ public:
     virtual void lockOn(LockableTarget* target);
     virtual bool isLockedOn();
     virtual void stopLock(LockableTarget* target);
-    virtual void targetDidRotate(LockableTarget *target, double rx, double ry, double rz);
-    virtual void targetDidTranslate(LockableTarget *target, double tx, double ty, double tz);
+    virtual void targetDidRotate(LockableTarget *target, float rx, float ry, float rz);
+    virtual void targetDidTranslate(LockableTarget *target, float tx, float ty, float tz);
     virtual void targetResetPosition(LockableTarget *target, const Matrix3D *transform);
 
 private:

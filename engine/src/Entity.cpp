@@ -1,6 +1,6 @@
 #include "Entity.h"
 #include "Matrix3D.h"
-#include "Vector3.h"
+#include "Vector4.h"
 #include "Glut.h"
 
 Entity::Entity() {
@@ -11,7 +11,7 @@ Entity::Entity() {
     delegate = NULL;
 
     transform = new Matrix3D();
-    pos = new Vector3();
+    pos = new Vector4f();
     pitch = yaw = roll = 0;
 }
 
@@ -49,7 +49,7 @@ void Entity::Render() {
     glPopMatrix();
 }
 
-void Entity::translate(double tx, double ty, double tz) {
+void Entity::translate(float tx, float ty, float tz) {
     transform->translate(tx, ty, tz);
     
     if (tx) {
@@ -67,7 +67,7 @@ void Entity::translate(double tx, double ty, double tz) {
     }
 }
 
-void Entity::rotate(double rx, double ry, double rz) {
+void Entity::rotate(float rx, float ry, float rz) {
 
     if (ry == 0) {
         transform->rotate(-pitch, 0.0, 0.0);
@@ -93,8 +93,8 @@ void Entity::rotate(double rx, double ry, double rz) {
     }
 }
 
-Vector3 Entity::getPos() {
-    return Vector3(*pos);
+Vector4f Entity::getPos() {
+    return Vector4f(*pos);
 }
 
 double Entity::getPitch() {

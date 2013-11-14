@@ -54,7 +54,7 @@ void Glut::init(int argc, char **argv) {
     // RGBA color
     // Alpha components supported 
     // Depth buffer
-    glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_ALPHA | GLUT_DEPTH);    
+    glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_ALPHA | GLUT_DEPTH);
 
     glutInitWindowSize(game->getWidth(), game->getHeight());
     glutInitWindowPosition(0, 0);    

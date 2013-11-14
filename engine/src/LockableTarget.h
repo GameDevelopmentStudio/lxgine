@@ -2,8 +2,8 @@
 #define __LOCABLE_H__
 
 class LockableTargetDelegate;
-class Matrix3D;
-/* class Vector3; */
+
+#include "Matrix3D.h"
 
 class LockableTarget {
 public:
@@ -25,8 +25,8 @@ public:
     virtual void lockOn(LockableTarget* target);
     virtual bool isLockedOn() = 0;
     virtual void stopLock(LockableTarget* target);
-    virtual void targetDidRotate(LockableTarget *target, double rx, double ry, double rz) = 0;
-    virtual void targetDidTranslate(LockableTarget *target, double tx, double ty, double tz) = 0;
+    virtual void targetDidRotate(LockableTarget *target, float rx, float ry, float rz) = 0;
+    virtual void targetDidTranslate(LockableTarget *target, float tx, float ty, float tz) = 0;
     virtual void targetResetPosition(LockableTarget *target, const Matrix3D *transform) = 0;
 };
 

@@ -1,7 +1,7 @@
 #ifndef __Face_H__
 #define __Face_H__
 
-#include "Vector3.h"
+#include "Vector4.h"
 
 class Face {
 public:
@@ -19,8 +19,8 @@ public:
 
     virtual void init(int nvertex);
 
-    Vector3 computeNormal(Vector3 *vertexPool);
-    Vector3 computeCenter(Vector3 *vertexPool);
+    Vector4f computeNormal(Vector4f *vertexPool);
+    Vector4f computeCenter(Vector4f *vertexPool);
 
 private:
     int nextVertex(int idx);

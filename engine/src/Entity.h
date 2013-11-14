@@ -2,9 +2,9 @@
 #define __ENTITY_H__
 
 #include "LockableTarget.h"
+#include "Vector.h"
+#include "Matrix3D.h"
 
-class Matrix3D;
-class Vector3;
 class Game;
 class GameState;
 
@@ -24,11 +24,11 @@ class Entity : public LockableTarget {
     virtual void Render();
 
     // Transformation setters
-    virtual void translate(double tx, double ty, double tz);
-    virtual void rotate(double rx, double ry, double rz);
+    virtual void translate(float tx, float ty, float tz);
+    virtual void rotate(float rx, float ry, float rz);
 
     // Transformation getters
-    Vector3 getPos();
+    Vector4f getPos();
     double getPitch();
     double getYaw();
     double getRoll();
@@ -38,7 +38,7 @@ class Entity : public LockableTarget {
 
     double pitch, yaw, roll;
  protected:
-    Vector3 *pos;    
+    Vector4f *pos;
     Matrix3D *transform;
 };
 

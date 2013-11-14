@@ -29,8 +29,8 @@ void Mesh::init(int nvertex, int nnormals) {
     this->nnormals = nnormals;
     this->nfaces = nnormals;
 
-    vertexPool = new Vector3[nvertex];
-    normalPool = new Vector3[nnormals];
+    vertexPool = new Vector4f[nvertex];
+    normalPool = new Vector4f[nnormals];
     faces = new Face[nfaces];
 }
 
@@ -53,7 +53,7 @@ void Mesh::compile() {
         }
     }
 
-    compiledVertex = new double[compiledVertexCount * 6]; // 3 vertex, 3 normal
+    compiledVertex = new float[compiledVertexCount * 6]; // 3 vertex, 3 normal
     int n = 0;
     for (int i = 0; i < nfaces; i++) {
         for (int j = 0; j < faces[i].nvertex; j++) {
@@ -66,7 +66,7 @@ void Mesh::compile() {
             n += 6;
         }
     }
-
+    
     glGenVertexArrays(1, &vaoIdx[0]);
     if (vaoIdx[0] != 0) {
         glBindVertexArray(vaoIdx[0]);
@@ -74,12 +74,12 @@ void Mesh::compile() {
         glGenBuffers(1, &vboIdx[0]);
         if (vboIdx[0] != 0) {
             glBindBuffer(GL_ARRAY_BUFFER, vboIdx[0]);
-            glBufferData(GL_ARRAY_BUFFER, compiledVertexCount * 6 * sizeof(double), compiledVertex, GL_DYNAMIC_DRAW);
+            glBufferData(GL_ARRAY_BUFFER, compiledVertexCount * 6 * sizeof(float), compiledVertex, GL_DYNAMIC_DRAW);
                 
             glEnableClientState(GL_VERTEX_ARRAY);
-            glVertexPointer(3, GL_DOUBLE, 6 * sizeof(double), BUFFER_OFFSET(0));     //The starting point of the VBO, for the vertices
+            glVertexPointer(3, GL_FLOAT, 6 * sizeof(float), BUFFER_OFFSET(0));     //The starting point of the VBO, for the vertices
             glEnableClientState(GL_NORMAL_ARRAY);
-            glNormalPointer(GL_DOUBLE, 6 * sizeof(double), BUFFER_OFFSET(3 * sizeof(double)));     //The starting point of normals
+            glNormalPointer(GL_FLOAT, 6 * sizeof(float), BUFFER_OFFSET(3 * sizeof(float)));     //The starting point of normals
                 
             glDisableClientState(GL_VERTEX_ARRAY);
             glDisableClientState(GL_NORMAL_ARRAY);
@@ -102,9 +102,9 @@ void Mesh::render() {
     } else if (compiledVertex) {
         glEnableClientState(GL_NORMAL_ARRAY);
         glEnableClientState(GL_VERTEX_ARRAY);
-
-        glNormalPointer(GL_DOUBLE, 6 * sizeof(double), compiledVertex + 3);
-        glVertexPointer(3, GL_DOUBLE, 6 * sizeof(double), compiledVertex);
+        
+        glNormalPointer(GL_FLOAT, 6 * sizeof(float), compiledVertex + 3);
+        glVertexPointer(3, GL_FLOAT, 6 * sizeof(float), compiledVertex);
         glDrawArrays(GL_TRIANGLES, 0, compiledVertexCount);
         
         glDisableClientState(GL_VERTEX_ARRAY);
@@ -118,8 +118,8 @@ void Mesh::render() {
             for (int j = 0; j < faces[i].nvertex; j++) {
                 int iV = faces[i].vertexNormalPairs[j].vertex;
                 int iN = faces[i].vertexNormalPairs[j].normal;
-                glNormal3d(normalPool[iN].x, normalPool[iN].y, normalPool[iN].z);
-                glVertex3d(vertexPool[iV].x, vertexPool[iV].y, vertexPool[iV].z);
+                glNormal3f(normalPool[iN].x, normalPool[iN].y, normalPool[iN].z);
+                glVertex3f(vertexPool[iV].x, vertexPool[iV].y, vertexPool[iV].z);
             }
             glEnd();
         }

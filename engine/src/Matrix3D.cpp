@@ -2,7 +2,7 @@
 #include <math.h>
 
 #include "Glut.h"
-#include "Vector3.h"
+#include "Vector4.h"
 
 Matrix3D::Matrix3D() {
 }
@@ -27,28 +27,28 @@ void Matrix3D::load(const Matrix3D &other) {
     }
 }
 
-double &Matrix3D::operator()(int i, int j) {
+float &Matrix3D::operator()(int i, int j) {
     return element(i, j);
 }
 
-const double &Matrix3D::operator()(int i, int j) const {
+const float &Matrix3D::operator()(int i, int j) const {
     return element(i, j);
 }
 
-double &Matrix3D::element(int i, int j) {
+float &Matrix3D::element(int i, int j) {
     return matrix[i << 2 | j];
 }
 
-const double &Matrix3D::element(int i, int j) const {
+const float &Matrix3D::element(int i, int j) const {
     return matrix[i << 2 | j];
 }
 
-void Matrix3D::setRow(int i, const Vector3 &p) {
+void Matrix3D::setRow(int i, const Vector4f &p) {
     for (int j = 0; j < 4; j++)
         element(i, j) = p[j];
 }
 
-void Matrix3D::setColumn(int j, const Vector3 &p) {
+void Matrix3D::setColumn(int j, const Vector4f &p) {
     for (int i = 0; i < 4; i++)
         element(i, j) = p[i];
 }
@@ -56,14 +56,14 @@ void Matrix3D::setColumn(int j, const Vector3 &p) {
 #pragma mark - Transformations
 
 // Transformations
-void Matrix3D::translate(double tx, double ty, double tz, bool premultiply) {
+void Matrix3D::translate(float tx, float ty, float tz, bool premultiply) {
 
     glMatrixMode(GL_MODELVIEW);
     glPushMatrix();
         glLoadIdentity();
         glTranslated(tx, ty, tz);
         Matrix3D transform;
-        glGetDoublev(GL_MODELVIEW_MATRIX, transform.matrix);
+        glGetFloatv(GL_MODELVIEW_MATRIX, transform.matrix);
     glPopMatrix();
 
     // Apply transform to one's matrix
@@ -74,7 +74,7 @@ void Matrix3D::translate(double tx, double ty, double tz, bool premultiply) {
         load(self * transform);
 }
 
-void Matrix3D::rotate(double rx, double ry, double rz, bool premultiply) {
+void Matrix3D::rotate(float rx, float ry, float rz, bool premultiply) {
     glMatrixMode(GL_MODELVIEW);
     glPushMatrix();
         glLoadIdentity();
@@ -85,7 +85,7 @@ void Matrix3D::rotate(double rx, double ry, double rz, bool premultiply) {
         if (rz != 0)
             glRotated(rz, 0, 1, 0);
         Matrix3D transform;
-        glGetDoublev(GL_MODELVIEW_MATRIX, transform.matrix);
+        glGetFloatv(GL_MODELVIEW_MATRIX, transform.matrix);
     glPopMatrix();
 
     // Apply transform to one's matrix
@@ -98,7 +98,7 @@ void Matrix3D::rotate(double rx, double ry, double rz, bool premultiply) {
 
 #pragma mark - Rotations
 
-Matrix3D matrixWithXRotation(double alpha) {
+Matrix3D matrixWithXRotation(float alpha) {
     Matrix3D out;
     double sin_a = sin(alpha);
     double cos_a = cos(alpha);
@@ -109,7 +109,7 @@ Matrix3D matrixWithXRotation(double alpha) {
     return out;
 }
 
-Matrix3D matrixWithYRotation(double alpha) {
+Matrix3D matrixWithYRotation(float alpha) {
     Matrix3D out;
     double sin_a= sin(alpha);
     double cos_a= cos(alpha);
@@ -120,7 +120,7 @@ Matrix3D matrixWithYRotation(double alpha) {
     return out;
 }
 
-Matrix3D matrixWithZRotation(double alpha) {
+Matrix3D matrixWithZRotation(float alpha) {
     Matrix3D out;
     double sin_a= sin(alpha);
     double cos_a= cos(alpha);
@@ -131,7 +131,7 @@ Matrix3D matrixWithZRotation(double alpha) {
     return out;
 }
 
-Matrix3D matrixWithRotationOnAxis(double alpha, const Vector3 &a) {
+Matrix3D matrixWithRotationOnAxis(float alpha, const Vector4f &a) {
     // center: rotation center
     // a: rotation axis
     //
@@ -144,7 +144,7 @@ Matrix3D matrixWithRotationOnAxis(double alpha, const Vector3 &a) {
 
     double s = sin(alpha);
     double c = cos(alpha);
-    double axx = a.x*a.x; 
+    double axx = a.x*a.x;
     double ayy = a.y*a.y;
     double azz = a.z*a.z;
 
@@ -172,14 +172,14 @@ Matrix3D matrixWithRotationOnAxis(double alpha, const Vector3 &a) {
     return out;
 }
 
-Matrix3D matrixWithRotationOnAxisWithCenter(double alpha, const Vector3 &a, const Vector3 &center) {
+Matrix3D matrixWithRotationOnAxisWithCenter(float alpha, const Vector4f &a, const Vector4f &center) {
     // center: rotation center
     // a: rotation axis
     //
     // See Matrix3D::matrixWithRotationOnAxis for further explanation on the code
     double s = sin(alpha);
     double c = cos(alpha);
-    double axx = a.x*a.x; 
+    double axx = a.x*a.x;
     double ayy = a.y*a.y;
     double azz = a.z*a.z;
 
@@ -226,8 +226,8 @@ Matrix3D operator *(const Matrix3D &A, const Matrix3D &B) {
 
 #pragma mark - (R3->R3)xR3->R3 Functions
 
-Vector3 operator *(const Matrix3D &A, const Vector3 &p) {
-    Vector3 out;
+Vector4f operator *(const Matrix3D &A, const Vector4f &p) {
+    Vector4f out;
     for (int i = 0; i < 4; i++) {
         out[i] = 0;
         for (int j = 0; j < 4; j++) {
@@ -355,7 +355,7 @@ Matrix3D Matrix3D::inverse() const {
                      matrix[8]  * matrix[1]     * matrix[6] -
                      matrix[8]  * matrix[2]     * matrix[5];
 
-    double det;
+    float det;
     det = matrix[0] * out.matrix[0] + matrix[1] * out.matrix[4] + matrix[2] * out.matrix[8] + matrix[3] * out.matrix[12];
     if (det == 0)
         out.init();
@@ -372,5 +372,5 @@ Matrix3D Matrix3D::inverse() const {
 #pragma mark - Apply changes
 
 void Matrix3D::commit() {
-    glMultMatrixd(matrix);
+    glMultMatrixf(matrix);
 }

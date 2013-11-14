@@ -2,23 +2,23 @@
 #define __Mesh_H__
 
 #include "Glut.h"
+#include "Vector.h"
 
-class Vector3;
 class Face;
 
 class Mesh {
 public:
     // Uncompiled
     int nvertex;
-    Vector3 *vertexPool;
+    Vector4f *vertexPool;
     int nnormals;
-    Vector3 *normalPool;
+    Vector4f *normalPool;
     int nfaces;
     Face *faces;
 
     // Compiled
     int compiledVertexCount;
-    double *compiledVertex;
+    float *compiledVertex;
 
     Mesh();
     virtual ~Mesh();

@@ -17,9 +17,9 @@ int Face::nextVertex(int idx) {
     return (idx + 1) % nvertex;
 }
 
-Vector3 Face::computeNormal(Vector3 *vertexPool) {
+Vector4f Face::computeNormal(Vector4f *vertexPool) {
     
-    Vector3 out = Vector3(0, 0, 0, 0);
+    Vector4f out = Vector4f(0, 0, 0, 0);
     for (int i = 0; i < nvertex; i++) {
         // (yi - suc(yi))*(zi + suc(zi)
         out.x += (vertexPool[vertexNormalPairs[i].vertex].y - vertexPool[vertexNormalPairs[nextVertex(i)].vertex].y) *
@@ -36,18 +36,18 @@ Vector3 Face::computeNormal(Vector3 *vertexPool) {
 	return out;
 }
 
-Vector3 Face::computeCenter(Vector3 *vertexPool) {
+Vector4f Face::computeCenter(Vector4f *vertexPool) {
     // TODO: test
-    Vector3 center = Vector3(0, 0, 0, 1);
+    Vector4f center = Vector4f(0, 0, 0, 1);
     for (int i = 0; i < nvertex; i++) {
         center.x += vertexPool[vertexNormalPairs[i].vertex].x;
         center.y += vertexPool[vertexNormalPairs[i].vertex].y;
         center.z += vertexPool[vertexNormalPairs[i].vertex].z;
     }
 
-    center.x /= (double) nvertex;
-    center.y /= (double) nvertex;
-    center.z /= (double) nvertex;
+    center.x /= (float) nvertex;
+    center.y /= (float) nvertex;
+    center.z /= (float) nvertex;
         
     return center;
 }

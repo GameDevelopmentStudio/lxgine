@@ -1,11 +1,13 @@
 #ifndef __MATRIX3D_H__
 #define __MATRIX3D_H__
 
-#include "Vector3.h"
+#include <math.h>
+#include "Vector4.h"
+#include "Glut.h"
 
 class Matrix3D {
 public:
-    double matrix[16];
+    float matrix[16];
     Matrix3D();
     Matrix3D(const Matrix3D &other);
     virtual ~Matrix3D();
@@ -13,17 +15,17 @@ public:
     virtual void init();
     void load(const Matrix3D &other);
 
-    double &element(int i, int j);
-    double &operator()(int i, int j);
-    const double &element(int i, int j) const;
-    const double &operator()(int i, int j) const;
+    float &element(int i, int j);
+    float &operator()(int i, int j);
+    const float &element(int i, int j) const;
+    const float &operator()(int i, int j) const;
 
-    void setRow(int i, const Vector3 &p);
-    void setColumn(int j, const Vector3 &p);
+    void setRow(int i, const Vector4f &p);
+    void setColumn(int j, const Vector4f &p);
 
-    // Transformations
-    void translate(double tx, double ty, double tz, bool premultiply=true);
-    void rotate(double rx, double ry, double rz, bool premultiply=true);
+    // floatransformations
+    void translate(float tx, float ty, float tz, bool premultiply=true);
+    void rotate(float rx, float ry, float rz, bool premultiply=true);
     void commit();
 
     // (R3->R3) -> (R3->R3)
@@ -32,15 +34,21 @@ public:
     // (R3->R3)x(R3->R3) -> (R3->R3)
     friend Matrix3D operator *(const Matrix3D &A, const Matrix3D &B);
     // (R3->R3)xR3 -> R3
-    friend Vector3 operator *(const Matrix3D &A, const Vector3 &p);
+    friend Vector4<float> operator *(const Matrix3D &A, const Vector4<float> &p);
+    
+//    friend Matrix3D matrixWithXRotation(float alpha);
+//    friend Matrix3D matrixWithYRotation(float alpha);
+//    friend Matrix3D matrixWithZRotation(float alpha);
+//    friend Matrix3D matrixWithRotationOnAxisWithCenter(float alpha, const Vector4<float> &a, const Vector4<float> &center);
+//    friend Matrix3D matrixWithRotationOnAxis(float alpha, const Vector4<float> &a);
 };
 
 // TODO: change this to use glRotate
 // Rotations
-Matrix3D matrixWithXRotation(double alpha);
-Matrix3D matrixWithYRotation(double alpha);
-Matrix3D matrixWithZRotation(double alpha);
-Matrix3D matrixWithRotationOnAxisWithCenter(double alpha, const Vector3 &a, const Vector3 &center);
-Matrix3D matrixWithRotationOnAxis(double alpha, const Vector3 &a);
+Matrix3D matrixWithXRotation(float alpha);
+Matrix3D matrixWithYRotation(float alpha);
+Matrix3D matrixWithZRotation(float alpha);
+Matrix3D matrixWithRotationOnAxisWithCenter(float alpha, const Vector4f &a, const Vector4f &center);
+Matrix3D matrixWithRotationOnAxis(float alpha, const Vector4<float> &a);
 
 #endif

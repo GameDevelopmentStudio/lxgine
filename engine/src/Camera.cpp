@@ -1,6 +1,4 @@
 #include "Camera.h"
-#include "Vector3.h"
-#include "Matrix3D.h"
 #include "Glut.h"
 #include "Entity.h"
 
@@ -19,12 +17,12 @@ Camera::~Camera() {
 void Camera::init() {
     eye.x = 10.0; eye.y = 10.0; 
     eye.z = 10.0; eye.v = 1;
-    Vector3 target = Vector3(0.0, 0.0, 0.0, 1);
+    Vector4f target = Vector4f(0.0, 0.0, 0.0, 1);
     lookAt = eye - target;
     focalLength = lookAt.module();
     lookAt = normalizedVector(lookAt);
-    up = normalizedVector(Vector3(-100, 200, -100, 0));
-    /* up = Vector3(0,1,0,0); */
+    up = normalizedVector(Vector4f(-100, 200, -100, 0));
+    /* up = Vector4f(0,1,0,0); */
     right = crossProduct(up, lookAt);
 
     viewVolume.N = 2;
@@ -40,39 +38,39 @@ void Camera::init() {
         glLoadIdentity();
 }
 
-Vector3 Camera::getTarget() {
+Vector4f Camera::getTarget() {
     return eye - focalLength*lookAt;
 }
 
-void Camera::translate(double x, double y, double z) {
+void Camera::translate(float x, float y, float z) {
 
-    Vector3 trans = Vector3(x, y, z, 0.0);
+    Vector4f trans = Vector4f(x, y, z, 0.0);
 
     /* // first we get camera.eye system of coordinates */
-    /* Vector3 n = eye - look; */
+    /* Vector4f n = eye - look; */
     /* n = normalizedVector(n); */
 
-    /* Vector3 u = crossProduct(up, n); */
-    /* Vector3 v = crossProduct(n, u); */
+    /* Vector4f u = crossProduct(up, n); */
+    /* Vector4f v = crossProduct(n, u); */
 
     // then we transform it (resulting matrix is kinda simple
     // so let's put the multiplication output here
     // notice how no eye vars appear here, that's because
     // desp is a vector and so desp.v is 0
-    Vector3 desp = Vector3(right.x*trans.x + up.x*trans.y + lookAt.x*trans.z,
+    Vector4f desp = Vector4f(right.x*trans.x + up.x*trans.y + lookAt.x*trans.z,
                                                          right.y*trans.x + up.y*trans.y + lookAt.y*trans.z, right.z*trans.x + up.z*trans.y + lookAt.z*trans.z, 0); 
     eye = eye + desp;
 }
 
-void Camera::translateX(double x) {
+void Camera::translateX(float x) {
     translate(x, 0.0, 0.0);
 }
 
-void Camera::translateY(double y) {
+void Camera::translateY(float y) {
     translate(0.0, y, 0.0);
 }
 
-void Camera::translateZ(double z) {
+void Camera::translateZ(float z) {
     translate(0.0, 0.0, z);
 }
 
@@ -99,7 +97,7 @@ void Camera::translateZ(double z) {
  *        This is the current implementation.
  */
 
-void Camera::pitch(double alpha) {
+void Camera::pitch(float alpha) {
     // Rotate lookAt vector around right vector
     Matrix3D pitch = matrixWithRotationOnAxis(alpha, right);
     // lookAt pitch modification implies changes on target point, 
@@ -108,7 +106,7 @@ void Camera::pitch(double alpha) {
     up = crossProduct(lookAt, right);
 }
 
-void Camera::yaw(double alpha) {
+void Camera::yaw(float alpha) {
     // Rotate look over up-like vector
     // We don't rotate directly around the up vector, but on the projection
     // of the up vector agains the plane defined by the right vector and the 
@@ -116,13 +114,13 @@ void Camera::yaw(double alpha) {
     // pole.
 
     // planeNormal is the normal vector of the plane
-    Vector3 planeNormal = crossProduct(right, Vector3(0,1,0,0));
+    Vector4f planeNormal = crossProduct(right, Vector4f(0,1,0,0));
     // v_axis is the projection of up agains the plane
     // v_axis is computed by substraction to up the projection of up in the 
     // planeNormalVector. Said projection has the same direction as planeNormal,
     // and scalarDot(placeNormal,up) as module (since we're dealing with 
     // normalized vectors, we can just multiply these values)
-    Vector3 v_axis = up - scalarDot(planeNormal,up)*planeNormal;
+    Vector4f v_axis = up - scalarDot(planeNormal,up)*planeNormal;
     v_axis = normalizedVector(v_axis);
 
     // Rotate around the computed axis
@@ -133,7 +131,7 @@ void Camera::yaw(double alpha) {
     right = crossProduct(up, lookAt);
 }
 
-void Camera::roll(double alpha) {
+void Camera::roll(float alpha) {
     // Rotate up vector arount lookAt
     Matrix3D roll = matrixWithRotationOnAxis(alpha, lookAt);
     // Only up and right vectors are modified after the operation
@@ -150,14 +148,14 @@ void Camera::roll(double alpha) {
  * Notice there is no roll in orbitations, as it's the same as in rotations.
  */
 
-void Camera::orbitate(double rx, double ry) {
+void Camera::orbitate(float rx, float ry) {
     if (rx != 0) {
         // Yaw orbitation
         // See Camera::yaw for further explanation
         
-        Vector3 target = getTarget();
-        Vector3 planeNormal = crossProduct(right, Vector3(0,1,0,0));
-        Vector3 v_axis = up - scalarDot(planeNormal,up)*planeNormal;
+        Vector4f target = getTarget();
+        Vector4f planeNormal = crossProduct(right, Vector4f(0,1,0,0));
+        Vector4f v_axis = up - scalarDot(planeNormal,up)*planeNormal;
         v_axis = normalizedVector(v_axis);
 
         // Rotate eye around the computed camera axis
@@ -173,7 +171,7 @@ void Camera::orbitate(double rx, double ry) {
 
         // Rotate eye vector around right vector
         Matrix3D pitch = matrixWithRotationOnAxis(ry, right);
-        Vector3 target = getTarget();
+        Vector4f target = getTarget();
         lookAt = pitch * lookAt;
         eye = target + focalLength*lookAt;
         up = crossProduct(lookAt, right);
@@ -201,7 +199,7 @@ void Camera::stopLock(LockableTarget* target) {
     }
 }
 
-void Camera::targetDidRotate(LockableTarget *target, double rx, double ry, double rz) {
+void Camera::targetDidRotate(LockableTarget *target, float rx, float ry, float rz) {
 
     if (ry == 0) {
         targetInverseTransform->rotate(((Entity *) target)->pitch, 0.0, 0.0, false);
@@ -214,7 +212,7 @@ void Camera::targetDidRotate(LockableTarget *target, double rx, double ry, doubl
     /* targetInverseTransform->rotate(-rx, -ry, -rz, false); */
 }
 
-void Camera::targetDidTranslate(LockableTarget *target, double tx, double ty, double tz) {
+void Camera::targetDidTranslate(LockableTarget *target, float tx, float ty, float tz) {
     targetInverseTransform->translate(-tx, -ty, -tz, false);
 }
 
@@ -243,7 +241,7 @@ void Camera::commit() {
     } else {
         // If mode is not lockOn, set up view with our coordinates
         // TODO: update our coordinates during lockOn
-        Vector3 target = getTarget();
+        Vector4f target = getTarget();
 
         glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
