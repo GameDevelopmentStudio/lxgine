@@ -74,7 +74,7 @@ void Camera::translateZ(float z) {
     translate(0.0, 0.0, z);
 }
 
-# pragma mark - Rotations
+// Rotations
 
 /**
  * Some notes about rotations:
@@ -139,7 +139,7 @@ void Camera::roll(float alpha) {
     right = crossProduct(up, lookAt);
 }
 
-# pragma mark - Rotations
+// Rotations
 
 /**
  * Orbitations are similar to rotations, except eye is changed instead
@@ -178,7 +178,7 @@ void Camera::orbitate(float rx, float ry) {
     }
 }
 
-#pragma mark - LockableTargetDelegate Methods
+// LockableTargetDelegate Methods
 
 void Camera::lockOn(LockableTarget* target) {
     targetInverseTransform = new Matrix3D();
@@ -224,7 +224,7 @@ void Camera::toggleFPS() {
     fpsMode = !fpsMode;
 }
 
-#pragma mark - Apply changes
+// Apply changes
 
 void Camera::commit() {
     if (targetInverseTransform) {

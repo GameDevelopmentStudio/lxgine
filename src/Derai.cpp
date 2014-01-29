@@ -7,7 +7,7 @@ Derai::Derai() : Game() {
 Derai::~Derai() {
 }
 
-#pragma mark - Initialization Methods
+// Initialization Methods
 
 void Derai::init(int argc, char **argv) {
     Game::init(argc, argv);
@@ -16,7 +16,7 @@ void Derai::init(int argc, char **argv) {
     changeWorld(world);
 }
 
-#pragma mark - Main Virtual Methods
+// Main Virtual Methods
 
 void Derai::initSettings() {
     width = 640;

@@ -136,7 +136,7 @@ void Shader::bindTexture(const char *name, unsigned int tex, GLenum target, int 
     }
 }
 
-#pragma mark - Compile Methods
+// Compile Methods
 
 bool Shader::checkCompileStatus(unsigned int shader) {
     int status;

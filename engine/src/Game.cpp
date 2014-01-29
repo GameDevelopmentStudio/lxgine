@@ -7,7 +7,7 @@
 // ESC key
 #define ESCAPE 27
 
-#pragma mark - Memory Management
+// Memory Management
 
 Game::Game() {
     glut = Glut::sharedInstance();
@@ -23,7 +23,7 @@ Game::~Game() {
     Glut::release();
 }
 
-#pragma mark - Initialization Methods
+// Initialization Methods
 
 void Game::init(int argc, char **argv) {
     // Set game general properties
@@ -42,7 +42,7 @@ void Game::run() {
     glut->run();
 }
 
-#pragma mark - Getters
+// Getters
 
 int Game::getWidth() {
     return width;
@@ -52,7 +52,7 @@ int Game::getHeight() {
     return height;
 }
 
-#pragma mark - Main Virtual Methods
+// Main Virtual Methods
 
 void Game::initSettings() {
     width = 640;
@@ -72,7 +72,7 @@ void Game::update() {
     }
 }
 
-#pragma mark - GameState transition
+// GameState transition
 
 void Game::changeWorld(GameState *newWorld) {
     if (world) {
@@ -84,7 +84,7 @@ void Game::changeWorld(GameState *newWorld) {
     world->init();
 }
 
-#pragma mark - GLUT Events
+// GLUT Events
 
 void Game::Render() {
     // Clear the screen and the depth buffer
@@ -142,7 +142,7 @@ void Game::Resize(int width, int height) {
                          glViewportHeight);
 }
 
-#pragma mark - Helpers
+// Helpers
 
 void Game::screenshot() {
     

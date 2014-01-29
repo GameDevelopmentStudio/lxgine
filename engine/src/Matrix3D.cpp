@@ -53,7 +53,7 @@ void Matrix3D::setColumn(int j, const Vector4f &p) {
         element(i, j) = p[i];
 }
 
-#pragma mark - Transformations
+// Transformations
 
 // Transformations
 void Matrix3D::translate(float tx, float ty, float tz, bool premultiply) {
@@ -96,7 +96,7 @@ void Matrix3D::rotate(float rx, float ry, float rz, bool premultiply) {
         load(self * transform);
 }
 
-#pragma mark - Rotations
+// Rotations
 
 Matrix3D matrixWithXRotation(float alpha) {
     Matrix3D out;
@@ -207,7 +207,7 @@ Matrix3D matrixWithRotationOnAxisWithCenter(float alpha, const Vector4f &a, cons
     return out;
 }
 
-#pragma mark - (R3->R3)x(R3->R3)->(R3->R3) Functions
+// (R3->R3)x(R3->R3)->(R3->R3) Functions
 
 Matrix3D operator *(const Matrix3D &A, const Matrix3D &B) {
     // Save result in tmp matrix to avoid conflicts between A, B and this
@@ -224,7 +224,7 @@ Matrix3D operator *(const Matrix3D &A, const Matrix3D &B) {
     return out;
 }
 
-#pragma mark - (R3->R3)xR3->R3 Functions
+// (R3->R3)xR3->R3 Functions
 
 Vector4f operator *(const Matrix3D &A, const Vector4f &p) {
     Vector4f out;
@@ -237,7 +237,7 @@ Vector4f operator *(const Matrix3D &A, const Vector4f &p) {
     return out;
 }
 
-#pragma mark - (R3->R3)->(R3->R3)
+// (R3->R3)->(R3->R3)
 
 Matrix3D Matrix3D::inverse() const {
     // TODO: refactor to consider false cases
@@ -369,7 +369,7 @@ Matrix3D Matrix3D::inverse() const {
     return out;
 }
 
-#pragma mark - Apply changes
+// Apply changes
 
 void Matrix3D::commit() {
     glMultMatrixf(matrix);

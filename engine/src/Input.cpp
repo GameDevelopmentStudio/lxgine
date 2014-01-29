@@ -1,7 +1,7 @@
 #include "Input.h"
 #include <stdio.h> 
 
-#pragma mark - Memory Management
+// Memory Management
 
 Input::Input() {
     nDirtyKeys = nDirtySpecialKeys = 0;
@@ -26,7 +26,7 @@ Input::~Input() {
     delete []currSpecialKeyStates;
 }
 
-#pragma mark - Runloop Update
+// Runloop Update
 
 void Input::update() {
     // Update only the keys that have changed
@@ -79,7 +79,7 @@ void Input::onSpecialKeyReleased(int key) {
     dirtySpecialKeys[nDirtySpecialKeys++] = key;
 }
 
-#pragma mark - Keyboards Methods
+// Keyboards Methods
 
 bool Input::keyCheck(unsigned char key) {
     return currKeyStates[key];

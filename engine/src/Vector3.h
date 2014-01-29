@@ -75,7 +75,7 @@ template <class T>
 Vector3<T>::~Vector3() {
 }
 
-#pragma mark - N->R Functions
+// N->R Functions
 
 template <class T>
 T &Vector3<T>::operator[](int i) {
@@ -87,14 +87,14 @@ const T &Vector3<T>::operator[](int i) const {
     return coords[i];
 }
 
-#pragma mark - R3->R Functions
+// R3->R Functions
 
 template <class T>
 T Vector3<T>::module() const {
     return sqrt(scalarDot(*this, *this));
 }
 
-#pragma mark - R3->R3 Functions
+// R3->R3 Functions
 
 template <class T>
 Vector3<T> Vector3<T>::operator-() const {
@@ -109,7 +109,7 @@ Vector3<T> normalizedVector(const Vector3<T> &v) {
                       v.z / mod);
 }
 
-#pragma mark - RxR3->R3 Functions
+// RxR3->R3 Functions
 
 template <class T>
 Vector3<T> operator*(const float &a, const Vector3<T> &v) {
@@ -125,14 +125,14 @@ Vector3<T> operator*(const Vector3<T> &v, const float &a) {
                       v.z * a);
 }
 
-#pragma mark - R3xR3->R Functions
+// R3xR3->R Functions
 
 template <class T>
 T scalarDot(const Vector3<T> &a, const Vector3<T> &b) {
     return a.x*b.x + a.y*b.y + a.z*b.z;
 }
 
-#pragma mark - R3xR3->R3 Functions
+// R3xR3->R3 Functions
 
 template <class T>
 Vector3<T> operator-(const Vector3<T> &a, const Vector3<T> &b) {

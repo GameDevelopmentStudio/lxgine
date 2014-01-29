@@ -9,12 +9,12 @@
 
 #include <stdlib.h>
 
-#pragma mark - Static Initializations
+// Static Initializations
 
 Glut *Glut::instance = 0;
 int Glut::retainCount = 0;
 
-#pragma mark - Memory Management
+// Memory Management
 // TODO: make threadsafe
 
 Glut *Glut::sharedInstance() {
@@ -75,7 +75,7 @@ void Glut::init(int argc, char **argv) {
     glutSpecialUpFunc(&specialKeyReleased);
 }
 
-#pragma mark - Runloop Methods
+// Runloop Methods
 
 void Glut::run() {
     // Set up the runloop
@@ -90,7 +90,7 @@ void Glut::step(int frame) {
     glutTimerFunc(33.3f, &Glut::step, frame + 1);
 }
 
-#pragma mark - Window methods
+// Window methods
 
 void Glut::resizeWindow(int width, int height) {
     instance->game->Resize(width, height);
@@ -121,7 +121,7 @@ bool Glut::isFullscreen() {
     return fullscreen;
 }
 
-#pragma mark - Input Methods
+// Input Methods
 
 void Glut::specialKeyReleased(int key, int x, int y) {
     instance->input->onSpecialKeyReleased(key);
