@@ -10,6 +10,53 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="engine\src\Camera.cpp" />
+    <ClCompile Include="engine\src\Entity.cpp" />
+    <ClCompile Include="engine\src\Face.cpp" />
+    <ClCompile Include="engine\src\Game.cpp" />
+    <ClCompile Include="engine\src\GameState.cpp" />
+    <ClCompile Include="engine\src\Glut.cpp" />
+    <ClCompile Include="engine\src\Input.cpp" />
+    <ClCompile Include="engine\src\LockableTarget.cpp" />
+    <ClCompile Include="engine\src\Matrix3D.cpp" />
+    <ClCompile Include="engine\src\Mesh.cpp" />
+    <ClCompile Include="engine\src\Shader.cpp" />
+    <ClCompile Include="engine\src\Texture.cpp" />
+    <ClCompile Include="engine\src\TextureLoader.cpp" />
+    <ClCompile Include="engine\src\TexturePPM.cpp" />
+    <ClCompile Include="engine\src\TextureTGA.cpp" />
+    <ClCompile Include="engine\src\Utils.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="src\Derai.cpp" />
+    <ClCompile Include="src\Level.cpp" />
+    <ClCompile Include="src\Player.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="engine\src\Camera.h" />
+    <ClInclude Include="engine\src\Entity.h" />
+    <ClInclude Include="engine\src\Face.h" />
+    <ClInclude Include="engine\src\Game.h" />
+    <ClInclude Include="engine\src\GameState.h" />
+    <ClInclude Include="engine\src\Glut.h" />
+    <ClInclude Include="engine\src\Input.h" />
+    <ClInclude Include="engine\src\LockableTarget.h" />
+    <ClInclude Include="engine\src\Matrix3D.h" />
+    <ClInclude Include="engine\src\Mesh.h" />
+    <ClInclude Include="engine\src\Shader.h" />
+    <ClInclude Include="engine\src\Texture.h" />
+    <ClInclude Include="engine\src\TextureLoader.h" />
+    <ClInclude Include="engine\src\TexturePPM.h" />
+    <ClInclude Include="engine\src\TextureTGA.h" />
+    <ClInclude Include="engine\src\Utils.h" />
+    <ClInclude Include="engine\src\Vector.h" />
+    <ClInclude Include="engine\src\Vector2.h" />
+    <ClInclude Include="engine\src\Vector3.h" />
+    <ClInclude Include="engine\src\Vector4.h" />
+    <ClInclude Include="src\Derai.h" />
+    <ClInclude Include="src\Level.h" />
+    <ClInclude Include="src\Player.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{EA82B895-8B47-42AC-B989-236E7B6468C7}</ProjectGuid>
     <RootNamespace>Butticulus</RootNamespace>
@@ -48,7 +95,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glew32.lib;freeglut.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>freeglut.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -64,51 +111,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="engine\src\LXCamera.cpp" />
-    <ClCompile Include="engine\src\LXEntity.cpp" />
-    <ClCompile Include="engine\src\LXFace.cpp" />
-    <ClCompile Include="engine\src\LXGame.cpp" />
-    <ClCompile Include="engine\src\LXGameState.cpp" />
-    <ClCompile Include="engine\src\LXGlut.cpp" />
-    <ClCompile Include="engine\src\LXInput.cpp" />
-    <ClCompile Include="engine\src\LXLockableTarget.cpp" />
-    <ClCompile Include="engine\src\LXMatrix3D.cpp" />
-    <ClCompile Include="engine\src\LXMesh.cpp" />
-    <ClCompile Include="engine\src\LXPoint3D.cpp" />
-    <ClCompile Include="engine\src\LXShader.cpp" />
-    <ClCompile Include="engine\src\LXTexture.cpp" />
-    <ClCompile Include="engine\src\LXTextureLoader.cpp" />
-    <ClCompile Include="engine\src\LXTexturePPM.cpp" />
-    <ClCompile Include="engine\src\LXTextureTGA.cpp" />
-    <ClCompile Include="engine\src\LXUtils.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="src\Derai.cpp" />
-    <ClCompile Include="src\Level.cpp" />
-    <ClCompile Include="src\Player.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="engine\src\LXCamera.h" />
-    <ClInclude Include="engine\src\LXEntity.h" />
-    <ClInclude Include="engine\src\LXFace.h" />
-    <ClInclude Include="engine\src\LXGame.h" />
-    <ClInclude Include="engine\src\LXGameState.h" />
-    <ClInclude Include="engine\src\LXGlut.h" />
-    <ClInclude Include="engine\src\LXInput.h" />
-    <ClInclude Include="engine\src\LXLockableTarget.h" />
-    <ClInclude Include="engine\src\LXMatrix3D.h" />
-    <ClInclude Include="engine\src\LXMesh.h" />
-    <ClInclude Include="engine\src\LXPoint3D.h" />
-    <ClInclude Include="engine\src\LXShader.h" />
-    <ClInclude Include="engine\src\LXTexture.h" />
-    <ClInclude Include="engine\src\LXTextureLoader.h" />
-    <ClInclude Include="engine\src\LXTexturePPM.h" />
-    <ClInclude Include="engine\src\LXTextureTGA.h" />
-    <ClInclude Include="engine\src\LXUtils.h" />
-    <ClInclude Include="src\Derai.h" />
-    <ClInclude Include="src\Level.h" />
-    <ClInclude Include="src\Player.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

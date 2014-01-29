@@ -7,8 +7,6 @@
 
 #include <stdio.h>
 
-#include <stdlib.h>
-
 // Static Initializations
 
 Glut *Glut::instance = 0;

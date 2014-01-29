@@ -1,144 +1,158 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="engine">
+      <UniqueIdentifier>{c6e1dc5a-af2c-454c-b69e-cec351095e48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="engine\Headers">
+      <UniqueIdentifier>{f863d3d9-f94c-4a2a-b41c-01a9f49f2da8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="engine\Sources">
+      <UniqueIdentifier>{7b9f51e3-0382-4881-aa14-0e267b962600}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="game">
+      <UniqueIdentifier>{6c0c5cd5-1c44-41fe-a04e-21dfd2f9931e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="game\Sources">
+      <UniqueIdentifier>{0adcc28f-9287-4e20-b5aa-060990a09db0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="game\Headers">
+      <UniqueIdentifier>{a8bfa30e-666f-4d39-be23-981ddb6f5134}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Derai.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="engine\src\Camera.cpp">
+      <Filter>engine\Sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\Level.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="engine\src\Entity.cpp">
+      <Filter>engine\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\src\Face.cpp">
+      <Filter>engine\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\src\Game.cpp">
+      <Filter>engine\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\src\GameState.cpp">
+      <Filter>engine\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\src\Glut.cpp">
+      <Filter>engine\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\src\Input.cpp">
+      <Filter>engine\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\src\LockableTarget.cpp">
+      <Filter>engine\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\src\Mesh.cpp">
+      <Filter>engine\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\src\Shader.cpp">
+      <Filter>engine\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\src\Texture.cpp">
+      <Filter>engine\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\src\TextureLoader.cpp">
+      <Filter>engine\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\src\TexturePPM.cpp">
+      <Filter>engine\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\src\Utils.cpp">
+      <Filter>engine\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\src\TextureTGA.cpp">
+      <Filter>engine\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Derai.cpp">
+      <Filter>game\Sources</Filter>
     </ClCompile>
     <ClCompile Include="src\Player.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>game\Sources</Filter>
     </ClCompile>
-    <ClCompile Include="engine\src\LXCamera.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\Level.cpp">
+      <Filter>game\Sources</Filter>
     </ClCompile>
-    <ClCompile Include="engine\src\LXEntity.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="engine\src\Matrix3D.cpp">
+      <Filter>engine\Sources</Filter>
     </ClCompile>
-    <ClCompile Include="engine\src\LXFace.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="engine\src\LXGame.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="engine\src\LXGameState.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="engine\src\LXGlut.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="engine\src\LXInput.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="engine\src\LXLockableTarget.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="engine\src\LXMatrix3D.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="engine\src\LXMesh.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="engine\src\LXPoint3D.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="engine\src\LXShader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="engine\src\LXTexture.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="engine\src\LXTextureLoader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="engine\src\LXTexturePPM.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="engine\src\LXTextureTGA.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="engine\src\LXUtils.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="engine\src\Glut.h">
+      <Filter>engine\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\src\Camera.h">
+      <Filter>engine\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\src\Entity.h">
+      <Filter>engine\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\src\Face.h">
+      <Filter>engine\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\src\Game.h">
+      <Filter>engine\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\src\GameState.h">
+      <Filter>engine\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\src\Input.h">
+      <Filter>engine\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\src\LockableTarget.h">
+      <Filter>engine\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\src\Mesh.h">
+      <Filter>engine\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\src\Shader.h">
+      <Filter>engine\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\src\Texture.h">
+      <Filter>engine\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\src\TextureLoader.h">
+      <Filter>engine\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\src\TexturePPM.h">
+      <Filter>engine\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\src\TextureTGA.h">
+      <Filter>engine\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\src\Utils.h">
+      <Filter>engine\Headers</Filter>
+    </ClInclude>
     <ClInclude Include="src\Derai.h">
-      <Filter>Header Files</Filter>
+      <Filter>game\Headers</Filter>
     </ClInclude>
     <ClInclude Include="src\Level.h">
-      <Filter>Header Files</Filter>
+      <Filter>game\Headers</Filter>
     </ClInclude>
     <ClInclude Include="src\Player.h">
-      <Filter>Header Files</Filter>
+      <Filter>game\Headers</Filter>
     </ClInclude>
-    <ClInclude Include="engine\src\LXCamera.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="engine\src\Matrix3D.h">
+      <Filter>engine\Headers</Filter>
     </ClInclude>
-    <ClInclude Include="engine\src\LXEntity.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="engine\src\Vector.h">
+      <Filter>engine\Headers</Filter>
     </ClInclude>
-    <ClInclude Include="engine\src\LXFace.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="engine\src\Vector2.h">
+      <Filter>engine\Headers</Filter>
     </ClInclude>
-    <ClInclude Include="engine\src\LXGame.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="engine\src\Vector3.h">
+      <Filter>engine\Headers</Filter>
     </ClInclude>
-    <ClInclude Include="engine\src\LXGameState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="engine\src\LXGlut.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="engine\src\LXInput.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="engine\src\LXLockableTarget.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="engine\src\LXMatrix3D.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="engine\src\LXMesh.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="engine\src\LXPoint3D.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="engine\src\LXShader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="engine\src\LXTexture.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="engine\src\LXTextureLoader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="engine\src\LXTexturePPM.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="engine\src\LXTextureTGA.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="engine\src\LXUtils.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="engine\src\Vector4.h">
+      <Filter>engine\Headers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

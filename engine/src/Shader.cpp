@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include "Utils.h"
 
-#pragma mark Memory Management
+// Memory Management
 
 Shader::Shader() {
     id = 0;
@@ -43,7 +43,7 @@ void Shader::tearDown(unsigned int vertShader, unsigned int fragShader, unsigned
     }
 }
 
-#pragma mark Getters & Setters
+// mark Getters & Setters
 
 unsigned int Shader::programId() {
     return id;

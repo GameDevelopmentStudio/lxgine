@@ -187,7 +187,7 @@ void Camera::lockOn(LockableTarget* target) {
 }
 
 bool Camera::isLockedOn() {
-    return targetInverseTransform;
+    return targetInverseTransform != NULL;
 }
 
 void Camera::stopLock(LockableTarget* target) {

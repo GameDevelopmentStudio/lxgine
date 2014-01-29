@@ -1,14 +1,14 @@
 #ifndef __GLUT_H__
 #define __GLUT_H__
 
+#include <stdlib.h>
+
 #include <GL/glew.h>
 #ifdef __APPLE__
 #include <GLUT/glut.h>
 #else
-#include <GL/glut.h>
+#include <GL/freeglut_std.h>
 #endif
-
-#include <stdlib.h>
 
 class Game;
 class Input;
