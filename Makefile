@@ -24,7 +24,7 @@ OBJ_PATTERN=$(foreach dir,$(OBJ_DIRS),$(dir)$($(OBJ_DIR))%.o)
 ifeq "$(shell uname)" "Darwin"
 	# Mac specifics
 	LIBPATH+=-L"/System/Library/Frameworks/OpenGL.framework/Libraries" $(addprefix -L,$(OBJ_DIRS))
-	CFLAGS+=-I/usr/X11R6/include -I/usr/local/include $(addprefix -I,$(SRC_DIRS))
+	CFLAGS+=-I/usr/X11R6/include -I/usr/include -I/usr/local/include $(addprefix -I,$(SRC_DIRS))
 	LDFLAGS+=-lglew -framework GLUT -framework OpenGL -framework Cocoa
 	BINARIES=test.osx
 else
