@@ -77,7 +77,7 @@ void Glut::init(int argc, char **argv) {
 
 void Glut::run() {
     // Set up the runloop
-    glutTimerFunc(33.3f, &step, 0);
+    glutTimerFunc(33, &step, 0);
     glutMainLoop();
 }
 
@@ -85,7 +85,7 @@ void Glut::step(int frame) {
     instance->game->Update();
     instance->game->Render();
     
-    glutTimerFunc(33.3f, &Glut::step, frame + 1);
+    glutTimerFunc(33, &Glut::step, frame + 1);
 }
 
 // Window methods

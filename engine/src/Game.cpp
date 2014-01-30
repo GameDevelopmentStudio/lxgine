@@ -137,9 +137,9 @@ void Game::Resize(int width, int height) {
     }    
     // Reset The Current Viewport And Perspective Transformation
     glViewport(glViewportOriginX,
-                         glViewportOriginY, 
-                         glViewportWidth,
-                         glViewportHeight);
+               glViewportOriginY, 
+               glViewportWidth,
+               glViewportHeight);
 }
 
 // Helpers

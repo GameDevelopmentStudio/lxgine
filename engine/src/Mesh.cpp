@@ -22,6 +22,12 @@ Mesh::~Mesh() {
     if (normalPool) delete []normalPool;
     if (faces) delete []faces;
     if (compiledVertex) delete []compiledVertex;
+    if (vboIdx[0] > 0) {
+        glDeleteBuffers(1, vboIdx);
+    }
+    if (vaoIdx[0] > 0) {
+        glDeleteVertexArrays(1, vaoIdx);
+    }
 }
 
 void Mesh::init(int nvertex, int nnormals) {
@@ -67,27 +73,26 @@ void Mesh::compile() {
         }
     }
     
-    glGenVertexArrays(1, &vaoIdx[0]);
+    glGenVertexArrays(1, vaoIdx);
     if (vaoIdx[0] != 0) {
         glBindVertexArray(vaoIdx[0]);
         
-        glGenBuffers(1, &vboIdx[0]);
+        glGenBuffers(1, vboIdx);
         if (vboIdx[0] != 0) {
             glBindBuffer(GL_ARRAY_BUFFER, vboIdx[0]);
-            glBufferData(GL_ARRAY_BUFFER, compiledVertexCount * 6 * sizeof(float), compiledVertex, GL_DYNAMIC_DRAW);
-                
+            glBufferData(GL_ARRAY_BUFFER, compiledVertexCount * 6 * sizeof(float), compiledVertex, GL_STATIC_DRAW);
+
             glEnableClientState(GL_VERTEX_ARRAY);
             glVertexPointer(3, GL_FLOAT, 6 * sizeof(float), BUFFER_OFFSET(0));     //The starting point of the VBO, for the vertices
             glEnableClientState(GL_NORMAL_ARRAY);
             glNormalPointer(GL_FLOAT, 6 * sizeof(float), BUFFER_OFFSET(3 * sizeof(float)));     //The starting point of normals
-                
-            glDisableClientState(GL_VERTEX_ARRAY);
             glDisableClientState(GL_NORMAL_ARRAY);
+            glDisableClientState(GL_VERTEX_ARRAY);
+            
             glBindBuffer(GL_ARRAY_BUFFER, 0);
             // Don't need this anymore
             delete compiledVertex;
             compiledVertex = NULL;
-            compiledVertexCount = 0;
         }
         glBindVertexArray(0);
     }
@@ -95,9 +100,9 @@ void Mesh::compile() {
 
 void Mesh::render() {
 
-    if (vaoIdx[0] != 0 && vaoIdx[0] != 0) {
+    if (vaoIdx[0] > 0 && vboIdx[0] > 0) {
         glBindVertexArray(vaoIdx[0]);
-        glDrawArrays(GL_TRIANGLES, 0, 36);
+        glDrawArrays(GL_TRIANGLES, 0, compiledVertexCount);
         glBindVertexArray(0);
     } else if (compiledVertex) {
         glEnableClientState(GL_NORMAL_ARRAY);

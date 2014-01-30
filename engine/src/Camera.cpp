@@ -27,9 +27,9 @@ void Camera::init() {
 
     viewVolume.N = 2;
     viewVolume.F = 10000;
-    viewVolume.xR = 0.2;
+    viewVolume.xR = 0.2f;
     viewVolume.xL = -viewVolume.xR;
-    viewVolume.yT = 0.2;
+    viewVolume.yT = 0.2f;
     viewVolume.yB = -viewVolume.yT;
 
     fpsMode = false;
@@ -202,9 +202,9 @@ void Camera::stopLock(LockableTarget* target) {
 void Camera::targetDidRotate(LockableTarget *target, float rx, float ry, float rz) {
 
     if (ry == 0) {
-        targetInverseTransform->rotate(((Entity *) target)->pitch, 0.0, 0.0, false);
+        targetInverseTransform->rotate(((Entity *) target)->pitch, 0.0f, 0.0f, false);
         targetInverseTransform->rotate(-rx, -ry, -rz, false);
-        targetInverseTransform->rotate(-((Entity *) target)->pitch, 0.0, 0.0, false);
+        targetInverseTransform->rotate(-((Entity *) target)->pitch, 0.0f, 0.0f, false);
     } else {
         targetInverseTransform->rotate(-rx, -ry, -rz, false);
     }

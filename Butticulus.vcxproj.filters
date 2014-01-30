@@ -25,6 +25,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="engine\src\Camera.cpp">
       <Filter>engine\Sources</Filter>
     </ClCompile>
@@ -49,6 +50,9 @@
     <ClCompile Include="engine\src\LockableTarget.cpp">
       <Filter>engine\Sources</Filter>
     </ClCompile>
+    <ClCompile Include="engine\src\Matrix3D.cpp">
+      <Filter>engine\Sources</Filter>
+    </ClCompile>
     <ClCompile Include="engine\src\Mesh.cpp">
       <Filter>engine\Sources</Filter>
     </ClCompile>
@@ -64,30 +68,23 @@
     <ClCompile Include="engine\src\TexturePPM.cpp">
       <Filter>engine\Sources</Filter>
     </ClCompile>
-    <ClCompile Include="engine\src\Utils.cpp">
+    <ClCompile Include="engine\src\TextureTGA.cpp">
       <Filter>engine\Sources</Filter>
     </ClCompile>
-    <ClCompile Include="engine\src\TextureTGA.cpp">
+    <ClCompile Include="engine\src\Utils.cpp">
       <Filter>engine\Sources</Filter>
     </ClCompile>
     <ClCompile Include="src\Derai.cpp">
       <Filter>game\Sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\Player.cpp">
-      <Filter>game\Sources</Filter>
-    </ClCompile>
     <ClCompile Include="src\Level.cpp">
       <Filter>game\Sources</Filter>
     </ClCompile>
-    <ClCompile Include="engine\src\Matrix3D.cpp">
-      <Filter>engine\Sources</Filter>
+    <ClCompile Include="src\Player.cpp">
+      <Filter>game\Sources</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="engine\src\Glut.h">
-      <Filter>engine\Headers</Filter>
-    </ClInclude>
     <ClInclude Include="engine\src\Camera.h">
       <Filter>engine\Headers</Filter>
     </ClInclude>
@@ -103,10 +100,16 @@
     <ClInclude Include="engine\src\GameState.h">
       <Filter>engine\Headers</Filter>
     </ClInclude>
+    <ClInclude Include="engine\src\Glut.h">
+      <Filter>engine\Headers</Filter>
+    </ClInclude>
     <ClInclude Include="engine\src\Input.h">
       <Filter>engine\Headers</Filter>
     </ClInclude>
     <ClInclude Include="engine\src\LockableTarget.h">
+      <Filter>engine\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\src\Matrix3D.h">
       <Filter>engine\Headers</Filter>
     </ClInclude>
     <ClInclude Include="engine\src\Mesh.h">
@@ -130,18 +133,6 @@
     <ClInclude Include="engine\src\Utils.h">
       <Filter>engine\Headers</Filter>
     </ClInclude>
-    <ClInclude Include="src\Derai.h">
-      <Filter>game\Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Level.h">
-      <Filter>game\Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Player.h">
-      <Filter>game\Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="engine\src\Matrix3D.h">
-      <Filter>engine\Headers</Filter>
-    </ClInclude>
     <ClInclude Include="engine\src\Vector.h">
       <Filter>engine\Headers</Filter>
     </ClInclude>
@@ -153,6 +144,15 @@
     </ClInclude>
     <ClInclude Include="engine\src\Vector4.h">
       <Filter>engine\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Derai.h">
+      <Filter>game\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Level.h">
+      <Filter>game\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Player.h">
+      <Filter>game\Headers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

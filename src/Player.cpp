@@ -150,7 +150,7 @@ void Player::update() {
     }
 
     // TODO: unhardcode this
-    float idlation = 0.03*sin(0.1*i);
+    float idlation = 0.03f*sin(0.1f*i);
     translate(0, idlation, 0);
     i++;
 }
@@ -158,7 +158,7 @@ void Player::update() {
 void Player::render() {
     Entity::render();
     
-    glColor3f(0.34, 0.32, 1.0);
+    glColor3f(0.34f, 0.32f, 1.0f);
 
     m->render();
 }

@@ -41,14 +41,14 @@ void Level::init() {
     glEnable(GL_LIGHT0);
     GLfloat diffuseLight[]={1.0, 1.0, 1.0, 1.0};
     glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuseLight);
-    GLfloat ambientLight[]={0.3, 0.3, 0.3, 1.0};
+    GLfloat ambientLight[]={0.3f, 0.3f, 0.3f, 1.0f};
     glLightfv(GL_LIGHT0, GL_AMBIENT, ambientLight);
-    light0Pos[0] = 0.0; light0Pos[1] = 5.0; 
-    light0Pos[2] = -0.0; light0Pos[3] = 1.0;
+    light0Pos[0] = 0.0f; light0Pos[1] = 5.0f; 
+    light0Pos[2] = -0.0f; light0Pos[3] = 1.0f;
     glLightfv(GL_LIGHT0, GL_POSITION, light0Pos);
 
     glEnable(GL_COLOR_MATERIAL);
-    glMaterialf(GL_FRONT, GL_SHININESS, 0.1);
+    glMaterialf(GL_FRONT, GL_SHININESS, 0.1f);
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_NORMALIZE);
     glShadeModel(GL_SMOOTH);
@@ -86,7 +86,7 @@ void Level::render() {
 
     glBegin(GL_LINES);
 
-    glColor3f(0.2, 0.7, 0.95);
+    glColor3f(0.2f, 0.7f, 0.95f);
 
     glVertex3f(0.f, 0.f, -6.f);
     glVertex3f(10.f, 0.f, -6.f);
@@ -101,10 +101,10 @@ void Level::render() {
 
     floorProg->enable();
     floorProg->bindTexture("tex", floorTex->index, GL_TEXTURE_2D, 0);
-    GLfloat light0Color[]={1.0, 1.0, 0.8};
+    GLfloat light0Color[]={1.0f, 1.0f, 0.8f};
     floorProg->setUniformfv("lightColor", light0Color, 3);
-    glColor3f(1.0, 1.0, 1.0);
-    glNormal3f(0.0, 1.0, 0.0);
+    glColor3f(1.0f, 1.0f, 1.0f);
+    glNormal3f(0.0f, 1.0f, 0.0f);
     glBegin(GL_QUADS);
     {
         float s = 20.f;
@@ -112,11 +112,11 @@ void Level::render() {
         glTexCoord2f(0.f, 0.f);
         glVertex3f(-s, -5, -s);
         glTexCoord2f(rep, 0.f);
-        glVertex3f(s, -5, -s);
+        glVertex3f(s, -5.f, -s);
         glTexCoord2f(rep, rep);
-        glVertex3f(s, -5, s);
+        glVertex3f(s, -5.f, s);
         glTexCoord2f(0.f, rep);
-        glVertex3f(-s, -5, s);
+        glVertex3f(-s, -5.f, s);
     }
     glEnd();
     floorProg->disable();

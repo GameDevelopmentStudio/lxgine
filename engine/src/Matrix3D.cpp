@@ -361,7 +361,7 @@ Matrix3D Matrix3D::inverse() const {
         out.init();
         return out;
 
-    det = 1.0 / det;
+    det = 1.0f / det;
 
     for (int i = 0; i < 16; i++)
         out.matrix[i] = out.matrix[i] * det;
