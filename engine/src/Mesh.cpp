@@ -83,12 +83,12 @@ void Mesh::compile() {
             glBufferData(GL_ARRAY_BUFFER, compiledVertexCount * 6 * sizeof(float), compiledVertex, GL_STATIC_DRAW);
 
             glEnableClientState(GL_VERTEX_ARRAY);
-            glVertexPointer(3, GL_FLOAT, 6 * sizeof(float), BUFFER_OFFSET(0));     //The starting point of the VBO, for the vertices
             glEnableClientState(GL_NORMAL_ARRAY);
+            glVertexPointer(3, GL_FLOAT, 6 * sizeof(float), BUFFER_OFFSET(0));     //The starting point of the VBO, for the vertices
             glNormalPointer(GL_FLOAT, 6 * sizeof(float), BUFFER_OFFSET(3 * sizeof(float)));     //The starting point of normals
             glDisableClientState(GL_NORMAL_ARRAY);
             glDisableClientState(GL_VERTEX_ARRAY);
-            
+
             glBindBuffer(GL_ARRAY_BUFFER, 0);
             // Don't need this anymore
             delete compiledVertex;
@@ -102,7 +102,13 @@ void Mesh::render() {
 
     if (vaoIdx[0] > 0 && vboIdx[0] > 0) {
         glBindVertexArray(vaoIdx[0]);
+        glEnableClientState(GL_NORMAL_ARRAY);
+        glEnableClientState(GL_VERTEX_ARRAY);
+
         glDrawArrays(GL_TRIANGLES, 0, compiledVertexCount);
+
+        glDisableClientState(GL_VERTEX_ARRAY);
+        glDisableClientState(GL_NORMAL_ARRAY);
         glBindVertexArray(0);
     } else if (compiledVertex) {
         glEnableClientState(GL_NORMAL_ARRAY);
