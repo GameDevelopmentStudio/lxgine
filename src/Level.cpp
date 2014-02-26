@@ -131,11 +131,10 @@ void Level::update() {
     GameState::update();
 
     if (game->input->keyPressed('v')) {
-        game->input->keyPressed('v');
         if (camera->isLockedOn()) {
             camera->stopLock(exampleEntity);
         } else {
-            camera->lockOn(exampleEntity);
+            camera->lockOn(exampleEntity, exampleEntity->getTransform());
         }
     }
 

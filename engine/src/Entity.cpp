@@ -109,6 +109,9 @@ double Entity::getRoll() {
     return roll;
 }
 
+const Matrix3D *Entity::getTransform() {
+    return transform;
+}
 void Entity::setDelegate(LockableTargetDelegate *delegate) {
     LockableTarget::setDelegate(delegate);
 

@@ -8,7 +8,7 @@ LockableTargetDelegate *LockableTarget::getDelegate() {
     return delegate;
 }
 
-void LockableTargetDelegate::lockOn(LockableTarget* target) {
+void LockableTargetDelegate::lockOn(LockableTarget* target, const Matrix3D *transform) {
     target->setDelegate(this);
 }
 

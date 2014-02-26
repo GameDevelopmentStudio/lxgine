@@ -32,6 +32,7 @@ class Entity : public LockableTarget {
     double getPitch();
     double getYaw();
     double getRoll();
+    const Matrix3D *getTransform();
 
     // LockableTarget
     virtual void setDelegate(LockableTargetDelegate *delegate);

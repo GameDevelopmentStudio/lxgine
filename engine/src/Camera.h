@@ -48,7 +48,7 @@ public:
     void toggleFPS();
 
     // LocableDelegateMethods
-    virtual void lockOn(LockableTarget* target);
+    virtual void lockOn(LockableTarget* target, const Matrix3D *transform);
     virtual bool isLockedOn();
     virtual void stopLock(LockableTarget* target);
     virtual void targetDidRotate(LockableTarget *target, float rx, float ry, float rz);

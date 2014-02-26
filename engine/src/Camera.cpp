@@ -180,10 +180,12 @@ void Camera::orbitate(float rx, float ry) {
 
 // LockableTargetDelegate Methods
 
-void Camera::lockOn(LockableTarget* target) {
+void Camera::lockOn(LockableTarget* target, const Matrix3D *transform) {
     targetInverseTransform = new Matrix3D();
-
-    LockableTargetDelegate::lockOn(target);
+    
+    // Init position
+    *targetInverseTransform = transform->inverse();
+    LockableTargetDelegate::lockOn(target, transform);
 }
 
 bool Camera::isLockedOn() {
