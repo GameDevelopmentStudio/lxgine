@@ -1,5 +1,5 @@
 #include "Entity.h"
-#include "Matrix3D.h"
+#include "Matrix44.h"
 #include "Vector4.h"
 #include "Glut.h"
 
@@ -10,18 +10,14 @@ Entity::Entity() {
     // no camera has locked on this entity yet
     delegate = NULL;
 
-    transform = new Matrix3D();
-    pos = new Vector4f();
     pitch = yaw = roll = 0;
 }
 
 Entity::~Entity() {
-    delete transform;
-    delete pos;
 }
 
 void Entity::init() {
-    transform->init();
+    transform.init();
 
     if (delegate) {
         delegate->targetResetPosition(this, transform);
@@ -41,7 +37,7 @@ void Entity::Render() {
     glPushMatrix();
 
         // Apply expected transforms
-        transform->commit();
+        transform.commit();
 
         render();
 
@@ -50,16 +46,16 @@ void Entity::Render() {
 }
 
 void Entity::translate(float tx, float ty, float tz) {
-    transform->translate(tx, ty, tz);
+    transform.translate(tx, ty, tz);
     
     if (tx) {
-        pos->x += tx;
+        pos.getX() += tx;
     }
     if (ty) {
-        pos->y += ty;
+        pos.getY() += ty;
     }
     if (tz) {
-        pos->z += tz;
+        pos.getZ() += tz;
     }
 
     if (delegate) {
@@ -70,11 +66,11 @@ void Entity::translate(float tx, float ty, float tz) {
 void Entity::rotate(float rx, float ry, float rz) {
 
     if (ry == 0) {
-        transform->rotate(-pitch, 0.0, 0.0);
-        transform->rotate(rx, ry, rz);
-        transform->rotate(pitch, 0.0, 0.0);
+        transform.rotate(-pitch, 0.0, 0.0);
+        transform.rotate(rx, ry, rz);
+        transform.rotate(pitch, 0.0, 0.0);
     } else {
-        transform->rotate(rx, ry, rz);
+        transform.rotate(rx, ry, rz);
     }
 
 
@@ -93,8 +89,12 @@ void Entity::rotate(float rx, float ry, float rz) {
     }
 }
 
-Vector4f Entity::getPos() {
-    return Vector4f(*pos);
+const Vec4& Entity::getPos() const {
+    return pos;
+}
+
+Vec4& Entity::getPos() {
+    return pos;
 }
 
 double Entity::getPitch() {
@@ -109,9 +109,14 @@ double Entity::getRoll() {
     return roll;
 }
 
-const Matrix3D *Entity::getTransform() {
+const Transform Entity::getTransform() const {
     return transform;
 }
+
+Transform Entity::getTransform() {
+    return transform;
+}
+
 void Entity::setDelegate(LockableTargetDelegate *delegate) {
     LockableTarget::setDelegate(delegate);
 

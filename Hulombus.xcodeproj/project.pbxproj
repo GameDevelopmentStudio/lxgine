@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F22FEC7D1B118846009A0598 /* Transform3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F22FEC7C1B118846009A0598 /* Transform3D.cpp */; };
+		F275BC751A0877BC000C9941 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F275BC741A0877BC000C9941 /* GLUT.framework */; };
+		F275BC771A0877C9000C9941 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F275BC761A0877C9000C9941 /* OpenGL.framework */; };
 		F2A5AFE816FFB52E002FDD12 /* Derai.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFAF16FFB47F002FDD12 /* Derai.cpp */; };
 		F2A5AFEA16FFB52E002FDD12 /* Level.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFB116FFB47F002FDD12 /* Level.cpp */; };
 		F2A5AFEC16FFB52E002FDD12 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFB316FFB47F002FDD12 /* Player.cpp */; };
@@ -18,7 +21,6 @@
 		F2A5AFF816FFB52E002FDD12 /* Glut.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFBF16FFB48D002FDD12 /* Glut.cpp */; };
 		F2A5AFFA16FFB52E002FDD12 /* Input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFC116FFB48D002FDD12 /* Input.cpp */; };
 		F2A5AFFC16FFB52E002FDD12 /* LockableTarget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFC316FFB48D002FDD12 /* LockableTarget.cpp */; };
-		F2A5AFFE16FFB52E002FDD12 /* Matrix3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFC516FFB48D002FDD12 /* Matrix3D.cpp */; };
 		F2A5B00016FFB52E002FDD12 /* Mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFC716FFB48D002FDD12 /* Mesh.cpp */; };
 		F2A5B00416FFB52E002FDD12 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFCB16FFB48D002FDD12 /* Shader.cpp */; };
 		F2A5B00616FFB52E002FDD12 /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFCD16FFB48D002FDD12 /* Texture.cpp */; };
@@ -26,8 +28,6 @@
 		F2A5B00A16FFB52E002FDD12 /* TexturePPM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFD116FFB48D002FDD12 /* TexturePPM.cpp */; };
 		F2A5B00C16FFB52E002FDD12 /* TextureTGA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFD316FFB48D002FDD12 /* TextureTGA.cpp */; };
 		F2A5B00E16FFB52E002FDD12 /* Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFD516FFB48D002FDD12 /* Utils.cpp */; };
-		F2A5B01116FFB537002FDD12 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2A5B01016FFB537002FDD12 /* OpenGL.framework */; };
-		F2A5B01316FFB53F002FDD12 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2A5B01216FFB53F002FDD12 /* GLUT.framework */; };
 		F2A5B04716FFC085002FDD12 /* floortile.ppm in CopyFiles */ = {isa = PBXBuildFile; fileRef = F2A5B03C16FFC06B002FDD12 /* floortile.ppm */; };
 		F2A5B04816FFC085002FDD12 /* floortile.tga in CopyFiles */ = {isa = PBXBuildFile; fileRef = F2A5B03D16FFC06B002FDD12 /* floortile.tga */; };
 		F2A5B04A16FFC1AF002FDD12 /* diffuseLighting.fsh in CopyFiles */ = {isa = PBXBuildFile; fileRef = F2A5B03E16FFC07E002FDD12 /* diffuseLighting.fsh */; };
@@ -65,7 +65,17 @@
 /* Begin PBXFileReference section */
 		F20408331833704100997BA2 /* Vector2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Vector2.h; path = engine/src/Vector2.h; sourceTree = "<group>"; };
 		F20408361833778700997BA2 /* Vector3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Vector3.h; path = engine/src/Vector3.h; sourceTree = "<group>"; };
+		F22FEC741B101E0D009A0598 /* Vector3.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Vector3.inl; path = engine/src/Vector3.inl; sourceTree = "<group>"; };
+		F22FEC751B101E7E009A0598 /* Vector2.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Vector2.inl; path = engine/src/Vector2.inl; sourceTree = "<group>"; };
+		F22FEC761B101ECE009A0598 /* Vector4.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Vector4.inl; path = engine/src/Vector4.inl; sourceTree = "<group>"; };
+		F22FEC781B1113AF009A0598 /* TypeDefinitions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TypeDefinitions.h; path = engine/src/TypeDefinitions.h; sourceTree = "<group>"; };
+		F22FEC791B111ADC009A0598 /* Transform3D.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Transform3D.inl; path = engine/src/Transform3D.inl; sourceTree = "<group>"; };
+		F22FEC7A1B111ADC009A0598 /* Transform3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Transform3D.h; path = engine/src/Transform3D.h; sourceTree = "<group>"; };
+		F22FEC7C1B118846009A0598 /* Transform3D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Transform3D.cpp; path = engine/src/Transform3D.cpp; sourceTree = "<group>"; };
 		F237354818347B160099A194 /* Vector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Vector.h; path = engine/src/Vector.h; sourceTree = "<group>"; };
+		F275BC741A0877BC000C9941 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
+		F275BC761A0877C9000C9941 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		F275BC781A087A3C000C9941 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		F2A5AFAF16FFB47F002FDD12 /* Derai.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Derai.cpp; path = src/Derai.cpp; sourceTree = "<group>"; };
 		F2A5AFB016FFB47F002FDD12 /* Derai.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Derai.h; path = src/Derai.h; sourceTree = "<group>"; };
 		F2A5AFB116FFB47F002FDD12 /* Level.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Level.cpp; path = src/Level.cpp; sourceTree = "<group>"; };
@@ -88,8 +98,8 @@
 		F2A5AFC216FFB48D002FDD12 /* Input.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Input.h; path = engine/src/Input.h; sourceTree = "<group>"; };
 		F2A5AFC316FFB48D002FDD12 /* LockableTarget.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = LockableTarget.cpp; path = engine/src/LockableTarget.cpp; sourceTree = "<group>"; };
 		F2A5AFC416FFB48D002FDD12 /* LockableTarget.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LockableTarget.h; path = engine/src/LockableTarget.h; sourceTree = "<group>"; };
-		F2A5AFC516FFB48D002FDD12 /* Matrix3D.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Matrix3D.cpp; path = engine/src/Matrix3D.cpp; sourceTree = "<group>"; };
-		F2A5AFC616FFB48D002FDD12 /* Matrix3D.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Matrix3D.h; path = engine/src/Matrix3D.h; sourceTree = "<group>"; };
+		F2A5AFC516FFB48D002FDD12 /* Matrix44.inl */ = {isa = PBXFileReference; lastKnownFileType = text; name = Matrix44.inl; path = engine/src/Matrix44.inl; sourceTree = "<group>"; };
+		F2A5AFC616FFB48D002FDD12 /* Matrix44.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Matrix44.h; path = engine/src/Matrix44.h; sourceTree = "<group>"; };
 		F2A5AFC716FFB48D002FDD12 /* Mesh.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Mesh.cpp; path = engine/src/Mesh.cpp; sourceTree = "<group>"; };
 		F2A5AFC816FFB48D002FDD12 /* Mesh.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Mesh.h; path = engine/src/Mesh.h; sourceTree = "<group>"; };
 		F2A5AFCA16FFB48D002FDD12 /* Vector4.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Vector4.h; path = engine/src/Vector4.h; sourceTree = "<group>"; };
@@ -106,8 +116,6 @@
 		F2A5AFD516FFB48D002FDD12 /* Utils.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Utils.cpp; path = engine/src/Utils.cpp; sourceTree = "<group>"; };
 		F2A5AFD616FFB48D002FDD12 /* Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Utils.h; path = engine/src/Utils.h; sourceTree = "<group>"; };
 		F2A5AFDE16FFB515002FDD12 /* hulombus */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = hulombus; sourceTree = BUILT_PRODUCTS_DIR; };
-		F2A5B01016FFB537002FDD12 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/OpenGL.framework; sourceTree = DEVELOPER_DIR; };
-		F2A5B01216FFB53F002FDD12 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/GLUT.framework; sourceTree = DEVELOPER_DIR; };
 		F2A5B03C16FFC06B002FDD12 /* floortile.ppm */ = {isa = PBXFileReference; lastKnownFileType = file; name = floortile.ppm; path = assets/textures/floortile.ppm; sourceTree = "<group>"; };
 		F2A5B03D16FFC06B002FDD12 /* floortile.tga */ = {isa = PBXFileReference; lastKnownFileType = file; name = floortile.tga; path = assets/textures/floortile.tga; sourceTree = "<group>"; };
 		F2A5B03E16FFC07E002FDD12 /* diffuseLighting.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = diffuseLighting.fsh; path = engine/assets/shaders/diffuseLighting.fsh; sourceTree = "<group>"; };
@@ -121,14 +129,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F2A5B01316FFB53F002FDD12 /* GLUT.framework in Frameworks */,
-				F2A5B01116FFB537002FDD12 /* OpenGL.framework in Frameworks */,
+				F275BC751A0877BC000C9941 /* GLUT.framework in Frameworks */,
+				F275BC771A0877C9000C9941 /* OpenGL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F22FEC771B111387009A0598 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				F22FEC781B1113AF009A0598 /* TypeDefinitions.h */,
+			);
+			name = Base;
+			sourceTree = "<group>";
+		};
 		F253158617057B5000A01240 /* Game */ = {
 			isa = PBXGroup;
 			children = (
@@ -145,12 +161,18 @@
 		F253158717057B6C00A01240 /* Math */ = {
 			isa = PBXGroup;
 			children = (
-				F20408361833778700997BA2 /* Vector3.h */,
 				F20408331833704100997BA2 /* Vector2.h */,
-				F2A5AFC516FFB48D002FDD12 /* Matrix3D.cpp */,
-				F2A5AFC616FFB48D002FDD12 /* Matrix3D.h */,
+				F22FEC751B101E7E009A0598 /* Vector2.inl */,
+				F20408361833778700997BA2 /* Vector3.h */,
+				F22FEC741B101E0D009A0598 /* Vector3.inl */,
 				F2A5AFCA16FFB48D002FDD12 /* Vector4.h */,
+				F22FEC761B101ECE009A0598 /* Vector4.inl */,
 				F237354818347B160099A194 /* Vector.h */,
+				F2A5AFC616FFB48D002FDD12 /* Matrix44.h */,
+				F2A5AFC516FFB48D002FDD12 /* Matrix44.inl */,
+				F22FEC7A1B111ADC009A0598 /* Transform3D.h */,
+				F22FEC7C1B118846009A0598 /* Transform3D.cpp */,
+				F22FEC791B111ADC009A0598 /* Transform3D.inl */,
 			);
 			name = Math;
 			sourceTree = "<group>";
@@ -222,6 +244,7 @@
 		F2A5AFD716FFB496002FDD12 /* Engine */ = {
 			isa = PBXGroup;
 			children = (
+				F22FEC771B111387009A0598 /* Base */,
 				F253158717057B6C00A01240 /* Math */,
 				F253158817057B8800A01240 /* Glut */,
 				F253158A17057BDA00A01240 /* Textures */,
@@ -264,8 +287,9 @@
 		F2A5B01416FFB579002FDD12 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F2A5B01216FFB53F002FDD12 /* GLUT.framework */,
-				F2A5B01016FFB537002FDD12 /* OpenGL.framework */,
+				F275BC781A087A3C000C9941 /* Cocoa.framework */,
+				F275BC761A0877C9000C9941 /* OpenGL.framework */,
+				F275BC741A0877BC000C9941 /* GLUT.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -360,7 +384,7 @@
 				F2A5AFF816FFB52E002FDD12 /* Glut.cpp in Sources */,
 				F2A5AFFA16FFB52E002FDD12 /* Input.cpp in Sources */,
 				F2A5AFFC16FFB52E002FDD12 /* LockableTarget.cpp in Sources */,
-				F2A5AFFE16FFB52E002FDD12 /* Matrix3D.cpp in Sources */,
+				F22FEC7D1B118846009A0598 /* Transform3D.cpp in Sources */,
 				F2A5B00016FFB52E002FDD12 /* Mesh.cpp in Sources */,
 				F2A5B00416FFB52E002FDD12 /* Shader.cpp in Sources */,
 				F2A5B00616FFB52E002FDD12 /* Texture.cpp in Sources */,
@@ -378,6 +402,7 @@
 		F279336A16FFB43900A788E6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				LIBRARY_SEARCH_PATHS = "";
 				ONLY_ACTIVE_ARCH = YES;
 				USER_HEADER_SEARCH_PATHS = "";
@@ -387,6 +412,7 @@
 		F279336B16FFB43900A788E6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				LIBRARY_SEARCH_PATHS = "";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
@@ -417,13 +443,17 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+				);
 				LIBRARY_SEARCH_PATHS = (
 					/usr/lib/,
-					/usr/local/lib,
+					/usr/local/lib/,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = "-lGLEW";
+				OTHER_LDFLAGS = "-lglew";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				USER_HEADER_SEARCH_PATHS = "/usr/include/ /usr/local/include";
@@ -449,13 +479,17 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+				);
 				LIBRARY_SEARCH_PATHS = (
 					/usr/lib/,
-					/usr/local/lib,
+					/usr/local/lib/,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = "-lGLEW";
+				OTHER_LDFLAGS = "-lglew";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				USER_HEADER_SEARCH_PATHS = "/usr/include/ /usr/local/include";

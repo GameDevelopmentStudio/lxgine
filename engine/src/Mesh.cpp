@@ -35,8 +35,8 @@ void Mesh::init(int nvertex, int nnormals) {
     this->nnormals = nnormals;
     this->nfaces = nnormals;
 
-    vertexPool = new Vector4f[nvertex];
-    normalPool = new Vector4f[nnormals];
+    vertexPool = new Vec4[nvertex];
+    normalPool = new Vec4[nnormals];
     faces = new Face[nfaces];
 }
 
@@ -129,8 +129,8 @@ void Mesh::render() {
             for (int j = 0; j < faces[i].nvertex; j++) {
                 int iV = faces[i].vertexNormalPairs[j].vertex;
                 int iN = faces[i].vertexNormalPairs[j].normal;
-                glNormal3f(normalPool[iN].x, normalPool[iN].y, normalPool[iN].z);
-                glVertex3f(vertexPool[iV].x, vertexPool[iV].y, vertexPool[iV].z);
+                glNormal3f(normalPool[iN].getX(), normalPool[iN].getY(), normalPool[iN].getZ());
+                glVertex3f(vertexPool[iV].getX(), vertexPool[iV].getY(), vertexPool[iV].getZ());
             }
             glEnd();
         }

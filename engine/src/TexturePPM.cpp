@@ -18,7 +18,7 @@ unsigned char* TexturePPM::mallocStringWithPPMFile(const char *filename, int &wi
      FILE* fp;
      int i, w, h, d;
      unsigned char* image;
-     char head[70];		// max line <= 70 in PPM (per spec).
+     char head[70];        // max line <= 70 in PPM (per spec).
 
      fp = fopen( filename, "rb" );
      if ( !fp ) {
@@ -38,7 +38,7 @@ unsigned char* TexturePPM::mallocStringWithPPMFile(const char *filename, int &wi
      i = 0;
      while( i < 3 ) {
         fgets( head, 70, fp );
-        if ( head[0] == '#' )		// skip comments.
+        if ( head[0] == '#' )        // skip comments.
          continue;
         if ( i == 0 )
          i += sscanf( head, "%d %d %d", &w, &h, &d );

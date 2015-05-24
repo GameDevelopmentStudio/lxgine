@@ -10,9 +10,9 @@ class Mesh {
 public:
     // Uncompiled
     int nvertex;
-    Vector4f *vertexPool;
+    Vec4 *vertexPool;
     int nnormals;
-    Vector4f *normalPool;
+    Vec4 *normalPool;
     int nfaces;
     Face *faces;
 

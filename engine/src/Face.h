@@ -19,8 +19,8 @@ public:
 
     virtual void init(int nvertex);
 
-    Vector4f computeNormal(Vector4f *vertexPool);
-    Vector4f computeCenter(Vector4f *vertexPool);
+    Vec4 computeNormal(Vec4 *vertexPool);
+    Vec4 computeCenter(Vec4 *vertexPool);
 
 private:
     int nextVertex(int idx);

@@ -4,25 +4,26 @@
 
 #include <math.h>
 #include <iostream>
-
+LockableTarget *target2;
 Camera::Camera() {
     targetInverseTransform = NULL;
 }
 
 Camera::~Camera() {
-    if (targetInverseTransform)
+    if (targetInverseTransform) {
         delete targetInverseTransform;
+    }
 }
 
 void Camera::init() {
-    eye.x = 10.0; eye.y = 10.0; 
-    eye.z = 10.0; eye.v = 1;
-    Vector4f target = Vector4f(0.0, 0.0, 0.0, 1);
+    eye.getX() = 10.0; eye.getY() = 10.0;
+    eye.getZ() = 10.0; eye.getW() = 1;
+    Vec4 target = Vec4(0.0, 0.0, 0.0, 1);
     lookAt = eye - target;
     focalLength = lookAt.module();
     lookAt = normalizedVector(lookAt);
-    up = normalizedVector(Vector4f(-100, 200, -100, 0));
-    /* up = Vector4f(0,1,0,0); */
+    up = normalizedVector(Vec4(-100, 200, -100, 0));
+    /* up = Vec4(0,1,0,0); */
     right = crossProduct(up, lookAt);
 
     viewVolume.N = 2;
@@ -38,27 +39,28 @@ void Camera::init() {
         glLoadIdentity();
 }
 
-Vector4f Camera::getTarget() {
+Vec4 Camera::getTarget() {
     return eye - focalLength*lookAt;
 }
 
 void Camera::translate(float x, float y, float z) {
 
-    Vector4f trans = Vector4f(x, y, z, 0.0);
+    Vec4 trans = Vec4(x, y, z, 0.0);
 
     /* // first we get camera.eye system of coordinates */
-    /* Vector4f n = eye - look; */
+    /* Vec4 n = eye - look; */
     /* n = normalizedVector(n); */
 
-    /* Vector4f u = crossProduct(up, n); */
-    /* Vector4f v = crossProduct(n, u); */
+    /* Vec4 u = crossProduct(up, n); */
+    /* Vec4 v = crossProduct(n, u); */
 
     // then we transform it (resulting matrix is kinda simple
     // so let's put the multiplication output here
     // notice how no eye vars appear here, that's because
     // desp is a vector and so desp.v is 0
-    Vector4f desp = Vector4f(right.x*trans.x + up.x*trans.y + lookAt.x*trans.z,
-                                                         right.y*trans.x + up.y*trans.y + lookAt.y*trans.z, right.z*trans.x + up.z*trans.y + lookAt.z*trans.z, 0); 
+    Vec4 desp = Vec4(right.getX()*trans.getX() + up.getX()*trans.getY() + lookAt.getX()*trans.getZ(),
+                     right.getY()*trans.getX() + up.getY()*trans.getY() + lookAt.getY()*trans.getZ(),
+                     right.getZ()*trans.getX() + up.getZ()*trans.getY() + lookAt.getZ()*trans.getZ(), 0);
     eye = eye + desp;
 }
 
@@ -99,7 +101,7 @@ void Camera::translateZ(float z) {
 
 void Camera::pitch(float alpha) {
     // Rotate lookAt vector around right vector
-    Matrix3D pitch = matrixWithRotationOnAxis(alpha, right);
+    Mat44 pitch = matrixWithRotationOnAxis(alpha, right);
     // lookAt pitch modification implies changes on target point, 
     // and also on the up vector
     lookAt = pitch * lookAt;
@@ -114,18 +116,18 @@ void Camera::yaw(float alpha) {
     // pole.
 
     // planeNormal is the normal vector of the plane
-    Vector4f planeNormal = crossProduct(right, Vector4f(0,1,0,0));
+    Vec4 planeNormal = crossProduct(right, Vec4(0,1,0,0));
     // v_axis is the projection of up agains the plane
     // v_axis is computed by substraction to up the projection of up in the 
     // planeNormalVector. Said projection has the same direction as planeNormal,
     // and scalarDot(placeNormal,up) as module (since we're dealing with 
     // normalized vectors, we can just multiply these values)
-    Vector4f v_axis = up - scalarDot(planeNormal,up)*planeNormal;
+    Vec4 v_axis = up - scalarDot(planeNormal,up)*planeNormal;
     v_axis = normalizedVector(v_axis);
 
     // Rotate around the computed axis
-    Matrix3D yaw = matrixWithRotationOnAxis(alpha, -v_axis);
-    /* Matrix3D yaw = matrixWithRotationOnAxis(alpha, up); */
+    Mat44 yaw = matrixWithRotationOnAxis(alpha, -v_axis);
+    /* Mat44 yaw = matrixWithRotationOnAxis(alpha, up); */
     lookAt = yaw * lookAt;
     up = yaw * up;
     right = crossProduct(up, lookAt);
@@ -133,7 +135,7 @@ void Camera::yaw(float alpha) {
 
 void Camera::roll(float alpha) {
     // Rotate up vector arount lookAt
-    Matrix3D roll = matrixWithRotationOnAxis(alpha, lookAt);
+    Mat44 roll = matrixWithRotationOnAxis(alpha, lookAt);
     // Only up and right vectors are modified after the operation
     up = roll * up;
     right = crossProduct(up, lookAt);
@@ -153,13 +155,13 @@ void Camera::orbitate(float rx, float ry) {
         // Yaw orbitation
         // See Camera::yaw for further explanation
         
-        Vector4f target = getTarget();
-        Vector4f planeNormal = crossProduct(right, Vector4f(0,1,0,0));
-        Vector4f v_axis = up - scalarDot(planeNormal,up)*planeNormal;
+        Vec4 target = getTarget();
+        Vec4 planeNormal = crossProduct(right, Vec4(0,1,0,0));
+        Vec4 v_axis = up - scalarDot(planeNormal,up)*planeNormal;
         v_axis = normalizedVector(v_axis);
 
         // Rotate eye around the computed camera axis
-        Matrix3D yaw = matrixWithRotationOnAxis(rx, v_axis);
+        Mat44 yaw = matrixWithRotationOnAxis(rx, v_axis);
         lookAt = yaw * lookAt;
         eye = target + focalLength*lookAt;
         up = yaw * up;
@@ -170,8 +172,8 @@ void Camera::orbitate(float rx, float ry) {
         // See Camera::Pitch for further explanation
 
         // Rotate eye vector around right vector
-        Matrix3D pitch = matrixWithRotationOnAxis(ry, right);
-        Vector4f target = getTarget();
+        Mat44 pitch = matrixWithRotationOnAxis(ry, right);
+        Vec4 target = getTarget();
         lookAt = pitch * lookAt;
         eye = target + focalLength*lookAt;
         up = crossProduct(lookAt, right);
@@ -180,11 +182,12 @@ void Camera::orbitate(float rx, float ry) {
 
 // LockableTargetDelegate Methods
 
-void Camera::lockOn(LockableTarget* target, const Matrix3D *transform) {
-    targetInverseTransform = new Matrix3D();
+void Camera::lockOn(LockableTarget* target, const Transform& transform) {
+    targetInverseTransform = new Transform();
     
     // Init position
-    *targetInverseTransform = transform->inverse();
+    target2 = target;
+    *targetInverseTransform = transform.getMatrix().inverse();
     LockableTargetDelegate::lockOn(target, transform);
 }
 
@@ -201,7 +204,7 @@ void Camera::stopLock(LockableTarget* target) {
     }
 }
 
-void Camera::targetDidRotate(LockableTarget *target, float rx, float ry, float rz) {
+void Camera::targetDidRotate(LockableTarget *target, float rx, float ry, float rz) {return;
 
     if (ry == 0) {
         targetInverseTransform->rotate(((Entity *) target)->pitch, 0.0f, 0.0f, false);
@@ -214,12 +217,12 @@ void Camera::targetDidRotate(LockableTarget *target, float rx, float ry, float r
     /* targetInverseTransform->rotate(-rx, -ry, -rz, false); */
 }
 
-void Camera::targetDidTranslate(LockableTarget *target, float tx, float ty, float tz) {
+void Camera::targetDidTranslate(LockableTarget *target, float tx, float ty, float tz) {return;
     targetInverseTransform->translate(-tx, -ty, -tz, false);
 }
 
-void Camera::targetResetPosition(LockableTarget *target, const Matrix3D *transform) {
-    *targetInverseTransform = transform->inverse();
+void Camera::targetResetPosition(LockableTarget* target, const Transform& transform) {return;
+    targetInverseTransform->setMatrix(transform.getMatrix().inverse());
 }
 
 void Camera::toggleFPS() {
@@ -229,6 +232,8 @@ void Camera::toggleFPS() {
 // Apply changes
 
 void Camera::commit() {
+    Mat44 transform;
+    glGetFloatv(GL_MODELVIEW_MATRIX, transform.getArrayOfConsecutiveRows());
     if (targetInverseTransform) {
         // If lockOn is activated, targetInverseTransform contains
         // the necessary transform to follow the target
@@ -239,16 +244,17 @@ void Camera::commit() {
             glRotated(45, 1, 0, 0);
             glTranslated(0, -5, -5);
         }
+        *targetInverseTransform = ((Entity *) target2)->getTransform().getMatrix().inverse();
         targetInverseTransform->commit();
     } else {
         // If mode is not lockOn, set up view with our coordinates
         // TODO: update our coordinates during lockOn
-        Vector4f target = getTarget();
+        Vec4 target = getTarget();
 
         glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
-        gluLookAt(eye.x, eye.y, eye.z,
-                            target.x, target.y, target.z,
-                            up.x, up.y, up.z);
+        gluLookAt(eye.getX(), eye.getY(), eye.getZ(),
+                  target.getX(), target.getY(), target.getZ(),
+                  up.getX(), up.getY(), up.getZ());
     }
 }

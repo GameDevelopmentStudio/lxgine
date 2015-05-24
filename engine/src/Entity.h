@@ -3,7 +3,7 @@
 
 #include "LockableTarget.h"
 #include "Vector.h"
-#include "Matrix3D.h"
+#include "Transform3D.h"
 
 class Game;
 class GameState;
@@ -24,23 +24,27 @@ class Entity : public LockableTarget {
     virtual void Render();
 
     // Transformation setters
-    virtual void translate(float tx, float ty, float tz);
-    virtual void rotate(float rx, float ry, float rz);
+    virtual void translate(real tx, real ty, real tz);
+    virtual void rotate(real rx, real ry, real rz);
 
     // Transformation getters
-    Vector4f getPos();
+    const Vec4& getPos() const;
+    Vec4& getPos();
+    
     double getPitch();
     double getYaw();
     double getRoll();
-    const Matrix3D *getTransform();
+    
+    const Transform getTransform() const;
+    Transform getTransform();
 
     // LockableTarget
     virtual void setDelegate(LockableTargetDelegate *delegate);
 
     double pitch, yaw, roll;
  protected:
-    Vector4f *pos;
-    Matrix3D *transform;
+    Vec4 pos;
+    Transform transform;
 };
 
 #endif

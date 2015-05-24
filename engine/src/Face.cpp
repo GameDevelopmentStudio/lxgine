@@ -17,37 +17,37 @@ int Face::nextVertex(int idx) {
     return (idx + 1) % nvertex;
 }
 
-Vector4f Face::computeNormal(Vector4f *vertexPool) {
+Vec4 Face::computeNormal(Vec4 *vertexPool) {
     
-    Vector4f out = Vector4f(0, 0, 0, 0);
+    Vec4 out = Vec4(0, 0, 0, 0);
     for (int i = 0; i < nvertex; i++) {
         // (yi - suc(yi))*(zi + suc(zi)
-        out.x += (vertexPool[vertexNormalPairs[i].vertex].y - vertexPool[vertexNormalPairs[nextVertex(i)].vertex].y) *
-                    (vertexPool[vertexNormalPairs[i].vertex].z + vertexPool[vertexNormalPairs[nextVertex(i)].vertex].z);
+        out.getX() += (vertexPool[vertexNormalPairs[i].vertex].getY() - vertexPool[vertexNormalPairs[nextVertex(i)].vertex].getY()) *
+                    (vertexPool[vertexNormalPairs[i].vertex].getZ() + vertexPool[vertexNormalPairs[nextVertex(i)].vertex].getZ());
 
         // (zi - suc(zi))*(xi + suc(xi)
-        out.y += (vertexPool[vertexNormalPairs[i].vertex].z - vertexPool[vertexNormalPairs[nextVertex(i)].vertex].z) *
-                    (vertexPool[vertexNormalPairs[i].vertex].x + vertexPool[vertexNormalPairs[nextVertex(i)].vertex].x);
+        out.getY() += (vertexPool[vertexNormalPairs[i].vertex].getZ() - vertexPool[vertexNormalPairs[nextVertex(i)].vertex].getZ()) *
+                    (vertexPool[vertexNormalPairs[i].vertex].getX() + vertexPool[vertexNormalPairs[nextVertex(i)].vertex].getX());
 
         // (xi - suc(xi))*(yi + suc(yi)
-        out.z += (vertexPool[vertexNormalPairs[i].vertex].x - vertexPool[vertexNormalPairs[nextVertex(i)].vertex].x) *
-                    (vertexPool[vertexNormalPairs[i].vertex].y + vertexPool[vertexNormalPairs[nextVertex(i)].vertex].y);
+        out.getZ() += (vertexPool[vertexNormalPairs[i].vertex].getX() - vertexPool[vertexNormalPairs[nextVertex(i)].vertex].getX()) *
+                    (vertexPool[vertexNormalPairs[i].vertex].getY() + vertexPool[vertexNormalPairs[nextVertex(i)].vertex].getY());
     }
-	return out;
+    return out;
 }
 
-Vector4f Face::computeCenter(Vector4f *vertexPool) {
+Vec4 Face::computeCenter(Vec4 *vertexPool) {
     // TODO: test
-    Vector4f center = Vector4f(0, 0, 0, 1);
+    Vec4 center = Vec4(0, 0, 0, 1);
     for (int i = 0; i < nvertex; i++) {
-        center.x += vertexPool[vertexNormalPairs[i].vertex].x;
-        center.y += vertexPool[vertexNormalPairs[i].vertex].y;
-        center.z += vertexPool[vertexNormalPairs[i].vertex].z;
+        center.getX() += vertexPool[vertexNormalPairs[i].vertex].getX();
+        center.getY() += vertexPool[vertexNormalPairs[i].vertex].getY();
+        center.getZ() += vertexPool[vertexNormalPairs[i].vertex].getZ();
     }
 
-    center.x /= (float) nvertex;
-    center.y /= (float) nvertex;
-    center.z /= (float) nvertex;
+    center.getX() /= (float) nvertex;
+    center.getY() /= (float) nvertex;
+    center.getZ() /= (float) nvertex;
         
     return center;
 }

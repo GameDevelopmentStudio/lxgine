@@ -33,14 +33,14 @@ void Player::init() {
 
     m = new Mesh();
     m->init(8, 12);
-    m->vertexPool[0] = Vector4f(-0.5, -0.5, -0.5, 1);
-    m->vertexPool[1] = Vector4f(-0.5, -0.5, 0.5, 1);
-    m->vertexPool[2] = Vector4f(-0.5, 0.5, -0.5, 1);
-    m->vertexPool[3] = Vector4f(-0.5, 0.5, 0.5, 1);
-    m->vertexPool[4] = Vector4f(0.5, -0.5, -0.5, 1);
-    m->vertexPool[5] = Vector4f(0.5, -0.5, 0.5, 1);
-    m->vertexPool[6] = Vector4f(0.5, 0.5, -0.5, 1);
-    m->vertexPool[7] = Vector4f(0.5, 0.5, 0.5, 1);
+    m->vertexPool[0] = Vec4(-0.5, -0.5, -0.5, 1);
+    m->vertexPool[1] = Vec4(-0.5, -0.5, 0.5, 1);
+    m->vertexPool[2] = Vec4(-0.5, 0.5, -0.5, 1);
+    m->vertexPool[3] = Vec4(-0.5, 0.5, 0.5, 1);
+    m->vertexPool[4] = Vec4(0.5, -0.5, -0.5, 1);
+    m->vertexPool[5] = Vec4(0.5, -0.5, 0.5, 1);
+    m->vertexPool[6] = Vec4(0.5, 0.5, -0.5, 1);
+    m->vertexPool[7] = Vec4(0.5, 0.5, 0.5, 1);
     
     m->faces[0].init(3);
     m->faces[0].vertexNormalPairs[0].vertex = 4;
@@ -101,7 +101,7 @@ void Player::init() {
 }
 
 void Player::update() {
-    //if (world->camera->isLockedOn()) {
+    if (world->camera->isLockedOn()) {
         if (game->input->specialKeyCheck(GLUT_KEY_LEFT)) {
             translate(-0.5, 0, 0);
         } else if (game->input->specialKeyCheck(GLUT_KEY_RIGHT)) {
@@ -147,7 +147,7 @@ void Player::update() {
         if (game->input->keyPressed('p')) {
             world->camera->toggleFPS();
         }
-    //}
+    }
 
     // TODO: unhardcode this
     float idlation = 0.03f*sin(0.1f*i);
