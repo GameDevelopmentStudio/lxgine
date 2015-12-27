@@ -34,15 +34,97 @@ template <class T>
 Vector4<T>::~Vector4() {
 }
 
+// Getters
+
+template <class T>
+const T& Vector4<T>::getX() const {
+    return x;
+}
+
+template <class T>
+const T& Vector4<T>::getY() const {
+    return y;
+}
+
+template <class T>
+const T& Vector4<T>::getZ() const {
+    return z;
+}
+
+template <class T>
+const T& Vector4<T>::getW() const {
+    return w;
+}
+
+template <class T>
+T& Vector4<T>::getX() {
+    return x;
+}
+
+template <class T>
+T& Vector4<T>::getY() {
+    return y;
+}
+
+template <class T>
+T& Vector4<T>::getZ() {
+    return z;
+}
+
+template <class T>
+T& Vector4<T>::getW() {
+    return w;
+}
+
+template <class T>
+void Vector4<T>::setX(const T& v) {
+    x = v;
+}
+
+template <class T>
+void Vector4<T>::setY(const T& v) {
+    y = v;
+}
+
+template <class T>
+void Vector4<T>::setZ(const T& v) {
+    z = v;
+}
+
+template <class T>
+void Vector4<T>::setW(const T& v) {
+    w = v;
+}
+
+template <class T>
+const Vector2<T>& Vector4<T>::getXY() const {
+    return (*reinterpret_cast<const Vector2<T>*>(this));
+}
+
+template <class T>
+const Vector3<T>& Vector4<T>::getXYZ() const {
+    return (*reinterpret_cast<const Vector3<T>*>(this));
+}
+
+template <class T>
+Vector2<T>& Vector4<T>::getXY() {
+    return (*reinterpret_cast<Vector2<T>*>(this));
+}
+
+template <class T>
+Vector3<T>& Vector4<T>::getXYZ() {
+    return (*reinterpret_cast<Vector3<T>*>(this));
+}
+
 // N->R Functions
 
 template <class T>
-T &Vector4<T>::operator[](int i) {
+T& Vector4<T>::operator[](int i) {
     return coords[i];
 }
 
 template <class T>
-const T &Vector4<T>::operator[](int i) const {
+const T& Vector4<T>::operator[](int i) const {
     return coords[i];
 }
 
@@ -72,7 +154,7 @@ Vector4<T> normalizedVector(const Vector4<T> &v) {
 // RxR3->R3 Functions
 
 template <class T>
-Vector4<T> operator*(const float &a, const Vector4<T> &v) {
+Vector4<T> operator*(const T &a, const Vector4<T> &v) {
     return Vector4<T>(a * v.getX(),
                       a * v.getY(),
                       a * v.getZ(),
@@ -80,7 +162,7 @@ Vector4<T> operator*(const float &a, const Vector4<T> &v) {
 }
 
 template <class T>
-Vector4<T> operator*(const Vector4<T> &v, const float &a) {
+Vector4<T> operator*(const Vector4<T> &v, const T &a) {
     return Vector4<T>(v.getX() * a,
                       v.getY() * a,
                       v.getZ() * a,

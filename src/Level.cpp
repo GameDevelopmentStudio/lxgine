@@ -14,6 +14,8 @@
 #include "Utils.h"
 #include "TextureLoader.h"
 
+#include "GrcPrimitives.h"
+
 const char *diffuseTexFS = "engine/assets/shaders/diffuseTextureLighting.fsh";
 const char *diffuseVS = "engine/assets/shaders/diffuseLighting.vsh";
 const char *diffuseFS = "engine/assets/shaders/diffuseLighting.fsh";
@@ -84,21 +86,17 @@ void Level::render() {
     glLightfv(GL_LIGHT0, GL_POSITION, light0Pos);
     // Applies camera changes to the scene
 
-    glBegin(GL_LINES);
-
-    glColor3f(0.2f, 0.7f, 0.95f);
-
-    glVertex3f(0.f, 0.f, -6.f);
-    glVertex3f(10.f, 0.f, -6.f);
-
-    glVertex3f(0.f, 0.f, -6.f);
-    glVertex3f(0.f, 10.f, -6.f);
-
-    glVertex3f(0.f, 0.f, -6.f);
-    glVertex3f(0.f, 0.f, 4.f);
+    Col axisColor(0.2f, 0.7f, 0.95f, 0.7f);
+    //ColExp1 axisColor1(0.2f, 0.7f, 0.95f, 0.7f);
+    //ColExp2 axisColor2(0.2f, 0.7f, 0.95f, 0.7f);
+    GrcPrimitives::segment(Vec3(0, 0, 0), Vec3(10, 0, 0), axisColor);
+    GrcPrimitives::segment(Vec3(0, 0, 0), Vec3(0, 10, 0), axisColor);
+    GrcPrimitives::segment(Vec3(0, 0, 0), Vec3(0, 0, 10), axisColor);
     
-    glEnd();
-
+    GrcPrimitives::ray(exampleEntity->getTransform().getPosition(), exampleEntity->getTransform().getForward(), Col(1.0f, 1.0f, 1.0f, 1.0f));
+    GrcPrimitives::ray(exampleEntity->getTransform().getPosition(), exampleEntity->getTransform().getRight(), Col(1.0f, 1.0f, 1.0f, 1.0f));
+    GrcPrimitives::ray(exampleEntity->getTransform().getPosition(), exampleEntity->getTransform().getUp(), Col(1.0f, 1.0f, 1.0f, 1.0f));
+    
     floorProg->enable();
     floorProg->bindTexture("tex", floorTex->index, GL_TEXTURE_2D, 0);
     GLfloat light0Color[]={1.0f, 1.0f, 0.8f};

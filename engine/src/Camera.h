@@ -7,9 +7,9 @@
 #include "Transform3D.h"
 
 struct ViewVolume {
-    float N,F;
-    float xR, xL;
-    float yT, yB;
+    real N,F;
+    real xR, xL;
+    real yT, yB;
 };
 
 class Camera : public LockableTargetDelegate {
@@ -21,7 +21,7 @@ public:
     // Camera center
     Vec4 eye;
     // Distance to target
-    float focalLength;
+    real focalLength;
 
     // Lock on mode
     Transform* targetInverseTransform;
@@ -33,15 +33,15 @@ public:
 
     Vec4 getTarget();
 
-    void translate(float x, float y, float z);
-    void translateX(float x);
-    void translateY(float y);
-    void translateZ(float z);
+    void translate(real x, real y, real z);
+    void translateX(real x);
+    void translateY(real y);
+    void translateZ(real z);
 
-    void pitch(float alpha);
-    void yaw(float alpha);
-    void roll(float alpha);
-    void orbitate(float rx, float ry);
+    void pitch(real alpha);
+    void yaw(real alpha);
+    void roll(real alpha);
+    void orbitate(real rx, real ry);
 
     void commit();
 

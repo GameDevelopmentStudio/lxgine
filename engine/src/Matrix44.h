@@ -17,8 +17,11 @@ public:
     void init(eInitializerIdentity);
     void load(const Matrix44<T> &other);
 
-    T* getArrayOfConsecutiveRows();
-    const T* getArrayOfConsecutiveRows() const;
+    T* getAsArray();
+    const T* getAsArray() const;
+    
+    template <u8 col> const Vector4<T>& getCol() const;
+    template <u8 col> Vector4<T>& getCol();
     
     T& element(int i, int j);
     T& operator()(int i, int j);

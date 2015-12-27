@@ -16,20 +16,25 @@ public:
     ~Vector4();
 
     // Getters
-    __inline const T& getX() const { return x; }
-    __inline const T& getY() const { return y; }
-    __inline const T& getZ() const { return z; }
-    __inline const T& getW() const { return w; }
+    __inline const T& getX() const;
+    __inline const T& getY() const;
+    __inline const T& getZ() const;
+    __inline const T& getW() const;
     
-    __inline T& getX() { return x; }
-    __inline T& getY() { return y; }
-    __inline T& getZ() { return z; }
-    __inline T& getW() { return w; }
+    __inline T& getX();
+    __inline T& getY();
+    __inline T& getZ();
+    __inline T& getW();
     
-    __inline void setX(const T& v) { x = v; }
-    __inline void setY(const T& v) { y = v; }
-    __inline void setZ(const T& v) { z = v; }
-    __inline void setW(const T& v) { w = v; }
+    __inline const Vector2<T>& getXY() const;
+    __inline const Vector3<T>& getXYZ() const;
+    __inline Vector2<T>& getXY();
+    __inline Vector3<T>& getXYZ();
+    
+    __inline void setX(const T& v);
+    __inline void setY(const T& v);
+    __inline void setZ(const T& v);
+    __inline void setW(const T& v);
     
     // -> R3
     Vector4<T> operator-() const;
@@ -55,7 +60,7 @@ protected:
 // R3 -> R3
 template <class T> Vector4<T> normalizedVector(const Vector4<T> &v);
 // RxR3 -> R3
-template <class T> Vector4<T> operator*(const float &a, const Vector4<T> &v);
+template <class T> Vector4<T> operator*(const T &a, const Vector4<T> &v);
 template <class T> Vector4<T> operator*(const Vector4<T> &v, const T &a);
 // R3xR3 -> R
 template <class T> T scalarDot(const Vector4<T> &a, const Vector4<T> &b);

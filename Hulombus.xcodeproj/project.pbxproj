@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F22FEC7D1B118846009A0598 /* Transform3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F22FEC7C1B118846009A0598 /* Transform3D.cpp */; };
+		F22FEC861B12CF67009A0598 /* GrcPrimitives.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F22FEC7F1B121C44009A0598 /* GrcPrimitives.cpp */; };
 		F275BC751A0877BC000C9941 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F275BC741A0877BC000C9941 /* GLUT.framework */; };
 		F275BC771A0877C9000C9941 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F275BC761A0877C9000C9941 /* OpenGL.framework */; };
 		F2A5AFE816FFB52E002FDD12 /* Derai.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFAF16FFB47F002FDD12 /* Derai.cpp */; };
@@ -72,6 +73,11 @@
 		F22FEC791B111ADC009A0598 /* Transform3D.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Transform3D.inl; path = engine/src/Transform3D.inl; sourceTree = "<group>"; };
 		F22FEC7A1B111ADC009A0598 /* Transform3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Transform3D.h; path = engine/src/Transform3D.h; sourceTree = "<group>"; };
 		F22FEC7C1B118846009A0598 /* Transform3D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Transform3D.cpp; path = engine/src/Transform3D.cpp; sourceTree = "<group>"; };
+		F22FEC7F1B121C44009A0598 /* GrcPrimitives.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GrcPrimitives.cpp; path = engine/src/GrcPrimitives.cpp; sourceTree = "<group>"; };
+		F22FEC801B121C44009A0598 /* GrcPrimitives.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GrcPrimitives.h; path = engine/src/GrcPrimitives.h; sourceTree = "<group>"; };
+		F22FEC821B1223EE009A0598 /* GrcPrimitives.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = GrcPrimitives.inl; path = engine/src/GrcPrimitives.inl; sourceTree = "<group>"; };
+		F22FEC831B122A98009A0598 /* Color.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Color.inl; path = engine/src/Color.inl; sourceTree = "<group>"; };
+		F22FEC841B122A98009A0598 /* Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Color.h; path = engine/src/Color.h; sourceTree = "<group>"; };
 		F237354818347B160099A194 /* Vector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Vector.h; path = engine/src/Vector.h; sourceTree = "<group>"; };
 		F275BC741A0877BC000C9941 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 		F275BC761A0877C9000C9941 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
@@ -143,6 +149,18 @@
 				F22FEC781B1113AF009A0598 /* TypeDefinitions.h */,
 			);
 			name = Base;
+			sourceTree = "<group>";
+		};
+		F22FEC7E1B121C1C009A0598 /* Graphic */ = {
+			isa = PBXGroup;
+			children = (
+				F22FEC831B122A98009A0598 /* Color.inl */,
+				F22FEC841B122A98009A0598 /* Color.h */,
+				F22FEC801B121C44009A0598 /* GrcPrimitives.h */,
+				F22FEC7F1B121C44009A0598 /* GrcPrimitives.cpp */,
+				F22FEC821B1223EE009A0598 /* GrcPrimitives.inl */,
+			);
+			name = Graphic;
 			sourceTree = "<group>";
 		};
 		F253158617057B5000A01240 /* Game */ = {
@@ -246,6 +264,7 @@
 			children = (
 				F22FEC771B111387009A0598 /* Base */,
 				F253158717057B6C00A01240 /* Math */,
+				F22FEC7E1B121C1C009A0598 /* Graphic */,
 				F253158817057B8800A01240 /* Glut */,
 				F253158A17057BDA00A01240 /* Textures */,
 				F253158B17057BF600A01240 /* Camera */,
@@ -380,6 +399,7 @@
 				F2A5AFF016FFB52E002FDD12 /* Entity.cpp in Sources */,
 				F2A5AFF216FFB52E002FDD12 /* Face.cpp in Sources */,
 				F2A5AFF416FFB52E002FDD12 /* Game.cpp in Sources */,
+				F22FEC861B12CF67009A0598 /* GrcPrimitives.cpp in Sources */,
 				F2A5AFF616FFB52E002FDD12 /* GameState.cpp in Sources */,
 				F2A5AFF816FFB52E002FDD12 /* Glut.cpp in Sources */,
 				F2A5AFFA16FFB52E002FDD12 /* Input.cpp in Sources */,

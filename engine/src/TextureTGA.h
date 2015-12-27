@@ -3,7 +3,7 @@
 
 #include "Texture.h"
 
-class TextureTGA : public Texture{
+class TextureTGA : public Texture {
 public:
     TextureTGA();
     ~TextureTGA();

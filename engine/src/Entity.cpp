@@ -45,7 +45,7 @@ void Entity::Render() {
     glPopMatrix();
 }
 
-void Entity::translate(float tx, float ty, float tz) {
+void Entity::translate(real tx, real ty, real tz) {
     transform.translate(tx, ty, tz);
     
     if (tx) {
@@ -63,7 +63,7 @@ void Entity::translate(float tx, float ty, float tz) {
     }
 }
 
-void Entity::rotate(float rx, float ry, float rz) {
+void Entity::rotate(real rx, real ry, real rz) {
 
     if (ry == 0) {
         transform.rotate(-pitch, 0.0, 0.0);

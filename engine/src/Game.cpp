@@ -118,7 +118,7 @@ void Game::Resize(int width, int height) {
     // Prevent division by zero if the window is too small
     if (height == 0)
         height = 1;
-
+    
     float glViewportOriginX, glViewportOriginY, glViewportWidth, glViewportHeight;
     float desiredGameAspectRatio = (float)this->width/(float)this->height;
     float viewPortAspectRatio = (float)width/(float)height;

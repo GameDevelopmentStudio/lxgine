@@ -22,8 +22,7 @@ void Camera::init() {
     lookAt = eye - target;
     focalLength = lookAt.module();
     lookAt = normalizedVector(lookAt);
-    up = normalizedVector(Vec4(-100, 200, -100, 0));
-    /* up = Vec4(0,1,0,0); */
+    up = Vec4(0.0, 1.0, 0.0, 0.0);
     right = crossProduct(up, lookAt);
 
     viewVolume.N = 2;
@@ -43,7 +42,7 @@ Vec4 Camera::getTarget() {
     return eye - focalLength*lookAt;
 }
 
-void Camera::translate(float x, float y, float z) {
+void Camera::translate(real x, real y, real z) {
 
     Vec4 trans = Vec4(x, y, z, 0.0);
 
@@ -64,15 +63,15 @@ void Camera::translate(float x, float y, float z) {
     eye = eye + desp;
 }
 
-void Camera::translateX(float x) {
+void Camera::translateX(real x) {
     translate(x, 0.0, 0.0);
 }
 
-void Camera::translateY(float y) {
+void Camera::translateY(real y) {
     translate(0.0, y, 0.0);
 }
 
-void Camera::translateZ(float z) {
+void Camera::translateZ(real z) {
     translate(0.0, 0.0, z);
 }
 
@@ -99,7 +98,7 @@ void Camera::translateZ(float z) {
  *        This is the current implementation.
  */
 
-void Camera::pitch(float alpha) {
+void Camera::pitch(real alpha) {
     // Rotate lookAt vector around right vector
     Mat44 pitch = matrixWithRotationOnAxis(alpha, right);
     // lookAt pitch modification implies changes on target point, 
@@ -108,7 +107,7 @@ void Camera::pitch(float alpha) {
     up = crossProduct(lookAt, right);
 }
 
-void Camera::yaw(float alpha) {
+void Camera::yaw(real alpha) {
     // Rotate look over up-like vector
     // We don't rotate directly around the up vector, but on the projection
     // of the up vector agains the plane defined by the right vector and the 
@@ -133,7 +132,7 @@ void Camera::yaw(float alpha) {
     right = crossProduct(up, lookAt);
 }
 
-void Camera::roll(float alpha) {
+void Camera::roll(real alpha) {
     // Rotate up vector arount lookAt
     Mat44 roll = matrixWithRotationOnAxis(alpha, lookAt);
     // Only up and right vectors are modified after the operation
@@ -150,7 +149,7 @@ void Camera::roll(float alpha) {
  * Notice there is no roll in orbitations, as it's the same as in rotations.
  */
 
-void Camera::orbitate(float rx, float ry) {
+void Camera::orbitate(real rx, real ry) {
     if (rx != 0) {
         // Yaw orbitation
         // See Camera::yaw for further explanation
@@ -187,7 +186,7 @@ void Camera::lockOn(LockableTarget* target, const Transform& transform) {
     
     // Init position
     target2 = target;
-    *targetInverseTransform = transform.getMatrix().inverse();
+    *targetInverseTransform = transform.getAsArray().inverse();
     LockableTargetDelegate::lockOn(target, transform);
 }
 
@@ -204,7 +203,7 @@ void Camera::stopLock(LockableTarget* target) {
     }
 }
 
-void Camera::targetDidRotate(LockableTarget *target, float rx, float ry, float rz) {return;
+void Camera::targetDidRotate(LockableTarget *target, real rx, real ry, real rz) {return;
 
     if (ry == 0) {
         targetInverseTransform->rotate(((Entity *) target)->pitch, 0.0f, 0.0f, false);
@@ -217,12 +216,12 @@ void Camera::targetDidRotate(LockableTarget *target, float rx, float ry, float r
     /* targetInverseTransform->rotate(-rx, -ry, -rz, false); */
 }
 
-void Camera::targetDidTranslate(LockableTarget *target, float tx, float ty, float tz) {return;
+void Camera::targetDidTranslate(LockableTarget *target, real tx, real ty, real tz) {return;
     targetInverseTransform->translate(-tx, -ty, -tz, false);
 }
 
 void Camera::targetResetPosition(LockableTarget* target, const Transform& transform) {return;
-    targetInverseTransform->setMatrix(transform.getMatrix().inverse());
+    targetInverseTransform->setMatrix(transform.getAsArray().inverse());
 }
 
 void Camera::toggleFPS() {
@@ -233,7 +232,7 @@ void Camera::toggleFPS() {
 
 void Camera::commit() {
     Mat44 transform;
-    glGetFloatv(GL_MODELVIEW_MATRIX, transform.getArrayOfConsecutiveRows());
+    glGetFloatv(GL_MODELVIEW_MATRIX, transform.getAsArray());
     if (targetInverseTransform) {
         // If lockOn is activated, targetInverseTransform contains
         // the necessary transform to follow the target
@@ -244,7 +243,7 @@ void Camera::commit() {
             glRotated(45, 1, 0, 0);
             glTranslated(0, -5, -5);
         }
-        *targetInverseTransform = ((Entity *) target2)->getTransform().getMatrix().inverse();
+        *targetInverseTransform = ((Entity *) target2)->getTransform().getAsArray().inverse();
         targetInverseTransform->commit();
     } else {
         // If mode is not lockOn, set up view with our coordinates

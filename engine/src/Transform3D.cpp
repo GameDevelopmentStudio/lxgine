@@ -1,6 +1,5 @@
 #include "Transform3D.h"
 
-
 // Transformations
 template<>
 void Transform3D<float>::translate(float tx, float ty, float tz, bool premultiply) {
@@ -10,7 +9,7 @@ void Transform3D<float>::translate(float tx, float ty, float tz, bool premultipl
     glLoadIdentity();
     glTranslatef(tx, ty, tz);
     Matrix44<float> transform;
-    glGetFloatv(GL_MODELVIEW_MATRIX, transform.getArrayOfConsecutiveRows());
+    glGetFloatv(GL_MODELVIEW_MATRIX, transform.getAsArray());
     glPopMatrix();
     
     // Apply transform to one's matrix
@@ -28,7 +27,7 @@ void Transform3D<double>::translate(double tx, double ty, double tz, bool premul
     glLoadIdentity();
     glTranslated(tx, ty, tz);
     Matrix44<double> transform;
-    glGetDoublev(GL_MODELVIEW_MATRIX, transform.getArrayOfConsecutiveRows());
+    glGetDoublev(GL_MODELVIEW_MATRIX, transform.getAsArray());
     glPopMatrix();
     
     // Apply transform to one's matrix
@@ -50,7 +49,7 @@ void Transform3D<float>::rotate(float rx, float ry, float rz, bool premultiply) 
     if (rz != 0)
         glRotatef(rz, 0, 1, 0);
     Matrix44<float> transform;
-    glGetFloatv(GL_MODELVIEW_MATRIX, transform.getArrayOfConsecutiveRows());
+    glGetFloatv(GL_MODELVIEW_MATRIX, transform.getAsArray());
     glPopMatrix();
     
     // Apply transform to one's matrix
@@ -72,7 +71,7 @@ void Transform3D<double>::rotate(double rx, double ry, double rz, bool premultip
     if (rz != 0)
         glRotated(rz, 0, 1, 0);
     Matrix44<double> transform;
-    glGetDoublev(GL_MODELVIEW_MATRIX, transform.getArrayOfConsecutiveRows());
+    glGetDoublev(GL_MODELVIEW_MATRIX, transform.getAsArray());
     glPopMatrix();
     
     // Apply transform to one's matrix
@@ -85,10 +84,10 @@ void Transform3D<double>::rotate(double rx, double ry, double rz, bool premultip
 // Apply changes
 template<>
 void Transform3D<float>::commit() {
-    glMultMatrixf(matrix.getArrayOfConsecutiveRows());
+    glMultMatrixf(matrix.getAsArray());
 }
 
 template<>
 void Transform3D<double>::commit() {
-    glMultMatrixd(matrix.getArrayOfConsecutiveRows());
+    glMultMatrixd(matrix.getAsArray());
 }

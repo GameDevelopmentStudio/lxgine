@@ -15,8 +15,17 @@ public:
     
     void init();
     
-    const Matrix44<T>& getMatrix() const;
-    Matrix44<T>& getMatrix();
+    const Matrix44<T>& getAsArray() const;
+    Matrix44<T>& getAsArray();
+    
+    const Vector3<T>& getPosition() const;
+    Vector3<T>& getPosition();
+    const Vector3<T>& getForward() const;
+    Vector3<T>& getForward();
+    const Vector3<T>& getRight() const;
+    Vector3<T>& getRight();
+    const Vector3<T>& getUp() const;
+    Vector3<T>& getUp();
     
     void setMatrix(const Matrix44<T>& v);
 
