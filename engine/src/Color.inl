@@ -66,6 +66,9 @@ ValueType Color<ValueType, redBitCount, greenBitCount, blueBitCount, alphaBitCou
 template<class ValueType, u8 redBitCount, u8 greenBitCount, u8 blueBitCount, u8 alphaBitCount>
 void Color<ValueType, redBitCount, greenBitCount, blueBitCount, alphaBitCount>::set(const float fR, const float fG, const float fB, const float fA) {
     
+    static_assert((8 * sizeof(ValueType)) == (redBitCount + greenBitCount + blueBitCount + alphaBitCount),
+                  "The type specified to store the color value cannot contain the given masks.");
+
     const ValueType uR = (ValueType)roundf(fR * ((1 << redBitCount) - 1));
     const ValueType uG = (ValueType)roundf(fG * ((1 << greenBitCount) - 1));
     const ValueType uB = (ValueType)roundf(fB * ((1 << blueBitCount) - 1));

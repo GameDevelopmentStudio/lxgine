@@ -86,12 +86,12 @@ void Level::render() {
     glLightfv(GL_LIGHT0, GL_POSITION, light0Pos);
     // Applies camera changes to the scene
 
-    Col axisColor(0.2f, 0.7f, 0.95f, 0.7f);
-    //ColExp1 axisColor1(0.2f, 0.7f, 0.95f, 0.7f);
-    //ColExp2 axisColor2(0.2f, 0.7f, 0.95f, 0.7f);
-    GrcPrimitives::segment(Vec3(0, 0, 0), Vec3(10, 0, 0), axisColor);
-    GrcPrimitives::segment(Vec3(0, 0, 0), Vec3(0, 10, 0), axisColor);
-    GrcPrimitives::segment(Vec3(0, 0, 0), Vec3(0, 0, 10), axisColor);
+    Col axisX(0.8f, 0.15f, 0.25f, 0.7f);
+    Col axisY(0.25f, 0.8f, 0.15f, 0.7f);
+    Col axisZ(0.15f, 0.25f, 0.8f, 0.7f);
+    GrcPrimitives::segment(Vec3(0, 0, 0), Vec3(10, 0, 0), axisX);
+    GrcPrimitives::segment(Vec3(0, 0, 0), Vec3(0, 10, 0), axisY);
+    GrcPrimitives::segment(Vec3(0, 0, 0), Vec3(0, 0, 10), axisZ);
     
     GrcPrimitives::ray(exampleEntity->getTransform().getPosition(), exampleEntity->getTransform().getForward(), Col(1.0f, 1.0f, 1.0f, 1.0f));
     GrcPrimitives::ray(exampleEntity->getTransform().getPosition(), exampleEntity->getTransform().getRight(), Col(1.0f, 1.0f, 1.0f, 1.0f));

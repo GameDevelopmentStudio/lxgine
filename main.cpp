@@ -4,10 +4,10 @@
 #include "Shader.h"
 
 int main(int argc, char **argv) {
-        Derai *game = new Derai();
-        game->init(argc, argv);
+    Derai *game = new Derai();
+    game->init(argc, argv);
 
-        game->run();
+    game->run();
 
-        return 1;
+    return 1;
 }

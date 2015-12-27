@@ -34,10 +34,10 @@ protected:
 
 #include "Color.inl"
 
-typedef Color<u32, 8, 8, 8, 8> Col8888;
-typedef Color<u16, 3, 8, 4, 1> ColExp1;
-typedef Color<u8, 1, 1, 1, 5> ColExp2;
+typedef Color<u32, 8, 8, 8, 8> Col32;
+typedef Color<u16, 5, 5, 5, 1> Col16;
+typedef Color<u8, 2, 3, 2, 1> Col8;
 
-typedef Col8888 Col;
+typedef Col32 Col;
 
 #endif
