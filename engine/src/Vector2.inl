@@ -61,6 +61,12 @@ Vector2<T> operator*(const Vector2<T> &v, const T &a) {
                       v.y * a);
 }
 
+template <class T>
+Vector2<T> operator/(const Vector2<T> &v, const T &a) {
+    return Vector2<T>(v.x / a,
+                      v.y / a);
+}
+
 // R2xR2->R Functions
 
 template <class T>

@@ -169,6 +169,14 @@ Vector4<T> operator*(const Vector4<T> &v, const T &a) {
                       v.getW() * a);
 }
 
+template <class T>
+Vector4<T> operator/(const Vector4<T> &v, const T &a) {
+    return Vector4<T>(v.getX() / a,
+                      v.getY() / a,
+                      v.getZ() / a,
+                      v.getW() / a);
+}
+
 // R3xR3->R Functions
 
 template <class T>

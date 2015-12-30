@@ -5,16 +5,13 @@
 
 #include "Vector.h"
 #include "Transform3D.h"
-
-struct ViewVolume {
-    real N,F;
-    real xR, xL;
-    real yT, yB;
-};
+#include "CameraLens.h"
 
 class Camera : public LockableTargetDelegate {
 public:
-    ViewVolume viewVolume;
+    
+    // Lens parameters
+    CameraLens cameraLens;
 
     // Camera coordinates
     Vec4 lookAt, up, right;
@@ -30,6 +27,9 @@ public:
     ~Camera();
 
     void init();
+    
+    void lookAtPosition(Vec4 target);
+    void lookInDirection(Vec4 lookAt, real focalLength);
 
     Vec4 getTarget();
 

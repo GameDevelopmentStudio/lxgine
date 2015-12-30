@@ -58,12 +58,15 @@ void Level::init() {
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
 
-    // TODO: refactor with camera params
-    gluPerspective(60.0, 1.0, 1.0, 200.0);
-    /* glFrustum(camera->viewVolume.xL, camera->viewVolume.xR, */
-    /*                     camera->viewVolume.yB, camera->viewVolume.yT, */
-    /*                     camera->viewVolume.N, camera-> viewVolume.F); */
-
+    // Camera
+    CameraLens::Perspective& perspective = camera->cameraLens.setFrustrumWithPerspective();
+    perspective.fov = 60.0;
+    perspective.aspect = 1.0;
+    perspective.N = 1.0;
+    perspective.F = 200.0;
+    camera->eye = Vec4(10.0, 10.0, 10.0, 1.0);
+    camera->lookAtPosition(Vec4(0.0, 0.0, 0.0, 1.0));
+    camera->init();
 
     objProg = new Shader();
     objProg->init(diffuseVS, diffuseFS);

@@ -73,6 +73,13 @@ Vector3<T> operator*(const Vector3<T> &v, const T &a) {
                       v.getZ() * a);
 }
 
+template <class T>
+Vector3<T> operator/(const Vector3<T> &v, const T &a) {
+    return Vector3<T>(v.getX() / a,
+                      v.getY() / a,
+                      v.getZ() / a);
+}
+
 // R3xR3->R Functions
 
 template <class T>

@@ -35,6 +35,7 @@
 		F2A5B04B16FFC1AF002FDD12 /* diffuseLighting.vsh in CopyFiles */ = {isa = PBXBuildFile; fileRef = F2A5B03F16FFC07E002FDD12 /* diffuseLighting.vsh */; };
 		F2A5B04C16FFC1AF002FDD12 /* diffuseTextureLighting.fsh in CopyFiles */ = {isa = PBXBuildFile; fileRef = F2A5B04016FFC07E002FDD12 /* diffuseTextureLighting.fsh */; };
 		F2AE905116FFC46600B80EF0 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2AE905016FFC46600B80EF0 /* main.cpp */; };
+		F2B39A201C3478D200CADB33 /* CameraLens.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2B39A1E1C3478D200CADB33 /* CameraLens.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -128,6 +129,8 @@
 		F2A5B03F16FFC07E002FDD12 /* diffuseLighting.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = diffuseLighting.vsh; path = engine/assets/shaders/diffuseLighting.vsh; sourceTree = "<group>"; };
 		F2A5B04016FFC07E002FDD12 /* diffuseTextureLighting.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = diffuseTextureLighting.fsh; path = engine/assets/shaders/diffuseTextureLighting.fsh; sourceTree = "<group>"; };
 		F2AE905016FFC46600B80EF0 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = SOURCE_ROOT; };
+		F2B39A1E1C3478D200CADB33 /* CameraLens.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CameraLens.cpp; path = engine/src/CameraLens.cpp; sourceTree = "<group>"; };
+		F2B39A1F1C3478D200CADB33 /* CameraLens.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CameraLens.h; path = engine/src/CameraLens.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -239,6 +242,8 @@
 		F253158B17057BF600A01240 /* Camera */ = {
 			isa = PBXGroup;
 			children = (
+				F2B39A1E1C3478D200CADB33 /* CameraLens.cpp */,
+				F2B39A1F1C3478D200CADB33 /* CameraLens.h */,
 				F2A5AFB516FFB48D002FDD12 /* Camera.cpp */,
 				F2A5AFB616FFB48D002FDD12 /* Camera.h */,
 				F2A5AFC316FFB48D002FDD12 /* LockableTarget.cpp */,
@@ -394,6 +399,7 @@
 			files = (
 				F2A5AFE816FFB52E002FDD12 /* Derai.cpp in Sources */,
 				F2A5AFEA16FFB52E002FDD12 /* Level.cpp in Sources */,
+				F2B39A201C3478D200CADB33 /* CameraLens.cpp in Sources */,
 				F2A5AFEC16FFB52E002FDD12 /* Player.cpp in Sources */,
 				F2A5AFEE16FFB52E002FDD12 /* Camera.cpp in Sources */,
 				F2A5AFF016FFB52E002FDD12 /* Entity.cpp in Sources */,

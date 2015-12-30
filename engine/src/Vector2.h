@@ -46,6 +46,7 @@ template <class T> Vector2<T> normalizedVector(const Vector2<T> &v);
 // RxR2 -> R2
 template <class T> Vector2<T> operator*(const T &a, const Vector2<T> &v);
 template <class T> Vector2<T> operator*(const Vector2<T> &v, const T &a);
+template <class T> Vector2<T> operator/(const Vector2<T> &v, const T &a);
 // R2xR2 -> R
 template <class T> T scalarDot(const Vector2<T> &a, const Vector2<T> &b);
 // R2xR2 -> R2

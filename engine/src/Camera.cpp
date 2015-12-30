@@ -16,26 +16,35 @@ Camera::~Camera() {
 }
 
 void Camera::init() {
-    eye.getX() = 10.0; eye.getY() = 10.0;
-    eye.getZ() = 10.0; eye.getW() = 1;
-    Vec4 target = Vec4(0.0, 0.0, 0.0, 1);
-    lookAt = eye - target;
-    focalLength = lookAt.module();
-    lookAt = normalizedVector(lookAt);
+    switch (cameraLens.type) {
+        case CameraLens::CameraLensTypeFrustrum: {
+            glFrustum(cameraLens.frustrum.xL, cameraLens.frustrum.xR,
+                      cameraLens.frustrum.yB, cameraLens.frustrum.yT,
+                      cameraLens.frustrum.N, cameraLens.frustrum.F);
+            
+            break;
+        }
+        case CameraLens::CameraLensTypePerspective: {
+            gluPerspective(cameraLens.perspective.fov, cameraLens.perspective.aspect, cameraLens.perspective.N, cameraLens.perspective.F);
+            break;
+        }
+        default:
+            break;
+    }
+    
     up = Vec4(0.0, 1.0, 0.0, 0.0);
     right = crossProduct(up, lookAt);
+}
 
-    viewVolume.N = 2;
-    viewVolume.F = 10000;
-    viewVolume.xR = 0.2f;
-    viewVolume.xL = -viewVolume.xR;
-    viewVolume.yT = 0.2f;
-    viewVolume.yB = -viewVolume.yT;
+void Camera::lookAtPosition(Vec4 target) {
+    lookAt = eye - target;
+    focalLength = lookAt.module();
+    lookAt = lookAt / focalLength;
+}
 
-    fpsMode = false;
-
-    glMatrixMode(GL_MODELVIEW);
-        glLoadIdentity();
+void Camera::lookInDirection(Vec4 lookAt, real focalLength) {
+    lookAt = lookAt;
+    focalLength = focalLength;
 }
 
 Vec4 Camera::getTarget() {
