@@ -1,13 +1,13 @@
 #ifndef __CAMERA_H__
 #define __CAMERA_H__
 
-#include "LockableTarget.h"
-
 #include "Vector.h"
 #include "Transform3D.h"
 #include "CameraLens.h"
 
-class Camera : public LockableTargetDelegate {
+class CameraMovement;
+
+class Camera {
 public:
     
     // Lens parameters
@@ -20,9 +20,6 @@ public:
     // Distance to target
     real focalLength;
 
-    // Lock on mode
-    Transform* targetInverseTransform;
-
     Camera();
     ~Camera();
 
@@ -30,7 +27,10 @@ public:
     
     void lookAtPosition(Vec4 target);
     void lookInDirection(Vec4 lookAt, real focalLength);
-
+    
+    void SetCameraMovement(CameraMovement* cameraMovement);
+    CameraMovement* GetCameraMovement();
+    
     Vec4 getTarget();
 
     void translate(real x, real y, real z);
@@ -44,18 +44,8 @@ public:
     void orbitate(real rx, real ry);
 
     void commit();
-
-    void toggleFPS();
-
-    // LocableDelegateMethods
-    virtual void lockOn(LockableTarget* target, const Transform& transform);
-    virtual bool isLockedOn();
-    virtual void stopLock(LockableTarget* target);
-    virtual void targetDidRotate(LockableTarget* target, real rx, real ry, real rz);
-    virtual void targetDidTranslate(LockableTarget* target, real tx, real ty, real tz);
-    virtual void targetResetPosition(LockableTarget* target, const Transform& transform);
-
-private:
-    bool fpsMode;
+    
+protected:
+    CameraMovement* cameraMovement;
 };
 #endif

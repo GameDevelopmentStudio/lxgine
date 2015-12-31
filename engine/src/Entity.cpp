@@ -6,9 +6,6 @@
 Entity::Entity() {
     game = NULL;
     world = NULL;
-    
-    // no camera has locked on this entity yet
-    delegate = NULL;
 
     pitch = yaw = roll = 0;
 }
@@ -18,10 +15,6 @@ Entity::~Entity() {
 
 void Entity::init() {
     transform.init();
-
-    if (delegate) {
-        delegate->targetResetPosition(this, transform);
-    }
 }
 
 void Entity::update() {
@@ -57,10 +50,6 @@ void Entity::translate(real tx, real ty, real tz) {
     if (tz) {
         pos.getZ() += tz;
     }
-
-    if (delegate) {
-        delegate->targetDidTranslate(this, tx, ty, tz);
-    }
 }
 
 void Entity::rotate(real rx, real ry, real rz) {
@@ -82,10 +71,6 @@ void Entity::rotate(real rx, real ry, real rz) {
     }
     if (rz) {
         yaw += rz;
-    }
-    
-    if (delegate) {
-        delegate->targetDidRotate(this, rx, ry, rz);
     }
 }
 
@@ -115,12 +100,4 @@ const Transform Entity::getTransform() const {
 
 Transform Entity::getTransform() {
     return transform;
-}
-
-void Entity::setDelegate(LockableTargetDelegate *delegate) {
-    LockableTarget::setDelegate(delegate);
-
-    if (delegate) {
-        delegate->targetResetPosition(this, transform);
-    }
 }

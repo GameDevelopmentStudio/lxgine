@@ -7,12 +7,16 @@
 class Entity;
 class Shader;
 class Texture;
+class CameraMovementMatchTarget;
+class CameraMovementFirstPerson;
 
 class Level : public GameState {
 public:     
     Shader *floorProg;
     Shader *objProg;
     Texture *floorTex;
+    CameraMovementMatchTarget* cameraMovement3rdPerson;
+    CameraMovementFirstPerson* cameraMovement1stPerson;
     
     Entity *exampleEntity;
     GLfloat light0Pos[4];

@@ -1,6 +1,8 @@
 #include "Level.h"
 #include "Game.h"
 #include "Camera.h"
+#include "CameraMovementFirstPerson.h"
+#include "CameraMovementMatchTarget.h"
 #include "Player.h"
 #include "Input.h"
 #include "Matrix44.h"
@@ -30,6 +32,8 @@ Level::~Level() {
     delete floorProg;
     delete objProg;
     delete floorTex;
+    delete cameraMovement3rdPerson;
+    delete cameraMovement1stPerson;
 }
 
 void Level::init() {
@@ -79,6 +83,13 @@ void Level::init() {
     exampleEntity->world = this;
     exampleEntity->game = this->game;
     exampleEntity->init();
+    
+    // Cameras
+    cameraMovement3rdPerson = new CameraMovementMatchTarget();
+    cameraMovement3rdPerson->followAtOffset(exampleEntity, Vec4(0.0, -5.0, -5.0));
+    
+    cameraMovement1stPerson = new CameraMovementFirstPerson();
+    cameraMovement1stPerson->followTarget(exampleEntity);
 }
 
 void Level::render() {
@@ -132,14 +143,15 @@ void Level::update() {
     GameState::update();
 
     if (game->input->keyPressed('v')) {
-        if (camera->isLockedOn()) {
-            camera->stopLock(exampleEntity);
+        if (camera->GetCameraMovement()) {
+            camera->SetCameraMovement(NULL);
         } else {
-            camera->lockOn(exampleEntity, exampleEntity->getTransform());
+            camera->SetCameraMovement(cameraMovement3rdPerson);
         }
     }
 
-    if (!camera->isLockedOn()) {
+    if (!camera->GetCameraMovement()) {
+        // Manually move the camera
         if (game->input->specialKeyCheck(GLUT_KEY_LEFT)) {
             camera->translate(-0.5, 0, 0);
         } else if (game->input->specialKeyCheck(GLUT_KEY_RIGHT)) {
@@ -162,6 +174,16 @@ void Level::update() {
             camera->pitch(0.05f);
         } else if (game->input->keyCheck('s')) {
             camera->pitch(-0.05f);
+        }
+    }
+    else {
+        // Toggle FPS
+        if (game->input->keyPressed('p')) {
+            if (camera->GetCameraMovement() == cameraMovement3rdPerson) {
+                camera->SetCameraMovement(cameraMovement1stPerson);
+            } else {
+                camera->SetCameraMovement(cameraMovement3rdPerson);
+            }
         }
     }
     

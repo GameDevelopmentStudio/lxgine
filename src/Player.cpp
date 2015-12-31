@@ -101,7 +101,7 @@ void Player::init() {
 }
 
 void Player::update() {
-    if (world->camera->isLockedOn()) {
+    if (world->camera->GetCameraMovement()) {
         if (game->input->specialKeyCheck(GLUT_KEY_LEFT)) {
             translate(-0.5, 0, 0);
         } else if (game->input->specialKeyCheck(GLUT_KEY_RIGHT)) {
@@ -142,10 +142,6 @@ void Player::update() {
             rotate(0, 0, 2.0);
         } else if (game->input->keyCheck('k')) {
             rotate(.0, 0, -2.0);
-        }
-        
-        if (game->input->keyPressed('p')) {
-            world->camera->toggleFPS();
         }
     }
 

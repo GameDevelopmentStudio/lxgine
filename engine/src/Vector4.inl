@@ -1,3 +1,5 @@
+#include <math.h>
+
 template <class T>
 Vector4<T>::Vector4(const Vector4<T> &other) {
     x = other.getX();

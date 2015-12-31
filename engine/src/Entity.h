@@ -1,14 +1,13 @@
 #ifndef __ENTITY_H__
 #define __ENTITY_H__
 
-#include "LockableTarget.h"
 #include "Vector.h"
 #include "Transform3D.h"
 
 class Game;
 class GameState;
 
-class Entity : public LockableTarget {
+class Entity {
  public:
     // Not owned pointers
     Game *game;
@@ -37,9 +36,6 @@ class Entity : public LockableTarget {
     
     const Transform getTransform() const;
     Transform getTransform();
-
-    // LockableTarget
-    virtual void setDelegate(LockableTargetDelegate *delegate);
 
     double pitch, yaw, roll;
  protected:

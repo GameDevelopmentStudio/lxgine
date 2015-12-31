@@ -31,8 +31,7 @@ public:
     Perspective& setFrustrumWithPerspective();
     
     // Frustrum params
-    union
-    {
+    union {
         Frustrum frustrum;
         Perspective perspective;
     };

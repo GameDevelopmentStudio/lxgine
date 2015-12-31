@@ -1,18 +1,15 @@
 #include "Camera.h"
-#include "Glut.h"
+#include "CameraMovement.h"
 #include "Entity.h"
+#include "Glut.h"
 
 #include <math.h>
-#include <iostream>
-LockableTarget *target2;
-Camera::Camera() {
-    targetInverseTransform = NULL;
+
+Camera::Camera()
+: cameraMovement(NULL) {
 }
 
 Camera::~Camera() {
-    if (targetInverseTransform) {
-        delete targetInverseTransform;
-    }
 }
 
 void Camera::init() {
@@ -45,6 +42,14 @@ void Camera::lookAtPosition(Vec4 target) {
 void Camera::lookInDirection(Vec4 lookAt, real focalLength) {
     lookAt = lookAt;
     focalLength = focalLength;
+}
+
+void Camera::SetCameraMovement(CameraMovement* cameraMovement) {
+    this->cameraMovement = cameraMovement;
+}
+
+CameraMovement* Camera::GetCameraMovement() {
+    return cameraMovement;
 }
 
 Vec4 Camera::getTarget() {
@@ -188,77 +193,16 @@ void Camera::orbitate(real rx, real ry) {
     }
 }
 
-// LockableTargetDelegate Methods
-
-void Camera::lockOn(LockableTarget* target, const Transform& transform) {
-    targetInverseTransform = new Transform();
-    
-    // Init position
-    target2 = target;
-    *targetInverseTransform = transform.getAsArray().inverse();
-    LockableTargetDelegate::lockOn(target, transform);
-}
-
-bool Camera::isLockedOn() {
-    return targetInverseTransform != NULL;
-}
-
-void Camera::stopLock(LockableTarget* target) {
-    if (isLockedOn()) {
-        delete targetInverseTransform;
-        targetInverseTransform = NULL;
-
-        LockableTargetDelegate::stopLock(target);
-    }
-}
-
-void Camera::targetDidRotate(LockableTarget *target, real rx, real ry, real rz) {return;
-
-    if (ry == 0) {
-        targetInverseTransform->rotate(((Entity *) target)->pitch, 0.0f, 0.0f, false);
-        targetInverseTransform->rotate(-rx, -ry, -rz, false);
-        targetInverseTransform->rotate(-((Entity *) target)->pitch, 0.0f, 0.0f, false);
-    } else {
-        targetInverseTransform->rotate(-rx, -ry, -rz, false);
-    }
-
-    /* targetInverseTransform->rotate(-rx, -ry, -rz, false); */
-}
-
-void Camera::targetDidTranslate(LockableTarget *target, real tx, real ty, real tz) {return;
-    targetInverseTransform->translate(-tx, -ty, -tz, false);
-}
-
-void Camera::targetResetPosition(LockableTarget* target, const Transform& transform) {return;
-    targetInverseTransform->setMatrix(transform.getAsArray().inverse());
-}
-
-void Camera::toggleFPS() {
-    fpsMode = !fpsMode;
-}
-
 // Apply changes
 
 void Camera::commit() {
-    Mat44 transform;
-    glGetFloatv(GL_MODELVIEW_MATRIX, transform.getAsArray());
-    if (targetInverseTransform) {
-        // If lockOn is activated, targetInverseTransform contains
-        // the necessary transform to follow the target
-        glMatrixMode(GL_MODELVIEW);
-        glLoadIdentity();
-    
-        if (!fpsMode) {
-            glRotated(45, 1, 0, 0);
-            glTranslated(0, -5, -5);
-        }
-        *targetInverseTransform = ((Entity *) target2)->getTransform().getAsArray().inverse();
-        targetInverseTransform->commit();
-    } else {
-        // If mode is not lockOn, set up view with our coordinates
-        // TODO: update our coordinates during lockOn
-        Vec4 target = getTarget();
 
+    if (cameraMovement) {
+        cameraMovement->commit();
+    }
+    else {
+        Vec4 target = getTarget();
+        
         glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
         gluLookAt(eye.getX(), eye.getY(), eye.getZ(),

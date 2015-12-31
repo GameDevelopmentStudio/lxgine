@@ -21,7 +21,6 @@
 		F2A5AFF616FFB52E002FDD12 /* GameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFBD16FFB48D002FDD12 /* GameState.cpp */; };
 		F2A5AFF816FFB52E002FDD12 /* Glut.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFBF16FFB48D002FDD12 /* Glut.cpp */; };
 		F2A5AFFA16FFB52E002FDD12 /* Input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFC116FFB48D002FDD12 /* Input.cpp */; };
-		F2A5AFFC16FFB52E002FDD12 /* LockableTarget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFC316FFB48D002FDD12 /* LockableTarget.cpp */; };
 		F2A5B00016FFB52E002FDD12 /* Mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFC716FFB48D002FDD12 /* Mesh.cpp */; };
 		F2A5B00416FFB52E002FDD12 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFCB16FFB48D002FDD12 /* Shader.cpp */; };
 		F2A5B00616FFB52E002FDD12 /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2A5AFCD16FFB48D002FDD12 /* Texture.cpp */; };
@@ -36,6 +35,9 @@
 		F2A5B04C16FFC1AF002FDD12 /* diffuseTextureLighting.fsh in CopyFiles */ = {isa = PBXBuildFile; fileRef = F2A5B04016FFC07E002FDD12 /* diffuseTextureLighting.fsh */; };
 		F2AE905116FFC46600B80EF0 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2AE905016FFC46600B80EF0 /* main.cpp */; };
 		F2B39A201C3478D200CADB33 /* CameraLens.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2B39A1E1C3478D200CADB33 /* CameraLens.cpp */; };
+		F2B39A231C35BCAB00CADB33 /* CameraMovement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2B39A211C35BCAB00CADB33 /* CameraMovement.cpp */; };
+		F2B39A271C35C8F100CADB33 /* CameraMovementMatchTarget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2B39A251C35C8F100CADB33 /* CameraMovementMatchTarget.cpp */; };
+		F2B39A2A1C35D3BE00CADB33 /* CameraMovementFirstPerson.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2B39A281C35D3BE00CADB33 /* CameraMovementFirstPerson.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -103,8 +105,6 @@
 		F2A5AFC016FFB48D002FDD12 /* Glut.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Glut.h; path = engine/src/Glut.h; sourceTree = "<group>"; };
 		F2A5AFC116FFB48D002FDD12 /* Input.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Input.cpp; path = engine/src/Input.cpp; sourceTree = "<group>"; };
 		F2A5AFC216FFB48D002FDD12 /* Input.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Input.h; path = engine/src/Input.h; sourceTree = "<group>"; };
-		F2A5AFC316FFB48D002FDD12 /* LockableTarget.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = LockableTarget.cpp; path = engine/src/LockableTarget.cpp; sourceTree = "<group>"; };
-		F2A5AFC416FFB48D002FDD12 /* LockableTarget.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LockableTarget.h; path = engine/src/LockableTarget.h; sourceTree = "<group>"; };
 		F2A5AFC516FFB48D002FDD12 /* Matrix44.inl */ = {isa = PBXFileReference; lastKnownFileType = text; name = Matrix44.inl; path = engine/src/Matrix44.inl; sourceTree = "<group>"; };
 		F2A5AFC616FFB48D002FDD12 /* Matrix44.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Matrix44.h; path = engine/src/Matrix44.h; sourceTree = "<group>"; };
 		F2A5AFC716FFB48D002FDD12 /* Mesh.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Mesh.cpp; path = engine/src/Mesh.cpp; sourceTree = "<group>"; };
@@ -131,6 +131,13 @@
 		F2AE905016FFC46600B80EF0 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = SOURCE_ROOT; };
 		F2B39A1E1C3478D200CADB33 /* CameraLens.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CameraLens.cpp; path = engine/src/CameraLens.cpp; sourceTree = "<group>"; };
 		F2B39A1F1C3478D200CADB33 /* CameraLens.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CameraLens.h; path = engine/src/CameraLens.h; sourceTree = "<group>"; };
+		F2B39A211C35BCAB00CADB33 /* CameraMovement.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CameraMovement.cpp; path = engine/src/CameraMovement.cpp; sourceTree = "<group>"; };
+		F2B39A221C35BCAB00CADB33 /* CameraMovement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CameraMovement.h; path = engine/src/CameraMovement.h; sourceTree = "<group>"; };
+		F2B39A251C35C8F100CADB33 /* CameraMovementMatchTarget.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CameraMovementMatchTarget.cpp; path = engine/src/CameraMovementMatchTarget.cpp; sourceTree = "<group>"; };
+		F2B39A261C35C8F100CADB33 /* CameraMovementMatchTarget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CameraMovementMatchTarget.h; path = engine/src/CameraMovementMatchTarget.h; sourceTree = "<group>"; };
+		F2B39A281C35D3BE00CADB33 /* CameraMovementFirstPerson.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CameraMovementFirstPerson.cpp; path = engine/src/CameraMovementFirstPerson.cpp; sourceTree = "<group>"; };
+		F2B39A291C35D3BE00CADB33 /* CameraMovementFirstPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CameraMovementFirstPerson.h; path = engine/src/CameraMovementFirstPerson.h; sourceTree = "<group>"; };
+		F2B39A2B1C35EF7A00CADB33 /* MathPrimitives.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MathPrimitives.h; path = engine/src/MathPrimitives.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +156,7 @@
 		F22FEC771B111387009A0598 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				F2B39A2B1C35EF7A00CADB33 /* MathPrimitives.h */,
 				F22FEC781B1113AF009A0598 /* TypeDefinitions.h */,
 			);
 			name = Base;
@@ -242,12 +250,11 @@
 		F253158B17057BF600A01240 /* Camera */ = {
 			isa = PBXGroup;
 			children = (
+				F2B39A241C35C8CD00CADB33 /* Movement */,
 				F2B39A1E1C3478D200CADB33 /* CameraLens.cpp */,
 				F2B39A1F1C3478D200CADB33 /* CameraLens.h */,
 				F2A5AFB516FFB48D002FDD12 /* Camera.cpp */,
 				F2A5AFB616FFB48D002FDD12 /* Camera.h */,
-				F2A5AFC316FFB48D002FDD12 /* LockableTarget.cpp */,
-				F2A5AFC416FFB48D002FDD12 /* LockableTarget.h */,
 			);
 			name = Camera;
 			sourceTree = "<group>";
@@ -346,6 +353,19 @@
 			name = Textures;
 			sourceTree = "<group>";
 		};
+		F2B39A241C35C8CD00CADB33 /* Movement */ = {
+			isa = PBXGroup;
+			children = (
+				F2B39A281C35D3BE00CADB33 /* CameraMovementFirstPerson.cpp */,
+				F2B39A291C35D3BE00CADB33 /* CameraMovementFirstPerson.h */,
+				F2B39A251C35C8F100CADB33 /* CameraMovementMatchTarget.cpp */,
+				F2B39A261C35C8F100CADB33 /* CameraMovementMatchTarget.h */,
+				F2B39A211C35BCAB00CADB33 /* CameraMovement.cpp */,
+				F2B39A221C35BCAB00CADB33 /* CameraMovement.h */,
+			);
+			name = Movement;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -401,6 +421,7 @@
 				F2A5AFEA16FFB52E002FDD12 /* Level.cpp in Sources */,
 				F2B39A201C3478D200CADB33 /* CameraLens.cpp in Sources */,
 				F2A5AFEC16FFB52E002FDD12 /* Player.cpp in Sources */,
+				F2B39A231C35BCAB00CADB33 /* CameraMovement.cpp in Sources */,
 				F2A5AFEE16FFB52E002FDD12 /* Camera.cpp in Sources */,
 				F2A5AFF016FFB52E002FDD12 /* Entity.cpp in Sources */,
 				F2A5AFF216FFB52E002FDD12 /* Face.cpp in Sources */,
@@ -409,15 +430,16 @@
 				F2A5AFF616FFB52E002FDD12 /* GameState.cpp in Sources */,
 				F2A5AFF816FFB52E002FDD12 /* Glut.cpp in Sources */,
 				F2A5AFFA16FFB52E002FDD12 /* Input.cpp in Sources */,
-				F2A5AFFC16FFB52E002FDD12 /* LockableTarget.cpp in Sources */,
 				F22FEC7D1B118846009A0598 /* Transform3D.cpp in Sources */,
 				F2A5B00016FFB52E002FDD12 /* Mesh.cpp in Sources */,
 				F2A5B00416FFB52E002FDD12 /* Shader.cpp in Sources */,
 				F2A5B00616FFB52E002FDD12 /* Texture.cpp in Sources */,
 				F2A5B00816FFB52E002FDD12 /* TextureLoader.cpp in Sources */,
 				F2A5B00A16FFB52E002FDD12 /* TexturePPM.cpp in Sources */,
+				F2B39A2A1C35D3BE00CADB33 /* CameraMovementFirstPerson.cpp in Sources */,
 				F2A5B00C16FFB52E002FDD12 /* TextureTGA.cpp in Sources */,
 				F2A5B00E16FFB52E002FDD12 /* Utils.cpp in Sources */,
+				F2B39A271C35C8F100CADB33 /* CameraMovementMatchTarget.cpp in Sources */,
 				F2AE905116FFC46600B80EF0 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
