@@ -40,7 +40,7 @@ void Level::init() {
     GameState::init();
 
     // Set up 3d view
-    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+    glClearColor(0.9f, 0.85f, 1.0f, 1.0f);
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
 
@@ -107,9 +107,9 @@ void Level::render() {
     GrcPrimitives::segment(Vec3(0, 0, 0), Vec3(0, 10, 0), axisY);
     GrcPrimitives::segment(Vec3(0, 0, 0), Vec3(0, 0, 10), axisZ);
     
-    GrcPrimitives::ray(exampleEntity->getTransform().getPosition(), exampleEntity->getTransform().getForward(), Col(1.0f, 1.0f, 1.0f, 1.0f));
-    GrcPrimitives::ray(exampleEntity->getTransform().getPosition(), exampleEntity->getTransform().getRight(), Col(1.0f, 1.0f, 1.0f, 1.0f));
-    GrcPrimitives::ray(exampleEntity->getTransform().getPosition(), exampleEntity->getTransform().getUp(), Col(1.0f, 1.0f, 1.0f, 1.0f));
+    GrcPrimitives::ray(exampleEntity->getTransform().getPosition(), exampleEntity->getTransform().getForward(), axisZ);
+    GrcPrimitives::ray(exampleEntity->getTransform().getPosition(), exampleEntity->getTransform().getRight(), axisX);
+    GrcPrimitives::ray(exampleEntity->getTransform().getPosition(), exampleEntity->getTransform().getUp(), axisY);
     
     floorProg->enable();
     floorProg->bindTexture("tex", floorTex->index, GL_TEXTURE_2D, 0);

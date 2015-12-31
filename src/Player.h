@@ -6,15 +6,13 @@
 
 class Player : public Entity {
 public:
-    GLuint vertexArray;
-    GLuint vertexBuffer;
     
     Player();
     ~Player();
 
-    void init();
-    void update();
-    void render();
+    virtual void init();
+    virtual void update();
+    virtual void render();
 };
 
 #endif

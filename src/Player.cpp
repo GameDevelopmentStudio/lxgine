@@ -12,10 +12,6 @@
 #include <stdio.h>
 #include <math.h>
 
-//GLuint vaoID2[1];
-//GLuint vboID2[1];
-//#define BUFFER_OFFSET(i) ((char *)NULL + (i))
-
 Mesh *m;
 
 int i = 0;
@@ -24,8 +20,6 @@ Player::Player() : Entity() {
 }
 
 Player::~Player() {
-    /* glDeleteBuffers(1, &vertexBuffer); */
-    /* glDeleteVertexArrays(1, &vertexArray); */
 }
 
 void Player::init() {
