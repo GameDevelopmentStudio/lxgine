@@ -38,6 +38,16 @@
 		F2B39A231C35BCAB00CADB33 /* CameraMovement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2B39A211C35BCAB00CADB33 /* CameraMovement.cpp */; };
 		F2B39A271C35C8F100CADB33 /* CameraMovementMatchTarget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2B39A251C35C8F100CADB33 /* CameraMovementMatchTarget.cpp */; };
 		F2B39A2A1C35D3BE00CADB33 /* CameraMovementFirstPerson.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2B39A281C35D3BE00CADB33 /* CameraMovementFirstPerson.cpp */; };
+		F2FC17BC1C39BF03009D22D3 /* ParticleData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2FC17BA1C39BF03009D22D3 /* ParticleData.cpp */; };
+		F2FC17C51C39E329009D22D3 /* ParticleEmitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2FC17C11C39E329009D22D3 /* ParticleEmitter.cpp */; };
+		F2FC17C61C39E329009D22D3 /* ParticleGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2FC17C31C39E329009D22D3 /* ParticleGenerator.cpp */; };
+		F2FC17CA1C39E8B7009D22D3 /* BoxGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2FC17C81C39E8B7009D22D3 /* BoxGenerator.cpp */; };
+		F2FC17D01C39EC22009D22D3 /* EulerUpdater.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2FC17CC1C39EC22009D22D3 /* EulerUpdater.cpp */; };
+		F2FC17D11C39EC22009D22D3 /* ParticleUpdater.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2FC17CE1C39EC22009D22D3 /* ParticleUpdater.cpp */; };
+		F2FC17D41C39EF03009D22D3 /* ParticleRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2FC17D21C39EF03009D22D3 /* ParticleRenderer.cpp */; };
+		F2FC17D81C39F08B009D22D3 /* ParticleSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2FC17D61C39F08B009D22D3 /* ParticleSystem.cpp */; };
+		F2FC17DB1C39F387009D22D3 /* ParticlePointRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2FC17D91C39F387009D22D3 /* ParticlePointRenderer.cpp */; };
+		F2FC17DE1C3CDAD5009D22D3 /* SphereAttractorUpdater.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2FC17DC1C3CDAD5009D22D3 /* SphereAttractorUpdater.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -138,6 +148,28 @@
 		F2B39A281C35D3BE00CADB33 /* CameraMovementFirstPerson.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CameraMovementFirstPerson.cpp; path = engine/src/CameraMovementFirstPerson.cpp; sourceTree = "<group>"; };
 		F2B39A291C35D3BE00CADB33 /* CameraMovementFirstPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CameraMovementFirstPerson.h; path = engine/src/CameraMovementFirstPerson.h; sourceTree = "<group>"; };
 		F2B39A2B1C35EF7A00CADB33 /* MathPrimitives.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MathPrimitives.h; path = engine/src/MathPrimitives.h; sourceTree = "<group>"; };
+		F2FC17BA1C39BF03009D22D3 /* ParticleData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ParticleData.cpp; path = engine/src/ParticleData.cpp; sourceTree = "<group>"; };
+		F2FC17BB1C39BF03009D22D3 /* ParticleData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ParticleData.h; path = engine/src/ParticleData.h; sourceTree = "<group>"; };
+		F2FC17BE1C39C438009D22D3 /* BitSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BitSet.h; path = engine/src/BitSet.h; sourceTree = "<group>"; };
+		F2FC17C01C39D605009D22D3 /* BitSet.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = BitSet.inl; path = engine/src/BitSet.inl; sourceTree = "<group>"; };
+		F2FC17C11C39E329009D22D3 /* ParticleEmitter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ParticleEmitter.cpp; path = engine/src/ParticleEmitter.cpp; sourceTree = "<group>"; };
+		F2FC17C21C39E329009D22D3 /* ParticleEmitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ParticleEmitter.h; path = engine/src/ParticleEmitter.h; sourceTree = "<group>"; };
+		F2FC17C31C39E329009D22D3 /* ParticleGenerator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ParticleGenerator.cpp; path = engine/src/ParticleGenerator.cpp; sourceTree = "<group>"; };
+		F2FC17C41C39E329009D22D3 /* ParticleGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ParticleGenerator.h; path = engine/src/ParticleGenerator.h; sourceTree = "<group>"; };
+		F2FC17C81C39E8B7009D22D3 /* BoxGenerator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BoxGenerator.cpp; path = engine/src/BoxGenerator.cpp; sourceTree = "<group>"; };
+		F2FC17C91C39E8B7009D22D3 /* BoxGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BoxGenerator.h; path = engine/src/BoxGenerator.h; sourceTree = "<group>"; };
+		F2FC17CC1C39EC22009D22D3 /* EulerUpdater.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EulerUpdater.cpp; path = engine/src/EulerUpdater.cpp; sourceTree = "<group>"; };
+		F2FC17CD1C39EC22009D22D3 /* EulerUpdater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EulerUpdater.h; path = engine/src/EulerUpdater.h; sourceTree = "<group>"; };
+		F2FC17CE1C39EC22009D22D3 /* ParticleUpdater.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ParticleUpdater.cpp; path = engine/src/ParticleUpdater.cpp; sourceTree = "<group>"; };
+		F2FC17CF1C39EC22009D22D3 /* ParticleUpdater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ParticleUpdater.h; path = engine/src/ParticleUpdater.h; sourceTree = "<group>"; };
+		F2FC17D21C39EF03009D22D3 /* ParticleRenderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ParticleRenderer.cpp; path = engine/src/ParticleRenderer.cpp; sourceTree = "<group>"; };
+		F2FC17D31C39EF03009D22D3 /* ParticleRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ParticleRenderer.h; path = engine/src/ParticleRenderer.h; sourceTree = "<group>"; };
+		F2FC17D61C39F08B009D22D3 /* ParticleSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ParticleSystem.cpp; path = engine/src/ParticleSystem.cpp; sourceTree = "<group>"; };
+		F2FC17D71C39F08B009D22D3 /* ParticleSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ParticleSystem.h; path = engine/src/ParticleSystem.h; sourceTree = "<group>"; };
+		F2FC17D91C39F387009D22D3 /* ParticlePointRenderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ParticlePointRenderer.cpp; path = engine/src/ParticlePointRenderer.cpp; sourceTree = "<group>"; };
+		F2FC17DA1C39F387009D22D3 /* ParticlePointRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ParticlePointRenderer.h; path = engine/src/ParticlePointRenderer.h; sourceTree = "<group>"; };
+		F2FC17DC1C3CDAD5009D22D3 /* SphereAttractorUpdater.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SphereAttractorUpdater.cpp; path = engine/src/SphereAttractorUpdater.cpp; sourceTree = "<group>"; };
+		F2FC17DD1C3CDAD5009D22D3 /* SphereAttractorUpdater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SphereAttractorUpdater.h; path = engine/src/SphereAttractorUpdater.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +197,7 @@
 		F22FEC7E1B121C1C009A0598 /* Graphic */ = {
 			isa = PBXGroup;
 			children = (
+				F2FC17B91C39BEC7009D22D3 /* Particles */,
 				F22FEC831B122A98009A0598 /* Color.inl */,
 				F22FEC841B122A98009A0598 /* Color.h */,
 				F22FEC801B121C44009A0598 /* GrcPrimitives.h */,
@@ -190,6 +223,8 @@
 		F253158717057B6C00A01240 /* Math */ = {
 			isa = PBXGroup;
 			children = (
+				F2FC17C01C39D605009D22D3 /* BitSet.inl */,
+				F2FC17BE1C39C438009D22D3 /* BitSet.h */,
 				F20408331833704100997BA2 /* Vector2.h */,
 				F22FEC751B101E7E009A0598 /* Vector2.inl */,
 				F20408361833778700997BA2 /* Vector3.h */,
@@ -366,6 +401,57 @@
 			name = Movement;
 			sourceTree = "<group>";
 		};
+		F2FC17B91C39BEC7009D22D3 /* Particles */ = {
+			isa = PBXGroup;
+			children = (
+				F2FC17D51C39F049009D22D3 /* Renderers */,
+				F2FC17CB1C39EBEB009D22D3 /* Updaters */,
+				F2FC17C71C39E88F009D22D3 /* Generators */,
+				F2FC17C11C39E329009D22D3 /* ParticleEmitter.cpp */,
+				F2FC17C21C39E329009D22D3 /* ParticleEmitter.h */,
+				F2FC17BA1C39BF03009D22D3 /* ParticleData.cpp */,
+				F2FC17BB1C39BF03009D22D3 /* ParticleData.h */,
+				F2FC17D61C39F08B009D22D3 /* ParticleSystem.cpp */,
+				F2FC17D71C39F08B009D22D3 /* ParticleSystem.h */,
+			);
+			name = Particles;
+			sourceTree = "<group>";
+		};
+		F2FC17C71C39E88F009D22D3 /* Generators */ = {
+			isa = PBXGroup;
+			children = (
+				F2FC17C81C39E8B7009D22D3 /* BoxGenerator.cpp */,
+				F2FC17C91C39E8B7009D22D3 /* BoxGenerator.h */,
+				F2FC17C31C39E329009D22D3 /* ParticleGenerator.cpp */,
+				F2FC17C41C39E329009D22D3 /* ParticleGenerator.h */,
+			);
+			name = Generators;
+			sourceTree = "<group>";
+		};
+		F2FC17CB1C39EBEB009D22D3 /* Updaters */ = {
+			isa = PBXGroup;
+			children = (
+				F2FC17DC1C3CDAD5009D22D3 /* SphereAttractorUpdater.cpp */,
+				F2FC17DD1C3CDAD5009D22D3 /* SphereAttractorUpdater.h */,
+				F2FC17CC1C39EC22009D22D3 /* EulerUpdater.cpp */,
+				F2FC17CD1C39EC22009D22D3 /* EulerUpdater.h */,
+				F2FC17CE1C39EC22009D22D3 /* ParticleUpdater.cpp */,
+				F2FC17CF1C39EC22009D22D3 /* ParticleUpdater.h */,
+			);
+			name = Updaters;
+			sourceTree = "<group>";
+		};
+		F2FC17D51C39F049009D22D3 /* Renderers */ = {
+			isa = PBXGroup;
+			children = (
+				F2FC17D91C39F387009D22D3 /* ParticlePointRenderer.cpp */,
+				F2FC17DA1C39F387009D22D3 /* ParticlePointRenderer.h */,
+				F2FC17D21C39EF03009D22D3 /* ParticleRenderer.cpp */,
+				F2FC17D31C39EF03009D22D3 /* ParticleRenderer.h */,
+			);
+			name = Renderers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -418,29 +504,39 @@
 			buildActionMask = 2147483647;
 			files = (
 				F2A5AFE816FFB52E002FDD12 /* Derai.cpp in Sources */,
+				F2FC17BC1C39BF03009D22D3 /* ParticleData.cpp in Sources */,
+				F2FC17D41C39EF03009D22D3 /* ParticleRenderer.cpp in Sources */,
+				F2FC17DE1C3CDAD5009D22D3 /* SphereAttractorUpdater.cpp in Sources */,
 				F2A5AFEA16FFB52E002FDD12 /* Level.cpp in Sources */,
 				F2B39A201C3478D200CADB33 /* CameraLens.cpp in Sources */,
 				F2A5AFEC16FFB52E002FDD12 /* Player.cpp in Sources */,
 				F2B39A231C35BCAB00CADB33 /* CameraMovement.cpp in Sources */,
+				F2FC17C51C39E329009D22D3 /* ParticleEmitter.cpp in Sources */,
 				F2A5AFEE16FFB52E002FDD12 /* Camera.cpp in Sources */,
 				F2A5AFF016FFB52E002FDD12 /* Entity.cpp in Sources */,
 				F2A5AFF216FFB52E002FDD12 /* Face.cpp in Sources */,
+				F2FC17C61C39E329009D22D3 /* ParticleGenerator.cpp in Sources */,
 				F2A5AFF416FFB52E002FDD12 /* Game.cpp in Sources */,
 				F22FEC861B12CF67009A0598 /* GrcPrimitives.cpp in Sources */,
+				F2FC17DB1C39F387009D22D3 /* ParticlePointRenderer.cpp in Sources */,
 				F2A5AFF616FFB52E002FDD12 /* GameState.cpp in Sources */,
 				F2A5AFF816FFB52E002FDD12 /* Glut.cpp in Sources */,
 				F2A5AFFA16FFB52E002FDD12 /* Input.cpp in Sources */,
 				F22FEC7D1B118846009A0598 /* Transform3D.cpp in Sources */,
 				F2A5B00016FFB52E002FDD12 /* Mesh.cpp in Sources */,
 				F2A5B00416FFB52E002FDD12 /* Shader.cpp in Sources */,
+				F2FC17D11C39EC22009D22D3 /* ParticleUpdater.cpp in Sources */,
 				F2A5B00616FFB52E002FDD12 /* Texture.cpp in Sources */,
 				F2A5B00816FFB52E002FDD12 /* TextureLoader.cpp in Sources */,
+				F2FC17CA1C39E8B7009D22D3 /* BoxGenerator.cpp in Sources */,
 				F2A5B00A16FFB52E002FDD12 /* TexturePPM.cpp in Sources */,
 				F2B39A2A1C35D3BE00CADB33 /* CameraMovementFirstPerson.cpp in Sources */,
 				F2A5B00C16FFB52E002FDD12 /* TextureTGA.cpp in Sources */,
 				F2A5B00E16FFB52E002FDD12 /* Utils.cpp in Sources */,
+				F2FC17D81C39F08B009D22D3 /* ParticleSystem.cpp in Sources */,
 				F2B39A271C35C8F100CADB33 /* CameraMovementMatchTarget.cpp in Sources */,
 				F2AE905116FFC46600B80EF0 /* main.cpp in Sources */,
+				F2FC17D01C39EC22009D22D3 /* EulerUpdater.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

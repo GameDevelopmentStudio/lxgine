@@ -18,6 +18,8 @@
 
 #include "GrcPrimitives.h"
 
+#include "BitSet.h"
+
 const char *diffuseTexFS = "engine/assets/shaders/diffuseTextureLighting.fsh";
 const char *diffuseVS = "engine/assets/shaders/diffuseLighting.vsh";
 const char *diffuseFS = "engine/assets/shaders/diffuseLighting.fsh";
@@ -40,7 +42,8 @@ void Level::init() {
     GameState::init();
 
     // Set up 3d view
-    glClearColor(0.9f, 0.85f, 1.0f, 1.0f);
+//    glClearColor(0.9f, 0.85f, 1.0f, 1.0f);
+    glClearColor(0.009f, 0.0085f, 0.0f, 1.0f);
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
 
@@ -90,6 +93,33 @@ void Level::init() {
     
     cameraMovement1stPerson = new CameraMovementFirstPerson();
     cameraMovement1stPerson->followTarget(exampleEntity);
+
+    // TODO: not really working
+//    BitSet32 bitset;
+//    bitset.set(1<<2, true);
+//    bitset.set(1<<0, true);
+//    bitset.set(1<<3, true);
+//    bitset.set(1<<0, false);
+//    if (bitset.get(1<<2)) {
+//        bitset.set(1<<2, false);
+//        if (bitset.get(1<<2)) {
+//            printf("hi");
+//        }
+//    }
+    
+    Vec4 boxCenter(1.0, 10.0, 1.0, 1.0);
+    Vec4 offset(10.0, 10.0, 10.0, 0.0);
+    particleGenerator.init(boxCenter, offset);
+    particleSystem.particleEmitter.addGenerator(particleGenerator);
+    
+    eulerParticleUpdater.globalAcceleration = Vec4(0.0, 0.40, 0.0, 0.0);
+    particleSystem.addUpdater(eulerParticleUpdater);
+    
+    attractorParticleUpdater.attractorCenter = Vec4(0.0, 10.0, 0.0, 0.0);
+    attractorParticleUpdater.distanceThreshold = 15.0;
+    attractorParticleUpdater.maxAttractionForce = 0.5;
+    attractorParticleUpdater.radius = 2.0;
+    particleSystem.addUpdater(attractorParticleUpdater);
 }
 
 void Level::render() {
@@ -100,7 +130,7 @@ void Level::render() {
     glLightfv(GL_LIGHT0, GL_POSITION, light0Pos);
     // Applies camera changes to the scene
 
-    Col axisX(0.8f, 0.15f, 0.25f, 0.7f);
+    /*Col axisX(0.8f, 0.15f, 0.25f, 0.7f);
     Col axisY(0.25f, 0.8f, 0.15f, 0.7f);
     Col axisZ(0.15f, 0.25f, 0.8f, 0.7f);
     GrcPrimitives::segment(Vec3(0, 0, 0), Vec3(10, 0, 0), axisX);
@@ -110,6 +140,7 @@ void Level::render() {
     GrcPrimitives::ray(exampleEntity->getTransform().getPosition(), exampleEntity->getTransform().getForward(), axisZ);
     GrcPrimitives::ray(exampleEntity->getTransform().getPosition(), exampleEntity->getTransform().getRight(), axisX);
     GrcPrimitives::ray(exampleEntity->getTransform().getPosition(), exampleEntity->getTransform().getUp(), axisY);
+    */
     
     floorProg->enable();
     floorProg->bindTexture("tex", floorTex->index, GL_TEXTURE_2D, 0);
@@ -133,10 +164,12 @@ void Level::render() {
     glEnd();
     floorProg->disable();
 
-    objProg->enable();
-    objProg->setUniformfv("lightColor", light0Color, 3);
-    exampleEntity->Render();
-    objProg->disable();
+    //objProg->enable();
+    //objProg->setUniformfv("lightColor", light0Color, 3);
+    //exampleEntity->Render();
+    //objProg->disable();
+    
+    particleSystem.render();
 }
     
 void Level::update() {
@@ -163,6 +196,12 @@ void Level::update() {
         } else if (game->input->specialKeyCheck(GLUT_KEY_DOWN)) {
             camera->translate(0, 0, 0.5);
         }
+        
+        if (game->input->keyCheck('o')) {
+            camera->translate(0, 0.5, 0);
+        } else if (game->input->keyCheck('l')) {
+            camera->translate(0, -0.5, 0);
+        }
 
         if (game->input->keyCheck('a')) {
             camera->yaw(-0.05f);
@@ -187,5 +226,7 @@ void Level::update() {
         }
     }
     
-    exampleEntity->update();
+    //exampleEntity->update();
+    
+    particleSystem.update(0.16);
 }

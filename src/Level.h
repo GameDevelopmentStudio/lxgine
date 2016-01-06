@@ -4,6 +4,11 @@
 #include "Glut.h"
 #include "GameState.h"
 
+#include "ParticleSystem.h"
+#include "BoxGenerator.h"
+#include "EulerUpdater.h"
+#include "SphereAttractorUpdater.h"
+
 class Entity;
 class Shader;
 class Texture;
@@ -17,6 +22,11 @@ public:
     Texture *floorTex;
     CameraMovementMatchTarget* cameraMovement3rdPerson;
     CameraMovementFirstPerson* cameraMovement1stPerson;
+    
+    ParticleSystem particleSystem;
+    BoxPosParticleGenerator particleGenerator;
+    EulerParticleUpdater eulerParticleUpdater;
+    SphereAttractorParticleUpdater attractorParticleUpdater;
     
     Entity *exampleEntity;
     GLfloat light0Pos[4];

@@ -1,4 +1,3 @@
-#include "Color.h"
 #include <math.h>
 
 template<class ValueType, u8 redBitCount, u8 greenBitCount, u8 blueBitCount, u8 alphaBitCount>
