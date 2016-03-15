@@ -26,6 +26,8 @@ public:
     
     void render();
     
+    void debug() const;
+    
 protected:
     std::vector<ParticleUpdater*> updaters;
 };

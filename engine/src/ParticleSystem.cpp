@@ -32,6 +32,10 @@ void ParticleSystem::update(real timeDelta) {
     }
     
     for (u16 i = 0; i < particleData.countAlive; i++) {
+        particleData.positions[i] += timeDelta * particleData.velocities[i];
+    }
+    
+    for (u16 i = 0; i < particleData.countAlive; i++) {
         
         // tmp
         if (particleData.times[i] < 0.0) {
@@ -47,5 +51,14 @@ void ParticleSystem::addUpdater(ParticleUpdater& updater) {
 void ParticleSystem::render() {
     if (renderer) {
         renderer->render(particleData);
+    }
+}
+
+void ParticleSystem::debug() const {
+    // particleEmitter.debug();
+    // particleData.debug();
+    
+    for (ParticleUpdater* updater : updaters) {
+        updater->debug(particleData);
     }
 }

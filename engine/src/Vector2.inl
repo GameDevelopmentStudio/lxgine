@@ -1,3 +1,5 @@
+#include "MathPrimitives.h"
+
 template <class T>
 Vector2<T>::Vector2(T x, T y) {
     this->x = x;
@@ -98,4 +100,10 @@ template <class T>
 void Vector2<T>::operator+=(const Vector2<T> &other) {
     x += other.x;
     y += other.y;
+}
+
+template <class T>
+bool Vector2<T>::operator==(const Vector2<T> &other) const {
+    return (abs(x - other.x) < kVectorEqualityDelta)
+        && (abs(y - other.y) < kVectorEqualityDelta);
 }

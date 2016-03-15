@@ -1,3 +1,5 @@
+#include "MathPrimitives.h"
+
 template <class T>
 Vector3<T>::Vector3(T x, T y, T z) {
     this->x = x;
@@ -115,6 +117,13 @@ void Vector3<T>::operator+=(const Vector3<T> &other) {
     x += other.getX();
     y += other.getY();
     z += other.getZ();
+}
+
+template <class T>
+bool Vector3<T>::operator==(const Vector3<T> &other) const {
+    return (abs(x - other.x) < kVectorEqualityDelta)
+        && (abs(y - other.y) < kVectorEqualityDelta)
+        && (abs(z - other.z) < kVectorEqualityDelta);
 }
 
 template <class T>

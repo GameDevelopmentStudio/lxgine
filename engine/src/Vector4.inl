@@ -1,4 +1,4 @@
-#include <math.h>
+#include "MathPrimitives.h"
 
 template <class T>
 Vector4<T>::Vector4(const Vector4<T> &other) {
@@ -218,6 +218,14 @@ void Vector4<T>::operator+=(const Vector4<T> &other) {
     y += other.getY();
     z += other.getZ();
     w += other.getW();
+}
+
+template <class T>
+bool Vector4<T>::operator==(const Vector4<T> &other) const {
+    return (abs(x - other.x) < kVectorEqualityDelta)
+        && (abs(y - other.y) < kVectorEqualityDelta)
+        && (abs(z - other.z) < kVectorEqualityDelta)
+        && (abs(w - other.w) < kVectorEqualityDelta);
 }
 
 template <class T>

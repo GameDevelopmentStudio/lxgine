@@ -79,3 +79,53 @@ template<class ValueType, u8 redBitCount, u8 greenBitCount, u8 blueBitCount, u8 
 void Color<ValueType, redBitCount, greenBitCount, blueBitCount, alphaBitCount>::set(const ValueType uR, const ValueType uG, const ValueType uB, const ValueType uA) {
     color = (uR << (greenBitCount + blueBitCount + alphaBitCount)) + (uG << (blueBitCount + alphaBitCount)) + (uB << (alphaBitCount)) + uA;
 }
+
+template<class ValueType, u8 redBitCount, u8 greenBitCount, u8 blueBitCount, u8 alphaBitCount>
+Color<ValueType, redBitCount, greenBitCount, blueBitCount, alphaBitCount> operator*(const float a,
+                                                                                    const Color<ValueType, redBitCount, greenBitCount, blueBitCount, alphaBitCount> &color)
+{
+    const float aR = color.getRf();
+    const float aG = color.getGf();
+    const float aB = color.getBf();
+    const float aA = color.getAf();
+    
+    const float oR = fmin(fmax(aR * a, 0.f), 1.f);
+    const float oG = fmin(fmax(aG * a, 0.f), 1.f);
+    const float oB = fmin(fmax(aB * a, 0.f), 1.f);
+    const float oA = fmin(fmax(aA * a, 0.f), 1.f);
+    
+    Color<ValueType, redBitCount, greenBitCount, blueBitCount, alphaBitCount> output(oR, oG, oB, oA);
+    
+    return output;
+}
+
+template<class ValueType, u8 redBitCount, u8 greenBitCount, u8 blueBitCount, u8 alphaBitCount>
+Color<ValueType, redBitCount, greenBitCount, blueBitCount, alphaBitCount> operator*(const Color<ValueType, redBitCount, greenBitCount, blueBitCount, alphaBitCount> &color
+                                                                                    , const float a)
+{
+    return a * color;
+}
+
+template<class ValueType, u8 redBitCount, u8 greenBitCount, u8 blueBitCount, u8 alphaBitCount>
+Color<ValueType, redBitCount, greenBitCount, blueBitCount, alphaBitCount> operator+(const Color<ValueType, redBitCount, greenBitCount, blueBitCount, alphaBitCount> &a,
+                                                                                    const Color<ValueType, redBitCount, greenBitCount, blueBitCount, alphaBitCount> &b)
+{
+    const float aR = a.getRf();
+    const float aG = a.getGf();
+    const float aB = a.getBf();
+    const float aA = a.getAf();
+
+    const float bR = b.getRf();
+    const float bG = b.getGf();
+    const float bB = b.getBf();
+    const float bA = b.getAf();
+
+    const float oR = fmin(fmax(aR + bR, 0.f), 1.f);
+    const float oG = fmin(fmax(aG + bG, 0.f), 1.f);
+    const float oB = fmin(fmax(aB + bB, 0.f), 1.f);
+    const float oA = fmin(fmax(aA + bA, 0.f), 1.f);
+    
+    Color<ValueType, redBitCount, greenBitCount, blueBitCount, alphaBitCount> output(oR, oG, oB, oA);
+    
+    return output;
+}

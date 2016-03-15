@@ -30,6 +30,7 @@ public:
     // R2xR2 -> R2
     void operator-=(const Vector2<T> &other);
     void operator+=(const Vector2<T> &other);
+    bool operator==(const Vector2<T> &other) const;
     
 protected:
     union {

@@ -12,5 +12,7 @@ public:
     virtual ~ParticleUpdater();
     
     virtual void update(real timeDelta, ParticleData& particles) const = 0;
+    
+    virtual void debug(const ParticleData& particles) const;
 };
 #endif

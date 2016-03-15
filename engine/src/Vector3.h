@@ -37,6 +37,7 @@ public:
     // R3xR3 -> R3
     void operator-=(const Vector3<T> &other);
     void operator+=(const Vector3<T> &other);
+    bool operator==(const Vector3<T> &other) const;
 protected:
     union {
         struct {

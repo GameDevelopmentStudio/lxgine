@@ -112,12 +112,12 @@ void Level::init() {
     particleGenerator.init(boxCenter, offset);
     particleSystem.particleEmitter.addGenerator(particleGenerator);
     
-    eulerParticleUpdater.globalAcceleration = Vec4(0.0, 0.40, 0.0, 0.0);
+    eulerParticleUpdater.globalAcceleration = Vec4(0.0, 0.0, 0.0, 0.0);
     particleSystem.addUpdater(eulerParticleUpdater);
     
     attractorParticleUpdater.attractorCenter = Vec4(0.0, 10.0, 0.0, 0.0);
     attractorParticleUpdater.distanceThreshold = 15.0;
-    attractorParticleUpdater.maxAttractionForce = 0.5;
+    attractorParticleUpdater.maxAttractionForce = 0.05;
     attractorParticleUpdater.radius = 2.0;
     particleSystem.addUpdater(attractorParticleUpdater);
 }
@@ -141,6 +141,9 @@ void Level::render() {
     GrcPrimitives::ray(exampleEntity->getTransform().getPosition(), exampleEntity->getTransform().getRight(), axisX);
     GrcPrimitives::ray(exampleEntity->getTransform().getPosition(), exampleEntity->getTransform().getUp(), axisY);
     */
+
+    Col circleColor(0.15f, 0.25f, 0.8f, 0.7f);
+    GrcPrimitives::sphere(Vec3(0, 0, 0), 3.f, circleColor);
     
     floorProg->enable();
     floorProg->bindTexture("tex", floorTex->index, GL_TEXTURE_2D, 0);
@@ -170,6 +173,7 @@ void Level::render() {
     //objProg->disable();
     
     particleSystem.render();
+    particleSystem.debug();
 }
     
 void Level::update() {
@@ -228,5 +232,5 @@ void Level::update() {
     
     //exampleEntity->update();
     
-    particleSystem.update(0.16);
+    ///particleSystem.update(0.16);
 }

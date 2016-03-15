@@ -16,5 +16,9 @@ public:
     virtual ~SphereAttractorParticleUpdater();
     
     virtual void update(real timeDelta, ParticleData& particles) const;
+    
+    virtual void debug(const ParticleData& particles) const;
+    
+    Vec4 computeAttractionAcceleration(const ParticleData& particles, const u16 idx) const;
 };
 #endif

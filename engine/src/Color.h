@@ -27,6 +27,18 @@ protected:
     ValueType color;
 };
 
+template<class ValueType, u8 redBitCount, u8 greenBitCount, u8 blueBitCount, u8 alphaBitCount>
+Color<ValueType, redBitCount, greenBitCount, blueBitCount, alphaBitCount> operator*(const float a,
+                                                                                    const Color<ValueType, redBitCount, greenBitCount, blueBitCount, alphaBitCount> &color);
+
+
+template<class ValueType, u8 redBitCount, u8 greenBitCount, u8 blueBitCount, u8 alphaBitCount>
+Color<ValueType, redBitCount, greenBitCount, blueBitCount, alphaBitCount> operator*(const Color<ValueType, redBitCount, greenBitCount, blueBitCount, alphaBitCount> &color
+                                                                                    , const float a);
+
+template<class ValueType, u8 redBitCount, u8 greenBitCount, u8 blueBitCount, u8 alphaBitCount>
+Color<ValueType, redBitCount, greenBitCount, blueBitCount, alphaBitCount> operator+(const Color<ValueType, redBitCount, greenBitCount, blueBitCount, alphaBitCount> &a,
+                                                                                    const Color<ValueType, redBitCount, greenBitCount, blueBitCount, alphaBitCount> &b);
 
 /*******************
  * Implementation
