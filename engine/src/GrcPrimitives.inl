@@ -33,10 +33,14 @@ template <class T> void GrcPrimitives::poly(const Vector3<T>* aPos, const u8 cou
 
 template <class T> void GrcPrimitives::circle(const Vector3<T>& vPos, const Vector3<T> vAxis, const T radius, const Col color) {
 
-    const Vector3<T> forwardZ(0, 0, -1);
-    const Vector3<T> expectedForward = (vAxis == forwardZ) ? Vector3<T>(0, 1, 0) : forwardZ;
+    const Vector3<T> zero(0, 0, 0);
+    const Vector3<T> expectedForward = Vector3<T>(0, 0, -1);
     const Vector3<T> up = normalizedVector(vAxis);
-    const Vector3<T> right = normalizedVector(crossProduct(up, expectedForward));
+    Vector3<T> right = normalizedVector(crossProduct(up, expectedForward));
+    if (right == zero)
+    {
+        right = Vector3<T>(1, 0, 0);
+    }
     const Vector3<T> forward = normalizedVector(crossProduct(up, right));
     
     Vector3<T> aPos[Private::kDebugCircleVertexCount];
@@ -52,19 +56,26 @@ template <class T> void GrcPrimitives::circle(const Vector3<T>& vPos, const Vect
 }
 
 template <class T> void GrcPrimitives::sphere(const Vector3<T>& vPos, const T radius, const Col color) {
-
-    Col colorVariation(0.25f, 0.25f, 0.25f, 0.f);
+    
+    const Col colorVariation(0.25f, 0.25f, 0.25f, 0.f);
+    const Vector3<T> sectionXAxis(1, 0, 0);
+    const Vector3<T> sectionYAxis(0, 1, 0);
     for (u8 i = 0; i < Private::kDebugSphereSectionCount; i++) {
-        
-        const T angle = i * M_PI / (T) Private::kDebugSphereSectionCount;
-        const Vector3<T> sectionAxisZ(cos(angle), sin(angle), 0);
-        const Vector3<T> sectionAxisX(0, cos(angle), sin(angle));
-        
-        const float colorOffsetFactor = fabs(i - (Private::kDebugSphereSectionCount * 0.5)) / (Private::kDebugSphereSectionCount * 0.5);
-        const Col colorOffset = colorVariation * colorOffsetFactor;
-        const Col sectionColor = color + colorOffset;
-        circle(vPos, sectionAxisZ, radius, sectionColor);
-        circle(vPos, sectionAxisX, radius, sectionColor);
-    }
 
+
+        const T angle = i * M_PI / (T) Private::kDebugSphereSectionCount;
+        const T sinAngle = sin(angle);
+        const T cosAngle = cos(angle);
+        const T sectionRadius = radius * sinAngle;
+        const T sectionOffset = radius * cosAngle;
+        const Vector3<T> sectionXPos = vPos + sectionOffset * sectionXAxis;
+        const Vector3<T> sectionYPos = vPos + sectionOffset * sectionYAxis;
+        
+        const Col colorOffset = (1.f - sinAngle) * colorVariation;
+        const Col sectionColor = color + colorOffset;
+        
+        circle(sectionXPos, sectionXAxis, sectionRadius, sectionColor);
+        circle(sectionYPos, sectionYAxis, sectionRadius, sectionColor);
+    }
+    
 }
